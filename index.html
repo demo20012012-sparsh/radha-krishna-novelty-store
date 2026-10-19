@@ -71,9 +71,14 @@
     }
 
     .divine-gradient {
-      background: radial-gradient(circle at 10% 20%, rgba(219, 39, 119, 0.35) 0%, transparent 40%),
-                  radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.25) 0%, transparent 40%),
-                  linear-gradient(135deg, #2a0845 0%, #4a044e 35%, #701a75 70%, #430c45 100%);
+      background: radial-gradient(circle at 10% 20%, rgba(219, 39, 119, 0.45) 0%, transparent 45%),
+                  radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.35) 0%, transparent 45%),
+                  radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.25) 0%, transparent 60%),
+                  linear-gradient(135deg, #1f0238 0%, #3b0764 30%, #581c87 70%, #2e0854 100%);
+    }
+
+    .divine-border {
+      border-image: linear-gradient(to right, #f59e0b, #ec4899, #8b5cf6, #f59e0b) 1;
     }
 
     .shimmer-badge {
@@ -89,7 +94,11 @@
     }
 
     .peacock-glow {
-      box-shadow: 0 0 25px rgba(245, 158, 11, 0.4), inset 0 0 15px rgba(219, 39, 119, 0.25);
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.5), 0 0 45px rgba(219, 39, 119, 0.25), inset 0 0 15px rgba(219, 39, 119, 0.3);
+    }
+
+    .divine-card-glow {
+      box-shadow: 0 10px 30px -10px rgba(126, 34, 206, 0.25), 0 4px 12px -2px rgba(245, 158, 11, 0.15);
     }
 
     /* Print Specific Invoice Styling */
@@ -959,13 +968,13 @@
           </div>
         </div>
 
-        <!-- Dedicated Coupon Code Section Placed Below PIN Code as requested -->
-        <div class="p-3.5 bg-gradient-to-r from-purple-50 via-pink-50 to-amber-50 rounded-2xl border border-purple-200/80 shadow-inner">
+        <!-- Dedicated Coupon Code Section Placed Directly Below PIN Code -->
+        <div class="p-3.5 bg-gradient-to-r from-purple-50 via-pink-50 to-amber-50 rounded-2xl border-2 border-dashed border-amber-300 shadow-sm">
           <div class="flex items-center justify-between mb-1.5">
             <span class="text-xs font-bold text-purple-950 flex items-center gap-1.5">
               <i class="fa-solid fa-gift text-pink-600"></i> Have a Promotional Coupon?
             </span>
-            <span class="text-[10px] text-purple-600 font-semibold">Special Store Offers</span>
+            <span class="text-[10px] text-amber-700 font-bold bg-amber-100 px-2 py-0.5 rounded-full">Special Savings</span>
           </div>
 
           <div class="flex gap-2">
@@ -976,20 +985,20 @@
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
-            <button type="button" onclick="quickApplyCheckoutCoupon('FIRST10')" class="text-left p-2 rounded-xl bg-white/90 border border-pink-200 hover:border-pink-500 transition shadow-xs flex items-center justify-between">
+            <button type="button" onclick="quickApplyCheckoutCoupon('FIRST10')" class="text-left p-2 rounded-xl bg-white/95 border border-pink-200 hover:border-pink-500 transition shadow-xs flex items-center justify-between group">
               <div>
-                <span class="font-bold text-xs text-pink-700 block"><i class="fa-solid fa-tag text-[10px] mr-1"></i>FIRST10</span>
-                <span class="text-[10px] text-gray-500">10% discount on first order</span>
+                <span class="font-bold text-xs text-pink-700 block group-hover:text-pink-900"><i class="fa-solid fa-tag text-[10px] mr-1"></i>FIRST10</span>
+                <span class="text-[10px] text-gray-500">10% discount on your order</span>
               </div>
-              <span class="text-[10px] bg-pink-100 text-pink-800 font-bold px-1.5 py-0.5 rounded">Tap</span>
+              <span class="text-[10px] bg-pink-100 text-pink-800 font-bold px-2 py-0.5 rounded">Tap</span>
             </button>
 
-            <button type="button" onclick="quickApplyCheckoutCoupon('SPECIAL999')" class="text-left p-2 rounded-xl bg-white/90 border border-amber-300 hover:border-amber-500 transition shadow-xs flex items-center justify-between">
+            <button type="button" onclick="quickApplyCheckoutCoupon('SPECIAL999')" class="text-left p-2 rounded-xl bg-white/95 border border-amber-300 hover:border-amber-500 transition shadow-xs flex items-center justify-between group">
               <div>
-                <span class="font-bold text-xs text-amber-800 block"><i class="fa-solid fa-crown text-[10px] mr-1"></i>SPECIAL999</span>
-                <span class="text-[10px] text-gray-500">₹150 off on orders above ₹999</span>
+                <span class="font-bold text-xs text-amber-800 block group-hover:text-amber-950"><i class="fa-solid fa-crown text-[10px] mr-1"></i>SPECIAL999</span>
+                <span class="text-[10px] text-gray-500">Flat ₹150 off on ₹999+</span>
               </div>
-              <span class="text-[10px] bg-amber-100 text-amber-900 font-bold px-1.5 py-0.5 rounded">Tap</span>
+              <span class="text-[10px] bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded">Tap</span>
             </button>
           </div>
 
@@ -1371,11 +1380,15 @@
             <i class="fa-solid fa-comments mr-1"></i> Review Approvals
             <span id="adminPendingReviewCount" class="bg-pink-600 text-white text-[10px] px-1.5 rounded-full ml-1">0</span>
           </button>
+          <button onclick="switchAdminTab('liveChatSupport')" id="tabBtn-liveChatSupport" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-purple-50 text-purple-900 hover:bg-purple-100 transition flex items-center gap-1">
+            <i class="fa-solid fa-headset mr-1"></i> Live Customer Chats
+            <span id="adminUnreadChatBadge" class="bg-emerald-600 text-white text-[10px] px-1.5 rounded-full ml-1">1</span>
+          </button>
           <button onclick="switchAdminTab('productsInventory')" id="tabBtn-productsInventory" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-purple-50 text-purple-900 hover:bg-purple-100 transition">
             <i class="fa-solid fa-boxes-stacked mr-1"></i> Inventory & Stock
           </button>
           <button onclick="switchAdminTab('messages')" id="tabBtn-messages" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-purple-50 text-purple-900 hover:bg-purple-100 transition">
-            <i class="fa-solid fa-envelope mr-1"></i> Customer Messages
+            <i class="fa-solid fa-envelope mr-1"></i> Contact Forms
           </button>
         </div>
 
@@ -1472,7 +1485,31 @@
           </div>
         </div>
 
-        <!-- Tab 4: Inventory & Stock Management -->
+        <!-- Tab 4: Live Customer Chat Section in Admin Portal -->
+        <div id="adminTab-liveChatSupport" class="hidden space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h4 class="font-bold text-sm text-purple-950">Store Live Chat & Support Messages</h4>
+              <p class="text-xs text-gray-500">Customer questions submitted via the floating chat widget appear here in real time.</p>
+            </div>
+            <button onclick="clearAdminChatHistory()" class="text-xs px-3 py-1.5 bg-rose-100 hover:bg-rose-200 text-rose-700 font-bold rounded-xl transition">
+              <i class="fa-solid fa-trash-can mr-1"></i> Clear Chat Thread
+            </button>
+          </div>
+
+          <div class="border border-purple-200 rounded-2xl bg-purple-50/30 p-4 h-80 overflow-y-auto space-y-3 text-xs" id="adminChatLiveFeed">
+            <!-- Rendered by JS -->
+          </div>
+
+          <form onsubmit="handleAdminChatReply(event)" class="flex gap-2">
+            <input type="text" id="adminReplyInput" required placeholder="Type reply as Radha Krishna Store Owner..." class="flex-1 text-xs px-3.5 py-2.5 rounded-xl border border-purple-200 focus:outline-none focus:ring-2 focus:ring-pink-500 bg-white">
+            <button type="submit" class="px-5 py-2.5 bg-purple-900 hover:bg-purple-950 text-amber-300 font-bold rounded-xl text-xs transition flex items-center gap-1.5 shadow">
+              <i class="fa-solid fa-paper-plane"></i> Send Reply to Customer
+            </button>
+          </form>
+        </div>
+
+        <!-- Tab 5: Inventory & Stock Management -->
         <div id="adminTab-productsInventory" class="hidden space-y-4">
           <div class="flex justify-between items-center">
             <h4 class="font-bold text-sm text-purple-950">Add / Update Products in Catalog</h4>
@@ -1614,11 +1651,8 @@
         </a>
       </div>
 
-    </div>
-  </div>
-
-  <!-- Main JavaScript Logic -->
-  <script>
+    <!-- Main JavaScript Logic -->
+    <script>
     /* Global Application State */
     const CATEGORIES = [
       { name: "Toys and Games", icon: "fa-gamepad", img: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=500&q=80" },
@@ -1784,88 +1818,178 @@
         originalPrice: 899,
         stock: 35,
         rating: 4.7,
-        reviewsCount: 27,
-        costPrice: 260,
+        reviewsCount: 26,
+        costPrice: 280,
         isBestseller: false,
         image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80",
-        description: "Includes Happy Birthday foil banner, metallic purple balloons, golden tassels, star balloons, and balloon pump."
+        description: "Complete birthday party decoration kit containing metallic banners, foil curtains, balloons, and cake toppers."
       },
       {
         id: "prod-11",
         sku: "RK-MOB-11",
-        name: "Universal Desktop Foldable Phone & Tablet Stand",
+        name: "Foldable Metal Desktop Mobile & Tablet Stand Holder",
         category: "Mobile Accessories",
-        price: 199,
-        originalPrice: 399,
-        stock: 80,
-        rating: 4.6,
-        reviewsCount: 64,
-        costPrice: 95,
+        price: 299,
+        originalPrice: 599,
+        stock: 50,
+        rating: 4.8,
+        reviewsCount: 34,
+        costPrice: 150,
         isBestseller: false,
         image: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=600&q=80",
-        description: "Heavy aluminum weighted base with anti-slip rubber pads, adjustable tilt angles, and reserved charging notch."
+        description: "Heavy-duty aluminum alloy angle-adjustable desk stand with anti-skid silicone pads for all smartphones."
       },
       {
         id: "prod-12",
         sku: "RK-UTL-12",
-        name: "Automatic Water Dispenser Pump for 20L Cans",
+        name: "Smart Motion Sensor LED Night Light (Rechargeable)",
         category: "Household Utility Products",
         price: 399,
         originalPrice: 799,
         stock: 40,
         rating: 4.7,
-        reviewsCount: 33,
-        costPrice: 220,
-        isBestseller: false,
+        reviewsCount: 30,
+        costPrice: 210,
+        isBestseller: true,
         image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=600&q=80",
-        description: "Wireless USB rechargeable water jug pump with food-grade silicone tube. Dispenses water at the touch of a button."
+        description: "Magnetic wireless sensor wardrobe and stairway light with auto motion detection and USB Type-C charging."
       },
       {
         id: "prod-13",
-        sku: "RK-FST-13",
-        name: "Electric Rotating Lotus Pooja Diya with Mantras",
+        sku: "RK-SES-13",
+        name: "Handcrafted Terracotta Lotus Diya Set (Pack of 6)",
         category: "Seasonal and Festival Items",
-        price: 699,
-        originalPrice: 1299,
-        stock: 20,
+        price: 349,
+        originalPrice: 699,
+        stock: 45,
         rating: 5.0,
-        reviewsCount: 48,
-        costPrice: 410,
+        reviewsCount: 62,
+        costPrice: 180,
         isBestseller: true,
         image: "https://images.unsplash.com/photo-1605647540924-852290f6b0d5?auto=format&fit=crop&w=600&q=80",
-        description: "Glowing fiber-optic motorized lotus lamp with melodious Gayatri and Hare Krishna chant speaker."
+        description: "Auspicious clay oil lamps beautifully painted in vibrant festive pink, gold, and turquoise with acrylic accents."
       },
       {
         id: "prod-14",
-        sku: "RK-RET-14",
-        name: "Kids Birthday Return Gift Pack of 10 Magic Sketch Books",
+        sku: "RK-RTN-14",
+        name: "Magic Rainbow Scratch Note Art Books (Pack of 10)",
         category: "Return Gifts and Gift Sets",
-        price: 550,
+        price: 499,
         originalPrice: 999,
-        stock: 50,
+        stock: 60,
         rating: 4.9,
-        reviewsCount: 45,
-        costPrice: 290,
+        reviewsCount: 78,
+        costPrice: 240,
         isBestseller: true,
         image: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=600&q=80",
-        description: "Set of 10 rainbow scratch art memo pads with wooden styluses and cute packaging envelopes for party giveaways."
+        description: "Ideal birthday return gift pack for kids. Includes 10 scratch notebooks with wooden stylus sticks."
       },
       {
         id: "prod-15",
-        sku: "RK-NOV-15",
-        name: "Levitating Magnetic Moon Lamp with Touch 3 Colors",
+        sku: "RK-TRD-15",
+        name: "Dancing Cactus Plush Toy with Voice Repeat & LED",
         category: "Trending Novelty Products",
-        price: 1899,
-        originalPrice: 2999,
-        stock: 12,
-        rating: 4.9,
-        reviewsCount: 16,
-        costPrice: 1250,
+        price: 599,
+        originalPrice: 1199,
+        stock: 32,
+        rating: 4.8,
+        reviewsCount: 54,
+        costPrice: 320,
         isBestseller: true,
         image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80",
-        description: "Floating lunar globe using electromagnetic suspension that rotates freely in air with glowing moonlight."
+        description: "Viral interactive singing and dancing toy that repeats voice in hilarious tones with glowing rhythmic LED lights."
       }
     ];
+
+    /* Strict rule: Automation replies ONLY 1 time initially. Subsequent messages wait for the owner */
+    let hasAutomatedReplyFired = false;
+
+    let liveChatHistory = [
+      {
+        sender: "customer",
+        text: "Radhe Radhe! Do you provide bulk discounts for birthday return gifts?",
+        time: "10:15 AM"
+      },
+      {
+        sender: "store",
+        text: "Radhe Radhe! Yes, we have special wholesale bundles for party return gifts. Use coupon SPECIAL999 for orders above ₹999 or call us directly at +91 98250 12345.",
+        time: "10:16 AM"
+      }
+    ];
+
+    function renderAdminChatFeed() {
+      const container = document.getElementById('adminChatLiveFeed');
+      if (!container) return;
+
+      if (liveChatHistory.length === 0) {
+        container.innerHTML = `<div class="text-center py-10 text-gray-400">No active customer chat messages yet.</div>`;
+        return;
+      }
+
+      container.innerHTML = liveChatHistory.map(m => `
+        <div class="flex ${m.sender === 'store' ? 'justify-end' : 'justify-start'}">
+          <div class="max-w-[75%] p-3 rounded-2xl ${
+            m.sender === 'store' 
+              ? 'bg-purple-900 text-amber-200 rounded-tr-none shadow-sm' 
+              : 'bg-white border border-purple-200 text-gray-800 rounded-tl-none shadow-xs'
+          }">
+            <div class="text-[10px] font-bold ${m.sender === 'store' ? 'text-pink-300' : 'text-purple-900'} mb-0.5 flex justify-between gap-3">
+              <span>${m.sender === 'store' ? 'Store Owner (You)' : 'Customer'}</span>
+              <span class="text-gray-400 font-normal">${m.time}</span>
+            </div>
+            <p class="leading-relaxed">${m.text}</p>
+          </div>
+        </div>
+      `).join('');
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function handleAdminChatReply(e) {
+      e.preventDefault();
+      const input = document.getElementById('adminReplyInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+
+      liveChatHistory.push({
+        sender: "store",
+        text: text,
+        time: timeStr
+      });
+
+      input.value = '';
+      renderAdminChatFeed();
+
+      // Synchronize with front-end live chat widget and clean any "Wait For Owners Reply" elements
+      const chatBody = document.getElementById('chatMessagesBody');
+      if (chatBody) {
+        // Remove all pending "Wait For Owners Reply" notifications upon reply
+        const pendingNotifs = chatBody.querySelectorAll('.wait-owner-msg');
+        pendingNotifs.forEach(el => el.remove());
+
+        const botBubble = document.createElement('div');
+        botBubble.className = "flex items-start gap-2";
+        botBubble.innerHTML = `
+          <div class="w-7 h-7 rounded-full bg-purple-900 text-amber-300 flex items-center justify-center text-[10px] font-bold shrink-0">RK</div>
+          <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-purple-100 max-w-[80%] text-gray-800 leading-relaxed">
+            <span class="text-[10px] font-bold text-pink-600 block mb-0.5">Store Owner</span>
+            ${text}
+          </div>
+        `;
+        chatBody.appendChild(botBubble);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      showToast('Reply dispatched to customer live chat!');
+    }
+
+    function clearAdminChatHistory() {
+      liveChatHistory = [];
+      renderAdminChatFeed();
+      showToast('Chat history cleared.');
+    }
 
     let customerReviews = [
       {
@@ -2869,19 +2993,26 @@
     }
 
     function switchAdminTab(tabName) {
-      const tabs = ['liveOrders', 'ordersInvoices', 'reviewApproval', 'productsInventory', 'messages'];
+      const tabs = ['liveOrders', 'ordersInvoices', 'reviewApproval', 'liveChatSupport', 'productsInventory', 'messages'];
       tabs.forEach(t => {
-        document.getElementById(`adminTab-${t}`).classList.add('hidden');
+        const el = document.getElementById(`adminTab-${t}`);
+        if (el) el.classList.add('hidden');
         const btn = document.getElementById(`tabBtn-${t}`);
         if (btn) {
           btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-purple-50 text-purple-900 hover:bg-purple-100 transition";
         }
       });
 
-      document.getElementById(`adminTab-${tabName}`).classList.remove('hidden');
+      const activeSection = document.getElementById(`adminTab-${tabName}`);
+      if (activeSection) activeSection.classList.remove('hidden');
+
       const activeBtn = document.getElementById(`tabBtn-${tabName}`);
       if (activeBtn) {
         activeBtn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-purple-900 text-amber-300 transition";
+      }
+
+      if (tabName === 'liveChatSupport') {
+        renderAdminChatFeed();
       }
     }
 
@@ -3085,6 +3216,17 @@
       const text = input.value.trim();
       if (!text) return;
 
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+
+      // Push customer message to liveChatHistory for owner portal view
+      liveChatHistory.push({
+        sender: "customer",
+        text: text,
+        time: timeStr
+      });
+      renderAdminChatFeed();
+
       const body = document.getElementById('chatMessagesBody');
 
       const userBubble = document.createElement('div');
@@ -3098,31 +3240,50 @@
       input.value = '';
       body.scrollTop = body.scrollHeight;
 
-      setTimeout(() => {
-        let reply = "✨ Radhe Radhe! Thank you for inquiring. Our Jamnagar store team has noted your query and will assist you right away. You can also chat on WhatsApp at +91 98250 12345.";
-        const lower = text.toLowerCase();
-        
-        if (lower.includes('jamnagar') || lower.includes('deliver') || lower.includes('shipping')) {
-          reply = "Yes! We offer express same-day / 24-hr delivery within Jamnagar and across Gujarat. Free delivery is applied automatically on all orders above ₹499.";
-        } else if (lower.includes('coupon') || lower.includes('discount') || lower.includes('code')) {
-          reply = "We currently have two active coupons: Use 'FIRST10' for 10% off your first purchase, or 'SPECIAL999' for a flat ₹150 off on orders above ₹999!";
-        } else if (lower.includes('return gift') || lower.includes('bulk') || lower.includes('party')) {
-          reply = "We offer special wholesale prices on party packs and school return gift bundles (magic sketchpads, astronaut keychains, stationery sets). Call +91 98250 12345 for bulk orders.";
-        } else if (lower.includes('price') || lower.includes('rupee')) {
-          reply = "All prices shown on our website are inclusive of GST in Indian Rupees (₹). You can pay via Cash on Delivery or UPI.";
-        }
+      // AUTOMATION RULE: Automation runs ONLY 1 TIME per customer session.
+      // After that 1 automation, no bot answers run; the store owner replies directly via the Admin Portal.
+      if (!hasAutomatedReplyFired) {
+        hasAutomatedReplyFired = true; // Mark as fired so it never triggers again
 
-        const botBubble = document.createElement('div');
-        botBubble.className = "flex items-start gap-2";
-        botBubble.innerHTML = `
-          <div class="w-7 h-7 rounded-full bg-purple-900 text-amber-300 flex items-center justify-center text-[10px] font-bold shrink-0">RK</div>
-          <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-purple-100 max-w-[80%] text-gray-800 leading-relaxed">
-            ${reply}
-          </div>
-        `;
-        body.appendChild(botBubble);
+        setTimeout(() => {
+          let reply = "✨ Radhe Radhe! Thank you for contacting Radha Krishna Novelty Store. Our store owner in Jamnagar has received your query and will reply directly in this chat thread shortly!";
+          const lower = text.toLowerCase();
+          
+          if (lower.includes('jamnagar') || lower.includes('deliver') || lower.includes('shipping')) {
+            reply = "✨ Radhe Radhe! Yes, we offer express same-day / 24-hr delivery in Jamnagar & across Gujarat. Free shipping applies on orders above ₹499! The store owner will attend to your order details shortly.";
+          } else if (lower.includes('coupon') || lower.includes('discount') || lower.includes('code')) {
+            reply = "✨ Radhe Radhe! Coupons available: 'FIRST10' for 10% off your first purchase, or 'SPECIAL999' for ₹150 off on orders above ₹999. The store owner is also here if you need bulk quotes.";
+          } else if (lower.includes('return gift') || lower.includes('bulk') || lower.includes('party')) {
+            reply = "✨ Radhe Radhe! We specialize in birthday return gift packs & party bundles. Our store owner will reply to you directly right here, or you can call +91 98250 12345.";
+          }
+
+          liveChatHistory.push({
+            sender: "store",
+            text: reply,
+            time: timeStr
+          });
+          renderAdminChatFeed();
+
+          const botBubble = document.createElement('div');
+          botBubble.className = "flex items-start gap-2";
+          botBubble.innerHTML = `
+            <div class="w-7 h-7 rounded-full bg-purple-900 text-amber-300 flex items-center justify-center text-[10px] font-bold shrink-0">RK</div>
+            <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-purple-100 max-w-[80%] text-gray-800 leading-relaxed">
+              <span class="text-[10px] font-bold text-pink-600 block mb-0.5">Automated Greeting (1-time)</span>
+              ${reply}
+            </div>
+          `;
+          body.appendChild(botBubble);
+          body.scrollTop = body.scrollHeight;
+        }, 600);
+      } else {
+        // Subsequent messages: display "Wait For Owners Reply"
+        const notifyBubble = document.createElement('div');
+        notifyBubble.className = "wait-owner-msg text-center text-[11px] text-purple-900 bg-amber-100 border border-amber-300 py-1.5 px-3 rounded-full my-1.5 font-bold shadow-xs";
+        notifyBubble.innerHTML = `<i class="fa-solid fa-hourglass-half mr-1 text-amber-600"></i> Wait For Owners Reply`;
+        body.appendChild(notifyBubble);
         body.scrollTop = body.scrollHeight;
-      }, 700);
+      }
     }
 
     function approveReview(id) {
@@ -3131,7 +3292,7 @@
         r.isApproved = true;
         renderReviewsSection();
         refreshAdminMetrics();
-        showToast(`Review by ${r.author} approved! Now visible on website.`);
+        showToast(`Review approved and now live on the storefront!`);
       }
     }
 
@@ -3309,6 +3470,7 @@
       renderProductGrid();
       renderReviewsSection();
       updateCartUI();
+      renderAdminChatFeed();
     };
   </script>
 </body>
