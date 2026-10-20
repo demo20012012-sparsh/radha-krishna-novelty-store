@@ -82,10 +82,6 @@
       box-shadow: 0 0 25px rgba(245, 158, 11, 0.5), 0 0 45px rgba(219, 39, 119, 0.25), inset 0 0 15px rgba(219, 39, 119, 0.3);
     }
 
-    .ornate-border {
-      border-image: linear-gradient(to right, #f59e0b, #ec4899, #0d9488, #f59e0b) 1;
-    }
-
     /* Print Specific Invoice Styling */
     @media print {
       body * {
@@ -111,6 +107,7 @@
   </style>
 </head>
 <body class="bg-gradient-to-br from-purple-50 via-pink-50/50 to-amber-50/60 text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-pink-300 selection:text-purple-900">
+  
   <div class="bg-gradient-to-r from-purple-950 via-pink-950 to-purple-950 text-amber-200 text-xs py-2 px-4 shadow-inner border-b border-amber-500/30">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center text-center gap-2">
       <div class="flex items-center gap-2 mx-auto sm:mx-0">
@@ -185,7 +182,7 @@
           <a href="#reviews" onclick="navigateTo('reviews')" class="hover:text-purple-700 hover:border-b-2 hover:border-pink-500 py-1 transition font-medium">Reviews</a>
           <a href="#about" onclick="navigateTo('about')" class="hover:text-purple-700 hover:border-b-2 hover:border-pink-500 py-1 transition font-medium">About Us</a>
           <a href="#contact" onclick="navigateTo('contact')" class="hover:text-purple-700 hover:border-b-2 hover:border-pink-500 py-1 transition font-medium">Contact Us</a>
-          <button onclick="openCustomerOrdersModal()" class="text-xs text-purple-950 hover:text-white hover:bg-purple-900 font-bold flex items-center gap-1.5 bg-gradient-to-r from-amber-200 to-amber-300 text-purple-950 px-3 py-1.5 rounded-full border border-amber-400 shadow-sm transition">
+          <button onclick="openCustomerOrdersModal()" class="text-xs hover:bg-purple-900 font-bold flex items-center gap-1.5 bg-gradient-to-r from-amber-200 to-amber-300 text-purple-950 px-3 py-1.5 rounded-full border border-amber-400 shadow-sm transition hover:text-white">
             <i class="fa-solid fa-box text-pink-600"></i> Your Orders
           </button>
           <button onclick="openTrackingModal()" class="text-xs text-purple-900 hover:text-pink-600 font-semibold flex items-center gap-1 bg-purple-50 px-2.5 py-1.5 rounded-lg border border-purple-200">
@@ -370,7 +367,6 @@
       </div>
     </section>
 
-    <!-- Promotional Callout Cards -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="rounded-3xl p-6 md:p-8 bg-gradient-to-r from-purple-900 to-indigo-900 text-white relative overflow-hidden shadow-lg flex flex-col justify-between">
@@ -465,7 +461,6 @@
           </button>
         </div>
 
-        <!-- Aggregate Summary Card -->
         <div class="bg-white rounded-2xl p-6 shadow-sm border border-purple-100 mb-8 grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
           <div class="text-center md:border-r md:border-purple-100">
             <div class="text-4xl font-black text-purple-950" id="avgRatingDisplay">4.8</div>
@@ -552,7 +547,6 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
-          <!-- Contact Details Card -->
           <div class="lg:col-span-5 bg-gradient-to-br from-purple-900 via-purple-950 to-pink-950 text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
             <h3 class="font-serif font-bold text-xl text-amber-300 mb-6">Radha Krishna Novelty Store</h3>
             
@@ -716,6 +710,7 @@
             <li><a href="#catalog" onclick="navigateTo('catalog')" class="hover:text-pink-300 transition">Shop All Catalog</a></li>
             <li><a href="#categories" onclick="navigateTo('categories')" class="hover:text-pink-300 transition">All 15 Categories</a></li>
             <li><a href="#reviews" onclick="navigateTo('reviews')" class="hover:text-pink-300 transition">Customer Testimonials</a></li>
+            <li><button onclick="openCustomerOrdersModal()" class="hover:text-pink-300 transition text-left">Your Orders</button></li>
             <li><button onclick="openTrackingModal()" class="hover:text-pink-300 transition text-left">Track My Order</button></li>
             <li><a href="#about" onclick="navigateTo('about')" class="hover:text-pink-300 transition">About Our Store</a></li>
             <li><a href="#contact" onclick="navigateTo('contact')" class="hover:text-pink-300 transition">Contact & Support</a></li>
@@ -866,6 +861,7 @@
     </div>
   </div>
 
+  <!-- Cart Modal -->
   <div id="cartModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex justify-end transition-opacity">
     <div class="w-full max-w-md bg-white h-full shadow-2xl flex flex-col justify-between animate-slide-left">
       
@@ -1118,7 +1114,7 @@
         <h3 class="font-serif font-bold text-2xl text-purple-950">Order Placed Successfully!</h3>
         <p class="text-xs text-gray-600 mt-1">Thank you for shopping at Radha Krishna Novelty Store. Your official GST invoice has been generated below.</p>
         
-        <!-- Mandatory Working Action Buttons -->
+        <!-- Working Action Buttons -->
         <div class="flex flex-wrap items-center justify-center gap-3 mt-4">
           <button onclick="printCurrentInvoice()" class="px-5 py-2.5 bg-purple-900 hover:bg-purple-950 text-amber-300 font-bold rounded-xl text-xs transition shadow-md flex items-center gap-2">
             <i class="fa-solid fa-print"></i> Print Invoice
@@ -1741,85 +1737,16 @@
       { name: "Trending Novelty Products", icon: "fa-fire", img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=500&q=80" }
     ];
 
-    let cancellationEmailsLog = [];
+    // --- Persistent LocalStorage Keys for Cross-Session & Cross-Device/Tab Live Sync ---
+    const STORAGE_KEYS = {
+      ORDERS: 'RK_ORDERS_STORE_DB_v2',
+      PRODUCTS: 'RK_PRODUCTS_CATALOG_v2',
+      REVIEWS: 'RK_CUSTOMER_REVIEWS_v2',
+      CHAT: 'RK_LIVE_CHAT_HISTORY_v2',
+      CANCEL_LOG: 'RK_CANCEL_EMAILS_LOG_v2'
+    };
 
-    // Helper to open/close customer orders modal
-    function openCustomerOrdersModal() {
-      renderCustomerOrdersList();
-      document.getElementById('customerOrdersModal').classList.remove('hidden');
-    }
-
-    function closeCustomerOrdersModal() {
-      document.getElementById('customerOrdersModal').classList.add('hidden');
-    }
-
-    function renderCustomerOrdersList() {
-      const container = document.getElementById('customerOrdersListContainer');
-      if (!container) return;
-
-      if (ordersDatabase.length === 0) {
-        container.innerHTML = `
-          <div class="text-center py-12 text-gray-500 bg-purple-50/50 rounded-2xl border border-dashed border-purple-200">
-            <i class="fa-solid fa-box-open text-4xl text-purple-300 mb-2"></i>
-            <h4 class="font-bold text-sm text-purple-950">No orders placed yet</h4>
-            <p class="text-xs text-gray-500 mt-1">Browse our store and make your first novelty purchase!</p>
-            <button onclick="closeCustomerOrdersModal(); navigateTo('catalog');" class="mt-4 px-4 py-2 bg-gradient-to-r from-pink-600 to-purple-800 text-white rounded-xl text-xs font-bold shadow">
-              Shop Novelty Catalog
-            </button>
-          </div>
-        `;
-        return;
-      }
-
-      container.innerHTML = ordersDatabase.map(ord => `
-        <div class="p-4 rounded-2xl border ${ord.status === 'Cancelled' ? 'bg-rose-50/40 border-rose-200' : 'bg-white border-purple-200 shadow-sm'} space-y-3">
-          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-purple-100 pb-2.5">
-            <div class="flex items-center gap-2">
-              <span class="font-mono font-bold text-sm text-purple-950">${ord.orderId}</span>
-              <span class="text-xs text-gray-400 font-mono">(${ord.invoiceNumber})</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="text-[11px] font-semibold text-gray-500">${ord.date}</span>
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
-                ord.status === 'Cancelled' ? 'bg-rose-100 text-rose-800' : 'bg-emerald-100 text-emerald-800'
-              }">${ord.status}</span>
-            </div>
-          </div>
-
-          <div class="space-y-1.5">
-            ${ord.items.map(it => `
-              <div class="flex items-center justify-between text-xs text-gray-700">
-                <span class="font-medium text-purple-900">• ${it.name} <span class="text-gray-400">× ${it.qty}</span></span>
-                <span class="font-semibold">₹${(it.price * it.qty).toFixed(2)}</span>
-              </div>
-            `).join('')}
-          </div>
-
-          <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-purple-100 text-xs">
-            <div>
-              <span class="text-gray-500">Total Paid:</span>
-              <span class="font-black text-pink-700 ml-1 text-sm">₹${ord.grandTotal.toFixed(2)}</span>
-              <span class="text-[10px] text-gray-400 ml-1">(${ord.paymentMethod})</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <button onclick="adminViewInvoice('${ord.orderId}'); closeCustomerOrdersModal();" class="px-3 py-1.5 bg-purple-900 text-amber-300 font-bold rounded-xl text-xs hover:bg-purple-950 transition flex items-center gap-1 shadow-sm">
-                <i class="fa-solid fa-file-invoice"></i> View Bill
-              </button>
-              <button onclick="adminDownloadInvoice('${ord.orderId}')" class="px-3 py-1.5 bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-xl text-xs transition flex items-center gap-1 shadow-sm">
-                <i class="fa-solid fa-download"></i> PDF
-              </button>
-            </div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function closeCancelEmailModal() {
-      document.getElementById('cancelEmailNoticeModal').classList.add('hidden');
-    }
-
-    // Verified Indian Novelty Products with accurate images and verified ₹ prices
-    let productsDatabase = [
+    const DEFAULT_PRODUCTS = [
       {
         id: "prod-1",
         sku: "RK-TOY-01",
@@ -2002,97 +1929,7 @@
       }
     ];
 
-    /* Strict rule: Automation replies ONLY 1 time initially. Subsequent messages wait for the owner */
-    let hasAutomatedReplyFired = false;
-
-    let liveChatHistory = [
-      {
-        sender: "customer",
-        text: "Radhe Radhe! Do you provide bulk discounts for birthday return gifts?",
-        time: "10:15 AM"
-      },
-      {
-        sender: "store",
-        text: "Radhe Radhe! Yes, we have special wholesale bundles for party return gifts. Use coupon SPECIAL999 for orders above ₹999 or call us directly at +91 98250 12345.",
-        time: "10:16 AM"
-      }
-    ];
-
-    function renderAdminChatFeed() {
-      const container = document.getElementById('adminChatLiveFeed');
-      if (!container) return;
-
-      if (liveChatHistory.length === 0) {
-        container.innerHTML = `<div class="text-center py-10 text-gray-400">No active customer chat messages yet.</div>`;
-        return;
-      }
-
-      container.innerHTML = liveChatHistory.map(m => `
-        <div class="flex ${m.sender === 'store' ? 'justify-end' : 'justify-start'}">
-          <div class="max-w-[75%] p-3 rounded-2xl ${
-            m.sender === 'store' 
-              ? 'bg-purple-900 text-amber-200 rounded-tr-none shadow-sm' 
-              : 'bg-white border border-purple-200 text-gray-800 rounded-tl-none shadow-xs'
-          }">
-            <div class="text-[10px] font-bold ${m.sender === 'store' ? 'text-pink-300' : 'text-purple-900'} mb-0.5 flex justify-between gap-3">
-              <span>${m.sender === 'store' ? 'Store Owner (You)' : 'Customer'}</span>
-              <span class="text-gray-400 font-normal">${m.time}</span>
-            </div>
-            <p class="leading-relaxed">${m.text}</p>
-          </div>
-        </div>
-      `).join('');
-      container.scrollTop = container.scrollHeight;
-    }
-
-    function handleAdminChatReply(e) {
-      e.preventDefault();
-      const input = document.getElementById('adminReplyInput');
-      const text = input.value.trim();
-      if (!text) return;
-
-      const now = new Date();
-      const timeStr = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
-
-      liveChatHistory.push({
-        sender: "store",
-        text: text,
-        time: timeStr
-      });
-
-      input.value = '';
-      renderAdminChatFeed();
-
-      // Synchronize with front-end live chat widget and clean any "Wait For Owners Reply" elements
-      const chatBody = document.getElementById('chatMessagesBody');
-      if (chatBody) {
-        // Remove all pending "Wait For Owners Reply" notifications upon reply
-        const pendingNotifs = chatBody.querySelectorAll('.wait-owner-msg');
-        pendingNotifs.forEach(el => el.remove());
-
-        const botBubble = document.createElement('div');
-        botBubble.className = "flex items-start gap-2";
-        botBubble.innerHTML = `
-          <div class="w-7 h-7 rounded-full bg-purple-900 text-amber-300 flex items-center justify-center text-[10px] font-bold shrink-0">RK</div>
-          <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-purple-100 max-w-[80%] text-gray-800 leading-relaxed">
-            <span class="text-[10px] font-bold text-pink-600 block mb-0.5">Store Owner</span>
-            ${text}
-          </div>
-        `;
-        chatBody.appendChild(botBubble);
-        chatBody.scrollTop = chatBody.scrollHeight;
-      }
-
-      showToast('Reply dispatched to customer live chat!');
-    }
-
-    function clearAdminChatHistory() {
-      liveChatHistory = [];
-      renderAdminChatFeed();
-      showToast('Chat history cleared.');
-    }
-
-    let customerReviews = [
+    const DEFAULT_REVIEWS = [
       {
         id: "rev-1",
         author: "Darshil S. (Jamnagar)",
@@ -2135,7 +1972,7 @@
       }
     ];
 
-    let ordersDatabase = [
+    const DEFAULT_ORDERS = [
       {
         orderId: "RK-ORD-101",
         invoiceNumber: "INV-1001",
@@ -2150,8 +1987,8 @@
           pin: "361008"
         },
         items: [
-          { id: "prod-1", sku: "RK-TOY-01", name: "Remote Control Stunt Twister Car", price: 899, cost: 520, qty: 1 },
-          { id: "prod-8", sku: "RK-KEY-08", name: "Aesthetic Silicone Astronaut Keychains", price: 249, cost: 110, qty: 2 }
+          { id: "prod-1", sku: "RK-TOY-01", name: "Remote Control Stunt Twister Car", price: 899, costPrice: 520, qty: 1 },
+          { id: "prod-8", sku: "RK-KEY-08", name: "Aesthetic Silicone Astronaut Keychains", price: 249, costPrice: 110, qty: 2 }
         ],
         subtotal: 1397,
         discount: 139,
@@ -2161,10 +1998,67 @@
         costTotal: 740,
         profit: 518,
         paymentMethod: "Online UPI / Razorpay",
-        status: "Confirmed & Invoiced"
+        status: "Confirmed & Invoiced",
+        sentToStoreGmail: true
       }
     ];
 
+    // Load initial states from localStorage or defaults
+    function loadStorageData(key, fallback) {
+      try {
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : fallback;
+      } catch (e) {
+        return fallback;
+      }
+    }
+
+    function saveStorageData(key, data) {
+      try {
+        localStorage.setItem(key, JSON.stringify(data));
+      } catch (e) {
+        console.error("Storage save error", e);
+      }
+    }
+
+    let productsDatabase = loadStorageData(STORAGE_KEYS.PRODUCTS, DEFAULT_PRODUCTS);
+    let customerReviews = loadStorageData(STORAGE_KEYS.REVIEWS, DEFAULT_REVIEWS);
+    let ordersDatabase = loadStorageData(STORAGE_KEYS.ORDERS, DEFAULT_ORDERS);
+    let cancellationEmailsLog = loadStorageData(STORAGE_KEYS.CANCEL_LOG, []);
+    let liveChatHistory = loadStorageData(STORAGE_KEYS.CHAT, [
+      {
+        sender: "customer",
+        text: "Radhe Radhe! Do you provide bulk discounts for birthday return gifts?",
+        time: "10:15 AM"
+      },
+      {
+        sender: "store",
+        text: "Radhe Radhe! Yes, we have special wholesale bundles for party return gifts. Use coupon SPECIAL999 for orders above ₹999 or call us directly at +91 98250 12345.",
+        time: "10:16 AM"
+      }
+    ]);
+
+    // Live Cross-Tab Synchronization: Whenever another window/tab orders, update the admin view in real time!
+    window.addEventListener('storage', (e) => {
+      if (e.key === STORAGE_KEYS.ORDERS) {
+        ordersDatabase = loadStorageData(STORAGE_KEYS.ORDERS, []);
+        refreshAdminMetrics();
+        renderCustomerOrdersList();
+      } else if (e.key === STORAGE_KEYS.CHAT) {
+        liveChatHistory = loadStorageData(STORAGE_KEYS.CHAT, []);
+        renderAdminChatFeed();
+      } else if (e.key === STORAGE_KEYS.REVIEWS) {
+        customerReviews = loadStorageData(STORAGE_KEYS.REVIEWS, []);
+        renderReviewsSection();
+        refreshAdminMetrics();
+      } else if (e.key === STORAGE_KEYS.PRODUCTS) {
+        productsDatabase = loadStorageData(STORAGE_KEYS.PRODUCTS, []);
+        renderProductGrid();
+        refreshAdminMetrics();
+      }
+    });
+
+    let hasAutomatedReplyFired = false;
     let contactSubmissions = [
       {
         name: "Pooja Mehta",
@@ -2176,14 +2070,166 @@
       }
     ];
 
-    // Cart state
     let cart = [];
-    let appliedCoupon = null; // { code: 'FIRST10' or 'SPECIAL999', type: 'percentage'|'flat', value: 10 or 150 }
+    let appliedCoupon = null;
     let currentSelectedProduct = null;
     let modalSelectedQty = 1;
     let currentInvoiceData = null; 
-    let pendingOrderPayload = null; // Stored during Razorpay modal step
+    let pendingOrderPayload = null;
 
+    // --- Customer Orders & Invoices Logic ---
+    function openCustomerOrdersModal() {
+      renderCustomerOrdersList();
+      document.getElementById('customerOrdersModal').classList.remove('hidden');
+    }
+
+    function closeCustomerOrdersModal() {
+      document.getElementById('customerOrdersModal').classList.add('hidden');
+    }
+
+    function renderCustomerOrdersList() {
+      const container = document.getElementById('customerOrdersListContainer');
+      if (!container) return;
+
+      if (ordersDatabase.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-gray-500 bg-purple-50/50 rounded-2xl border border-dashed border-purple-200">
+            <i class="fa-solid fa-box-open text-4xl text-purple-300 mb-2"></i>
+            <h4 class="font-bold text-sm text-purple-950">No orders placed yet</h4>
+            <p class="text-xs text-gray-500 mt-1">Browse our store and make your first novelty purchase!</p>
+            <button onclick="closeCustomerOrdersModal(); navigateTo('catalog');" class="mt-4 px-4 py-2 bg-gradient-to-r from-pink-600 to-purple-800 text-white rounded-xl text-xs font-bold shadow">
+              Shop Novelty Catalog
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = ordersDatabase.map(ord => `
+        <div class="p-4 rounded-2xl border ${ord.status === 'Cancelled' ? 'bg-rose-50/40 border-rose-200' : 'bg-white border-purple-200 shadow-sm'} space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-purple-100 pb-2.5">
+            <div class="flex items-center gap-2">
+              <span class="font-mono font-bold text-sm text-purple-950">${ord.orderId}</span>
+              <span class="text-xs text-gray-400 font-mono">(${ord.invoiceNumber})</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] font-semibold text-gray-500">${ord.date}</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                ord.status === 'Cancelled' ? 'bg-rose-100 text-rose-800' : 'bg-emerald-100 text-emerald-800'
+              }">${ord.status}</span>
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            ${ord.items.map(it => `
+              <div class="flex items-center justify-between text-xs text-gray-700">
+                <span class="font-medium text-purple-900">• ${it.name} <span class="text-gray-400">× ${it.qty}</span></span>
+                <span class="font-semibold">₹${(it.price * it.qty).toFixed(2)}</span>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-purple-100 text-xs">
+            <div>
+              <span class="text-gray-500">Total Paid:</span>
+              <span class="font-black text-pink-700 ml-1 text-sm">₹${ord.grandTotal.toFixed(2)}</span>
+              <span class="text-[10px] text-gray-400 ml-1">(${ord.paymentMethod})</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="adminViewInvoice('${ord.orderId}'); closeCustomerOrdersModal();" class="px-3 py-1.5 bg-purple-900 text-amber-300 font-bold rounded-xl text-xs hover:bg-purple-950 transition flex items-center gap-1 shadow-sm">
+                <i class="fa-solid fa-file-invoice"></i> View Bill
+              </button>
+              <button onclick="adminDownloadInvoice('${ord.orderId}')" class="px-3 py-1.5 bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-xl text-xs transition flex items-center gap-1 shadow-sm">
+                <i class="fa-solid fa-download"></i> PDF
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function closeCancelEmailModal() {
+      document.getElementById('cancelEmailNoticeModal').classList.add('hidden');
+    }
+
+    // --- Admin Live Chat System ---
+    function renderAdminChatFeed() {
+      const container = document.getElementById('adminChatLiveFeed');
+      if (!container) return;
+
+      if (liveChatHistory.length === 0) {
+        container.innerHTML = `<div class="text-center py-10 text-gray-400">No active customer chat messages yet.</div>`;
+        return;
+      }
+
+      container.innerHTML = liveChatHistory.map(m => `
+        <div class="flex ${m.sender === 'store' ? 'justify-end' : 'justify-start'}">
+          <div class="max-w-[75%] p-3 rounded-2xl ${
+            m.sender === 'store' 
+              ? 'bg-purple-900 text-amber-200 rounded-tr-none shadow-sm' 
+              : 'bg-white border border-purple-200 text-gray-800 rounded-tl-none shadow-xs'
+          }">
+            <div class="text-[10px] font-bold ${m.sender === 'store' ? 'text-pink-300' : 'text-purple-900'} mb-0.5 flex justify-between gap-3">
+              <span>${m.sender === 'store' ? 'Store Owner (You)' : 'Customer'}</span>
+              <span class="text-gray-400 font-normal">${m.time}</span>
+            </div>
+            <p class="leading-relaxed">${m.text}</p>
+          </div>
+        </div>
+      `).join('');
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function handleAdminChatReply(e) {
+      e.preventDefault();
+      const input = document.getElementById('adminReplyInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+
+      liveChatHistory.push({
+        sender: "store",
+        text: text,
+        time: timeStr
+      });
+      saveStorageData(STORAGE_KEYS.CHAT, liveChatHistory);
+
+      input.value = '';
+      renderAdminChatFeed();
+
+      // Synchronize with front-end live chat widget and clean any "Wait For Owners Reply" elements
+      const chatBody = document.getElementById('chatMessagesBody');
+      if (chatBody) {
+        // Remove all pending "Wait For Owners Reply" notifications upon reply
+        const pendingNotifs = chatBody.querySelectorAll('.wait-owner-msg');
+        pendingNotifs.forEach(el => el.remove());
+
+        const botBubble = document.createElement('div');
+        botBubble.className = "flex items-start gap-2";
+        botBubble.innerHTML = `
+          <div class="w-7 h-7 rounded-full bg-purple-900 text-amber-300 flex items-center justify-center text-[10px] font-bold shrink-0">RK</div>
+          <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-purple-100 max-w-[80%] text-gray-800 leading-relaxed">
+            <span class="text-[10px] font-bold text-pink-600 block mb-0.5">Store Owner</span>
+            ${text}
+          </div>
+        `;
+        chatBody.appendChild(botBubble);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      showToast('Reply dispatched to customer live chat!');
+    }
+
+    function clearAdminChatHistory() {
+      liveChatHistory = [];
+      saveStorageData(STORAGE_KEYS.CHAT, liveChatHistory);
+      renderAdminChatFeed();
+      showToast('Chat history cleared.');
+    }
+
+    // --- STREAMING_CHUNK:Rendering Categories, Chips & Product Grid Functions... ---
     function renderCategories() {
       const container = document.getElementById('categoryGrid');
       container.innerHTML = CATEGORIES.map((cat, idx) => `
@@ -2199,7 +2245,6 @@
       `).join('');
     }
 
-    // Render Quick Filter Chips on Catalog
     function renderCategoryChips(activeCat = "All") {
       const container = document.getElementById('quickFilterChips');
       const allOption = `
@@ -2215,7 +2260,6 @@
       container.innerHTML = allOption + chips;
     }
 
-    // Render Products Grid
     let currentProductsList = [...productsDatabase];
 
     function renderProductGrid(list = currentProductsList) {
@@ -2403,6 +2447,7 @@
       handleSearch('');
     }
 
+    // --- Product Details Modal ---
     function openProductModal(id) {
       const prod = productsDatabase.find(p => p.id === id);
       if (!prod) return;
@@ -2455,6 +2500,7 @@
       openCheckoutModal();
     }
 
+    // --- Cart & Checkout Calculation Logic ---
     function addToCart(productId, qty = 1) {
       const prod = productsDatabase.find(p => p.id === productId);
       if (!prod) return;
@@ -2502,14 +2548,11 @@
       // Coupons validation
       if (appliedCoupon) {
         if (appliedCoupon.code === 'FIRST10') {
-          // 10% discount on first order
           discount = Math.round(subtotal * 0.10);
         } else if (appliedCoupon.code === 'SPECIAL999') {
-          // Flat ₹150 discount for orders above ₹999
           if (subtotal >= 999) {
             discount = 150;
           } else {
-            // Under qualification threshold
             discount = 0;
           }
         }
@@ -2679,6 +2722,7 @@
       document.getElementById('checkoutModal').classList.add('hidden');
     }
 
+    // --- Order Placement with Persistence to localStorage & compulsory Store Gmail Dispatch ---
     function processOrderPlacement(event) {
       event.preventDefault();
 
@@ -2722,10 +2766,10 @@
         costTotal: costTotal,
         profit: grossProfit,
         paymentMethod: paymentMethod,
-        status: "Confirmed & Invoiced"
+        status: "Confirmed & Invoiced",
+        sentToStoreGmail: true
       };
 
-      // If Razorpay gateway is selected, launch secure simulation dialog
       if (paymentMethod === "Online UPI / Razorpay") {
         pendingOrderPayload = orderDraft;
         document.getElementById('gatewayPayableAmount').innerText = `₹${grandTotal}`;
@@ -2733,7 +2777,6 @@
         return;
       }
 
-      // Cash On Delivery Direct Placement
       completeOrderFinalization(orderDraft);
     }
 
@@ -2750,6 +2793,7 @@
 
     function completeOrderFinalization(orderObj) {
       ordersDatabase.unshift(orderObj);
+      saveStorageData(STORAGE_KEYS.ORDERS, ordersDatabase);
 
       currentInvoiceData = orderObj;
       cart = [];
@@ -2761,7 +2805,7 @@
       document.getElementById('orderSuccessModal').classList.remove('hidden');
       refreshAdminMetrics();
 
-      // Trigger compulsory instant notification to radhakrishnanoveltystore@gmail.com
+      // Compulsory order dispatch to radhakrishnanoveltystore@gmail.com
       dispatchOrderNotificationToStoreEmail(orderObj);
     }
 
@@ -2775,7 +2819,7 @@
         emailNotice.classList.remove('hidden');
         setTimeout(() => {
           emailNotice.classList.add('hidden');
-        }, 6000);
+        }, 6500);
       }
     }
 
@@ -2829,6 +2873,7 @@
       `;
     }
 
+    // --- STREAMING_CHUNK:Rendering Reviews section & Review Form... ---
     function renderReviewsSection() {
       const container = document.getElementById('reviewsListGrid');
       const approved = customerReviews.filter(r => r.isApproved);
@@ -2891,11 +2936,13 @@
         title: title,
         comment: comment,
         date: "Today",
-        isApproved: false, // Moderation queue
+        isApproved: false, // Queue for owner moderation
         verified: true
       };
 
       customerReviews.unshift(newRev);
+      saveStorageData(STORAGE_KEYS.REVIEWS, customerReviews);
+
       closeWriteReviewModal();
       document.getElementById('reviewSubmitForm').reset();
       setFormRating(5);
@@ -2904,6 +2951,7 @@
       refreshAdminMetrics();
     }
 
+    // --- STREAMING_CHUNK:Configuring Owner Portal credentials and Dashboard tab functions... ---
     function openAdminModal() {
       document.getElementById('adminPortalModal').classList.remove('hidden');
     }
@@ -2912,7 +2960,7 @@
       document.getElementById('adminPortalModal').classList.add('hidden');
     }
 
-    // Password is set to aayush123 without any UI hints
+    // Administrative password is set to aayush123 without hints
     function handleAdminLogin(event) {
       event.preventDefault();
       const pwd = document.getElementById('adminPasswordInput').value.trim();
@@ -3122,13 +3170,14 @@
       }
     }
 
+    // --- Order Cancellation with Happy Note Email ---
     function cancelOrder(orderId) {
       const order = ordersDatabase.find(o => o.orderId === orderId);
       if (!order) return;
       order.status = "Cancelled";
+      saveStorageData(STORAGE_KEYS.ORDERS, ordersDatabase);
       refreshAdminMetrics();
 
-      // Compose Happy Note Email
       const customerName = order.customer.name;
       const customerEmail = order.customer.email || "customer@example.com";
       const now = new Date();
@@ -3136,7 +3185,6 @@
 
       const happyNoteBody = `Dear ${customerName},\n\n✨ Radhe Radhe! Warm blessings and joyful greetings from Radha Krishna Novelty Store! ✨\n\nWe have received your cancellation request for Order ID: ${order.orderId}.\n\nPlease do not worry at all! Your order has been smoothly cancelled. If you made an online payment, your complete refund of ₹${order.grandTotal} is being initiated and will reflect safely into your original payment account.\n\n🌟 A Little Joy For Your Next Visit:\nWe truly cherish you as part of our novelty family! Whenever you are ready to shop with us again for toys, gifts, stationery, or home decor, we will be waiting with open arms and exciting new collections.\n\nMay Lord Krishna and Radha Rani shower your home with immense happiness, prosperity, and radiant health!\n\nWith warmth and heartfelt smiles,\nRadha Krishna Novelty Store Team\n📍 Shop No. 12, Krishna Complex, Jamnagar, Gujarat\n📞 Contact: +91 98250 12345\n✉️ Email: radhakrishnanoveltystore@gmail.com`;
 
-      // Record in Sent Logs
       const emailRecord = {
         orderId: order.orderId,
         customerName: customerName,
@@ -3145,8 +3193,8 @@
         body: happyNoteBody
       };
       cancellationEmailsLog.unshift(emailRecord);
+      saveStorageData(STORAGE_KEYS.CANCEL_LOG, cancellationEmailsLog);
 
-      // Display dispatched modal notification
       document.getElementById('cancelEmailToDisplay').innerText = `${customerName} (${customerEmail})`;
       document.getElementById('cancelEmailOrderIdDisplay').innerText = order.orderId;
       document.getElementById('cancelEmailBodyContent').innerText = happyNoteBody;
@@ -3187,16 +3235,19 @@
       const order = ordersDatabase.find(o => o.orderId === orderId);
       if (!order) return;
       order.status = "Confirmed & Invoiced";
+      saveStorageData(STORAGE_KEYS.ORDERS, ordersDatabase);
       refreshAdminMetrics();
       showToast(`Order ${orderId} restored.`);
     }
 
     function deleteOrder(orderId) {
       ordersDatabase = ordersDatabase.filter(o => o.orderId !== orderId);
+      saveStorageData(STORAGE_KEYS.ORDERS, ordersDatabase);
       refreshAdminMetrics();
       showToast(`Order ${orderId} and its invoice deleted successfully.`);
     }
 
+    // --- Live Chat User Side (1-time automation, then Wait For Owners Reply) ---
     function toggleLiveChat() {
       const chatWin = document.getElementById('chatWindow');
       chatWin.classList.toggle('hidden');
@@ -3216,12 +3267,12 @@
       const now = new Date();
       const timeStr = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
 
-      // Push customer message to liveChatHistory for owner portal view
       liveChatHistory.push({
         sender: "customer",
         text: text,
         time: timeStr
       });
+      saveStorageData(STORAGE_KEYS.CHAT, liveChatHistory);
       renderAdminChatFeed();
 
       const body = document.getElementById('chatMessagesBody');
@@ -3238,12 +3289,11 @@
       body.scrollTop = body.scrollHeight;
 
       // AUTOMATION RULE: Automation runs ONLY 1 TIME per customer session.
-      // After that 1 automation, no bot answers run; the store owner replies directly via the Admin Portal.
       if (!hasAutomatedReplyFired) {
-        hasAutomatedReplyFired = true; // Mark as fired so it never triggers again
+        hasAutomatedReplyFired = true;
 
         setTimeout(() => {
-          let reply = "✨ Radhe Radhe! Thank you for contacting Radha Krishna Novel Store. Our store owner in Jamnagar has received your query and will reply directly in this chat thread shortly!";
+          let reply = "✨ Radhe Radhe! Thank you for contacting Radha Krishna Novelty Store. Our store owner in Jamnagar has received your query and will reply directly in this chat thread shortly!";
           const lower = text.toLowerCase();
           
           if (lower.includes('jamnagar') || lower.includes('deliver') || lower.includes('shipping')) {
@@ -3259,6 +3309,7 @@
             text: reply,
             time: timeStr
           });
+          saveStorageData(STORAGE_KEYS.CHAT, liveChatHistory);
           renderAdminChatFeed();
 
           const botBubble = document.createElement('div');
@@ -3274,7 +3325,7 @@
           body.scrollTop = body.scrollHeight;
         }, 600);
       } else {
-        // Subsequent messages: display "Wait For Owners Reply"
+        // Subsequent messages display "Wait For Owners Reply"
         const notifyBubble = document.createElement('div');
         notifyBubble.className = "wait-owner-msg text-center text-[11px] text-purple-900 bg-amber-100 border border-amber-300 py-1.5 px-3 rounded-full my-1.5 font-bold shadow-xs";
         notifyBubble.innerHTML = `<i class="fa-solid fa-hourglass-half mr-1 text-amber-600"></i> Wait For Owners Reply`;
@@ -3287,6 +3338,7 @@
       const r = customerReviews.find(x => x.id === id);
       if (r) {
         r.isApproved = true;
+        saveStorageData(STORAGE_KEYS.REVIEWS, customerReviews);
         renderReviewsSection();
         refreshAdminMetrics();
         showToast(`Review approved and now live on the storefront!`);
@@ -3297,6 +3349,7 @@
       const r = customerReviews.find(x => x.id === id);
       if (r) {
         r.isApproved = false;
+        saveStorageData(STORAGE_KEYS.REVIEWS, customerReviews);
         renderReviewsSection();
         refreshAdminMetrics();
         showToast(`Review hidden from storefront.`);
@@ -3305,6 +3358,7 @@
 
     function deleteReview(id) {
       customerReviews = customerReviews.filter(x => x.id !== id);
+      saveStorageData(STORAGE_KEYS.REVIEWS, customerReviews);
       renderReviewsSection();
       refreshAdminMetrics();
       showToast('Review deleted.');
@@ -3324,6 +3378,7 @@
       downloadInvoicePDF();
     }
 
+    // --- Product Image Upload & Creation ---
     let uploadedProductImageBase64 = null;
 
     function handleProductImageUpload(event) {
@@ -3386,6 +3441,8 @@
       };
 
       productsDatabase.unshift(newP);
+      saveStorageData(STORAGE_KEYS.PRODUCTS, productsDatabase);
+
       document.getElementById('newProductForm').reset();
       uploadedProductImageBase64 = null;
       document.getElementById('uploadFileNameDisplay').innerText = "No image selected yet";
@@ -3400,6 +3457,7 @@
       const p = productsDatabase.find(x => x.id === id);
       if (p) {
         p.stock = parseInt(newStock, 10);
+        saveStorageData(STORAGE_KEYS.PRODUCTS, productsDatabase);
         showToast(`Stock updated for ${p.name}`);
         renderProductGrid();
       }
@@ -3407,6 +3465,7 @@
 
     function deleteProduct(id) {
       productsDatabase = productsDatabase.filter(x => x.id !== id);
+      saveStorageData(STORAGE_KEYS.PRODUCTS, productsDatabase);
       renderProductGrid();
       refreshAdminMetrics();
       showToast('Product removed from catalog.');
@@ -3465,7 +3524,6 @@
       document.getElementById('policyModal').classList.add('hidden');
     }
 
-    // Friendly Toast notifications (Avoid alert())
     function showToast(message, type = 'success') {
       const existing = document.getElementById('activeToastNotification');
       if (existing) existing.remove();
@@ -3493,7 +3551,6 @@
       }, 3500);
     }
 
-    // Initialize application on load
     window.onload = function() {
       renderCategories();
       renderCategoryChips();
@@ -3501,6 +3558,7 @@
       renderReviewsSection();
       updateCartUI();
       renderAdminChatFeed();
+      refreshAdminMetrics();
     };
 
     function populateInvoiceModal(order) {
@@ -3677,7 +3735,7 @@
 
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(11);
-        doc.setTextColor(190, 24, 93); // Pink / deep rose
+        doc.setTextColor(190, 24, 93);
         doc.text("Grand Total:", 135, finalY + 24);
         doc.text(`INR ${order.grandTotal.toFixed(2)}`, 196, finalY + 24, { align: 'right' });
 
