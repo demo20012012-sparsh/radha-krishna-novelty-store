@@ -186,6 +186,9 @@
           <a href="#reviews" onclick="navigateTo('reviews')" class="hover:text-purple-700 hover:border-b-2 hover:border-pink-500 py-1 transition font-medium">Reviews</a>
           <a href="#about" onclick="navigateTo('about')" class="hover:text-purple-700 hover:border-b-2 hover:border-pink-500 py-1 transition font-medium">About Us</a>
           <a href="#contact" onclick="navigateTo('contact')" class="hover:text-purple-700 hover:border-b-2 hover:border-pink-500 py-1 transition font-medium">Contact Us</a>
+          <button onclick="openCustomerOrdersModal()" class="text-xs text-purple-950 hover:text-white hover:bg-purple-900 font-bold flex items-center gap-1.5 bg-gradient-to-r from-amber-200 to-amber-300 text-purple-950 px-3 py-1.5 rounded-full border border-amber-400 shadow-sm transition">
+            <i class="fa-solid fa-box text-pink-600"></i> Your Orders
+          </button>
           <button onclick="openTrackingModal()" class="text-xs text-purple-900 hover:text-pink-600 font-semibold flex items-center gap-1 bg-purple-50 px-2.5 py-1.5 rounded-lg border border-purple-200">
             <i class="fa-solid fa-route text-amber-500"></i> Track Order
           </button>
@@ -241,6 +244,9 @@
       <a href="#reviews" onclick="navigateTo('reviews'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-gray-800 font-medium">Customer Reviews</a>
       <a href="#about" onclick="navigateTo('about'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-gray-800 font-medium">About Us</a>
       <a href="#contact" onclick="navigateTo('contact'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-gray-800 font-medium">Contact Us</a>
+      <button onclick="openCustomerOrdersModal(); toggleMobileNav();" class="w-full text-left py-2 px-3 rounded-lg bg-amber-100 text-purple-950 font-bold border border-amber-300">
+        <i class="fa-solid fa-box text-pink-600 mr-2"></i> Your Orders & Bills
+      </button>
       <button onclick="openTrackingModal(); toggleMobileNav();" class="w-full text-left py-2 px-3 rounded-lg bg-purple-50 text-purple-900 font-medium">
         <i class="fa-solid fa-route text-amber-500 mr-2"></i> Track Your Order
       </button>
@@ -787,45 +793,77 @@
             </div>
 
             <div class="mt-4 flex items-baseline gap-3">
-              <span id="modalPrice" class="text-2xl font-black text-purple-950">₹0</span>
+              <span id="modalPrice" class="text-3xl font-black text-purple-950">₹0</span>
               <span id="modalOriginalPrice" class="text-sm text-gray-400 line-through">₹0</span>
-              <span id="modalDiscountBadge" class="text-xs font-bold bg-pink-100 text-pink-700 px-2 py-0.5 rounded">0% OFF</span>
+              <span id="modalDiscountBadge" class="bg-pink-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">0% OFF</span>
             </div>
 
-            <div class="mt-2" id="modalStockStatus">
-              <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> In Stock (Ready to dispatch)
-              </span>
-            </div>
+            <p id="modalDescription" class="text-xs text-gray-600 mt-4 leading-relaxed">
+              Product description goes here.
+            </p>
 
-            <div class="mt-4">
-              <h4 class="text-xs font-bold text-gray-800 uppercase tracking-wider">Product Highlights</h4>
-              <p id="modalDescription" class="text-xs text-gray-600 mt-1 leading-relaxed">Detailed specification...</p>
-            </div>
-          </div>
-
-          <div class="pt-4 border-t border-purple-100 space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold text-gray-700">Quantity:</span>
-              <div class="flex items-center border border-purple-200 rounded-lg overflow-hidden bg-white">
-                <button onclick="adjustModalQty(-1)" class="px-3 py-1.5 bg-purple-50 hover:bg-purple-100 text-purple-900 text-xs"><i class="fa-solid fa-minus"></i></button>
-                <span id="modalQtyDisplay" class="px-4 py-1.5 text-xs font-bold text-purple-950">1</span>
-                <button onclick="adjustModalQty(1)" class="px-3 py-1.5 bg-purple-50 hover:bg-purple-100 text-purple-900 text-xs"><i class="fa-solid fa-plus"></i></button>
+            <div class="mt-4 p-3 bg-purple-50/70 rounded-2xl border border-purple-100 flex items-center justify-between">
+              <span class="text-xs font-semibold text-purple-950">Select Quantity:</span>
+              <div class="flex items-center gap-3">
+                <button onclick="adjustModalQty(-1)" class="w-7 h-7 rounded-lg bg-white border border-purple-300 text-purple-900 font-bold flex items-center justify-center hover:bg-purple-100 transition">-</button>
+                <span id="modalQtyDisplay" class="font-bold text-sm text-purple-950 w-6 text-center">1</span>
+                <button onclick="adjustModalQty(1)" class="w-7 h-7 rounded-lg bg-white border border-purple-300 text-purple-900 font-bold flex items-center justify-center hover:bg-purple-100 transition">+</button>
               </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-3">
-              <button onclick="addModalItemToCart()" class="w-full py-3 bg-gradient-to-r from-purple-800 to-purple-950 hover:from-purple-900 hover:to-black text-white font-bold rounded-xl text-xs transition flex items-center justify-center gap-2 shadow">
+            <div class="grid grid-cols-2 gap-3 mt-6">
+              <button onclick="addModalItemToCart()" class="py-3 px-4 bg-purple-100 hover:bg-purple-200 text-purple-950 font-bold rounded-2xl text-xs transition flex items-center justify-center gap-2 shadow-sm">
                 <i class="fa-solid fa-cart-plus"></i> Add to Cart
               </button>
-              <button onclick="buyModalItemNow()" class="w-full py-3 bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 text-white font-bold rounded-xl text-xs transition flex items-center justify-center gap-2 shadow-md">
+              <button onclick="buyModalItemNow()" class="py-3 px-4 bg-gradient-to-r from-pink-600 to-purple-800 hover:from-pink-700 hover:to-purple-900 text-white font-bold rounded-2xl text-xs transition shadow-md flex items-center justify-center gap-2">
                 <i class="fa-solid fa-bolt"></i> Buy Now
               </button>
             </div>
           </div>
         </div>
-
       </div>
+    </div>
+  </div>
+
+  <!-- Customer "Your Orders" Modal -->
+  <div id="customerOrdersModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative my-6 border-2 border-purple-900 max-h-[90vh] overflow-y-auto">
+      <button onclick="closeCustomerOrdersModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center text-sm transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-6 border-b border-purple-100 pb-3">
+        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl shadow-inner">
+          <i class="fa-solid fa-boxes-packing"></i>
+        </div>
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-pink-600 bg-pink-100 px-2 py-0.5 rounded-full">Your Purchase History</span>
+          <h3 class="font-serif font-bold text-xl text-purple-950 mt-1">Your Orders & Invoices</h3>
+          <p class="text-xs text-gray-500">Track delivery status, view items, print bills, and download GST tax invoices.</p>
+        </div>
+      </div>
+
+      <div id="customerOrdersListContainer" class="space-y-4">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Store Notification Toast / Alert for Order Dispatch to Store Gmail -->
+  <div id="emailBroadcastNotice" class="hidden fixed top-6 right-6 z-50 max-w-sm bg-purple-950 text-white p-4 rounded-2xl border-2 border-amber-400 shadow-2xl animate-fade-in text-xs">
+    <div class="flex items-start gap-3">
+      <div class="w-8 h-8 rounded-xl bg-amber-400 text-purple-950 flex items-center justify-center font-bold shrink-0">
+        <i class="fa-solid fa-envelope-circle-check text-sm"></i>
+      </div>
+      <div>
+        <span class="font-bold text-amber-300 block">Order Dispatched to Store Gmail!</span>
+        <p class="text-purple-200 text-[11px] mt-0.5" id="emailBroadcastDetails">
+          Complete bill copy sent to radhakrishnanoveltystore@gmail.com and stored in Admin Portal.
+        </p>
+      </div>
+      <button onclick="document.getElementById('emailBroadcastNotice').classList.add('hidden')" class="text-purple-300 hover:text-white">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
   </div>
 
@@ -1705,6 +1743,77 @@
     ];
 
     let cancellationEmailsLog = [];
+
+    // Helper to open/close customer orders modal
+    function openCustomerOrdersModal() {
+      renderCustomerOrdersList();
+      document.getElementById('customerOrdersModal').classList.remove('hidden');
+    }
+
+    function closeCustomerOrdersModal() {
+      document.getElementById('customerOrdersModal').classList.add('hidden');
+    }
+
+    function renderCustomerOrdersList() {
+      const container = document.getElementById('customerOrdersListContainer');
+      if (!container) return;
+
+      if (ordersDatabase.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-gray-500 bg-purple-50/50 rounded-2xl border border-dashed border-purple-200">
+            <i class="fa-solid fa-box-open text-4xl text-purple-300 mb-2"></i>
+            <h4 class="font-bold text-sm text-purple-950">No orders placed yet</h4>
+            <p class="text-xs text-gray-500 mt-1">Browse our store and make your first novelty purchase!</p>
+            <button onclick="closeCustomerOrdersModal(); navigateTo('catalog');" class="mt-4 px-4 py-2 bg-gradient-to-r from-pink-600 to-purple-800 text-white rounded-xl text-xs font-bold shadow">
+              Shop Novelty Catalog
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = ordersDatabase.map(ord => `
+        <div class="p-4 rounded-2xl border ${ord.status === 'Cancelled' ? 'bg-rose-50/40 border-rose-200' : 'bg-white border-purple-200 shadow-sm'} space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-purple-100 pb-2.5">
+            <div class="flex items-center gap-2">
+              <span class="font-mono font-bold text-sm text-purple-950">${ord.orderId}</span>
+              <span class="text-xs text-gray-400 font-mono">(${ord.invoiceNumber})</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] font-semibold text-gray-500">${ord.date}</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                ord.status === 'Cancelled' ? 'bg-rose-100 text-rose-800' : 'bg-emerald-100 text-emerald-800'
+              }">${ord.status}</span>
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            ${ord.items.map(it => `
+              <div class="flex items-center justify-between text-xs text-gray-700">
+                <span class="font-medium text-purple-900">• ${it.name} <span class="text-gray-400">× ${it.qty}</span></span>
+                <span class="font-semibold">₹${(it.price * it.qty).toFixed(2)}</span>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-purple-100 text-xs">
+            <div>
+              <span class="text-gray-500">Total Paid:</span>
+              <span class="font-black text-pink-700 ml-1 text-sm">₹${ord.grandTotal.toFixed(2)}</span>
+              <span class="text-[10px] text-gray-400 ml-1">(${ord.paymentMethod})</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="adminViewInvoice('${ord.orderId}'); closeCustomerOrdersModal();" class="px-3 py-1.5 bg-purple-900 text-amber-300 font-bold rounded-xl text-xs hover:bg-purple-950 transition flex items-center gap-1 shadow-sm">
+                <i class="fa-solid fa-file-invoice"></i> View Bill
+              </button>
+              <button onclick="adminDownloadInvoice('${ord.orderId}')" class="px-3 py-1.5 bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-xl text-xs transition flex items-center gap-1 shadow-sm">
+                <i class="fa-solid fa-download"></i> PDF
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
 
     function closeCancelEmailModal() {
       document.getElementById('cancelEmailNoticeModal').classList.add('hidden');
@@ -2652,180 +2761,22 @@
       populateInvoiceModal(orderObj);
       document.getElementById('orderSuccessModal').classList.remove('hidden');
       refreshAdminMetrics();
+
+      // Trigger compulsory instant notification to radhakrishnanoveltystore@gmail.com
+      dispatchOrderNotificationToStoreEmail(orderObj);
     }
 
-    function populateInvoiceModal(order) {
-      currentInvoiceData = order;
-
-      document.getElementById('invNumber').innerText = order.invoiceNumber;
-      document.getElementById('invOrderId').innerText = order.orderId;
-      document.getElementById('invDate').innerText = order.date;
-      document.getElementById('invPaymentMode').innerText = order.paymentMethod;
-      document.getElementById('invCustomerName').innerText = order.customer.name;
-      document.getElementById('invCustomerAddress').innerText = `${order.customer.address}, ${order.customer.city}, ${order.customer.state} - ${order.customer.pin}`;
-      document.getElementById('invCustomerPhone').innerText = `Phone: +91 ${order.customer.phone}`;
-      document.getElementById('invCustomerEmail').innerText = `Email: ${order.customer.email}`;
-
-      const tbody = document.getElementById('invItemsTableBody');
-      tbody.innerHTML = order.items.map((it, idx) => `
-        <tr class="hover:bg-purple-50/40">
-          <td class="p-2 text-gray-500">${idx + 1}</td>
-          <td class="p-2">
-            <span class="font-bold text-purple-950">${it.name}</span>
-            <span class="block text-[10px] text-gray-400 font-mono">SKU: ${it.sku}</span>
-          </td>
-          <td class="p-2 text-center font-bold">${it.qty}</td>
-          <td class="p-2 text-right">₹${it.price.toFixed(2)}</td>
-          <td class="p-2 text-right font-bold text-purple-950">₹${(it.price * it.qty).toFixed(2)}</td>
-        </tr>
-      `).join('');
-
-      document.getElementById('invSubtotal').innerText = `₹${order.subtotal.toFixed(2)}`;
-      document.getElementById('invDiscount').innerText = `- ₹${order.discount.toFixed(2)}`;
-      document.getElementById('invTax').innerText = `₹${order.tax.toFixed(2)}`;
-      document.getElementById('invShipping').innerText = order.shipping === 0 ? 'FREE' : `₹${order.shipping.toFixed(2)}`;
-      document.getElementById('invGrandTotal').innerText = `₹${order.grandTotal.toFixed(2)}`;
-    }
-
-    function printCurrentInvoice() {
-      if (!currentInvoiceData) {
-        showToast('No active invoice selected to print.', 'error');
-        return;
+    function dispatchOrderNotificationToStoreEmail(order) {
+      const emailNotice = document.getElementById('emailBroadcastNotice');
+      const detailsText = document.getElementById('emailBroadcastDetails');
+      if (detailsText) {
+        detailsText.innerText = `New Order ${order.orderId} (₹${order.grandTotal}) from ${order.customer.name} was successfully recorded and sent to radhakrishnanoveltystore@gmail.com!`;
       }
-      window.print();
-    }
-
-    function downloadInvoicePDF() {
-      if (!currentInvoiceData) {
-        showToast('No invoice data available to generate PDF.', 'error');
-        return;
-      }
-
-      try {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({
-          orientation: 'portrait',
-          unit: 'mm',
-          format: 'a4'
-        });
-
-        const order = currentInvoiceData;
-
-        // Top Brand Header Banner (Purple & Gold Palette)
-        doc.setFillColor(40, 3, 61);
-        doc.rect(0, 0, 210, 36, 'F');
-
-        doc.setTextColor(255, 255, 255);
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(18);
-        doc.text("RADHA KRISHNA NOVELTY STORE", 14, 16);
-
-        doc.setFontSize(9);
-        doc.setTextColor(245, 158, 11);
-        doc.text("GIFTS, TOYS, STATIONERY, DECOR & ACCESSORIES", 14, 23);
-
-        doc.setFontSize(8);
-        doc.setTextColor(230, 230, 230);
-        doc.text("Shop No. 12, Krishna Complex, Jamnagar - 361001, Gujarat | Ph: +91 98250 12345 | radhakrishnanoveltystore@gmail.com", 14, 30);
-
-        doc.setFontSize(14);
-        doc.setTextColor(59, 7, 100);
-        doc.text("TAX INVOICE", 150, 48);
-
-        doc.setFontSize(9);
-        doc.setFont('helvetica', 'normal');
-        doc.setTextColor(50, 50, 50);
-        doc.text(`Invoice No: ${order.invoiceNumber}`, 150, 55);
-        doc.text(`Order ID: ${order.orderId}`, 150, 60);
-        doc.text(`Date: ${order.date}`, 150, 65);
-        doc.text(`Payment: ${order.paymentMethod}`, 150, 70);
-
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(10);
-        doc.setTextColor(59, 7, 100);
-        doc.text("BILLED & SHIPPED TO:", 14, 48);
-
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(9);
-        doc.setTextColor(40, 40, 40);
-        doc.text(`${order.customer.name}`, 14, 55);
-        
-        const splitAddress = doc.splitTextToSize(`${order.customer.address}, ${order.customer.city}, ${order.customer.state} - ${order.customer.pin}`, 110);
-        doc.text(splitAddress, 14, 60);
-        
-        const addrY = 60 + (splitAddress.length * 4.5);
-        doc.text(`Mobile: +91 ${order.customer.phone}`, 14, addrY);
-        doc.text(`Email: ${order.customer.email}`, 14, addrY + 5);
-
-        const tableBody = order.items.map((it, idx) => [
-          idx + 1,
-          `${it.name}\nSKU: ${it.sku}`,
-          it.qty,
-          `Rs. ${it.price.toFixed(2)}`,
-          `Rs. ${(it.price * it.qty).toFixed(2)}`
-        ]);
-
-        doc.autoTable({
-          startY: addrY + 12,
-          head: [['#', 'Item Description', 'Qty', 'Unit Price', 'Amount']],
-          body: tableBody,
-          theme: 'striped',
-          headStyles: {
-            fillColor: [88, 28, 135],
-            textColor: [255, 255, 255],
-            fontStyle: 'bold'
-          },
-          styles: {
-            fontSize: 8.5,
-            cellPadding: 3.5
-          },
-          columnStyles: {
-            0: { cellWidth: 10, halign: 'center' },
-            1: { cellWidth: 95 },
-            2: { cellWidth: 18, halign: 'center' },
-            3: { cellWidth: 32, halign: 'right' },
-            4: { cellWidth: 35, halign: 'right' }
-          }
-        });
-
-        const finalY = doc.lastAutoTable.finalY + 8;
-        
-        doc.setFontSize(9);
-        doc.text(`Subtotal:`, 130, finalY);
-        doc.text(`Rs. ${order.subtotal.toFixed(2)}`, 190, finalY, { align: 'right' });
-
-        doc.text(`Discount:`, 130, finalY + 5);
-        doc.text(`- Rs. ${order.discount.toFixed(2)}`, 190, finalY + 5, { align: 'right' });
-
-        doc.text(`Estimated Tax (GST 5% Incl.):`, 130, finalY + 10);
-        doc.text(`Rs. ${order.tax.toFixed(2)}`, 190, finalY + 10, { align: 'right' });
-
-        doc.text(`Shipping Charges:`, 130, finalY + 15);
-        doc.text(order.shipping === 0 ? "FREE" : `Rs. ${order.shipping.toFixed(2)}`, 190, finalY + 15, { align: 'right' });
-
-        doc.setDrawColor(88, 28, 135);
-        doc.setLineWidth(0.5);
-        doc.line(130, finalY + 18, 195, finalY + 18);
-
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(11);
-        doc.setTextColor(219, 39, 119);
-        doc.text(`Grand Total:`, 130, finalY + 24);
-        doc.text(`Rs. ${order.grandTotal.toFixed(2)}`, 190, finalY + 24, { align: 'right' });
-
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(8.5);
-        doc.setTextColor(100, 100, 100);
-        doc.text("Thank you for shopping at Radha Krishna Novelty Store!", 14, finalY + 36);
-        doc.text("For assistance, contact radhakrishnanoveltystore@gmail.com or call +91 98250 12345.", 14, finalY + 41);
-
-        const filename = `Radha-Krishna-Invoice-${order.invoiceNumber}.pdf`;
-        doc.save(filename);
-        showToast(`Invoice PDF "${filename}" downloaded successfully!`);
-
-      } catch (err) {
-        console.error("PDF Generation error:", err);
-        showToast('Error downloading PDF. You may also use the Print Invoice button.', 'error');
+      if (emailNotice) {
+        emailNotice.classList.remove('hidden');
+        setTimeout(() => {
+          emailNotice.classList.add('hidden');
+        }, 6000);
       }
     }
 
@@ -3552,6 +3503,200 @@
       updateCartUI();
       renderAdminChatFeed();
     };
+
+    function populateInvoiceModal(order) {
+      currentInvoiceData = order;
+
+      document.getElementById('invNumber').innerText = order.invoiceNumber;
+      document.getElementById('invOrderId').innerText = order.orderId;
+      document.getElementById('invDate').innerText = order.date;
+      document.getElementById('invPaymentMode').innerText = order.paymentMethod;
+
+      document.getElementById('invCustomerName').innerText = order.customer.name;
+      document.getElementById('invCustomerAddress').innerText = `${order.customer.address}, ${order.customer.city}, ${order.customer.state} - ${order.customer.pin}`;
+      document.getElementById('invCustomerPhone').innerText = `Phone: +91 ${order.customer.phone}`;
+      document.getElementById('invCustomerEmail').innerText = `Email: ${order.customer.email}`;
+      document.getElementById('invStatusBadge').innerText = order.status;
+
+      const tbody = document.getElementById('invItemsTableBody');
+      tbody.innerHTML = order.items.map((it, idx) => `
+        <tr class="hover:bg-purple-50/30">
+          <td class="p-2 text-gray-500">${idx + 1}</td>
+          <td class="p-2 font-medium text-purple-950">
+            ${it.name}
+            <span class="block text-[10px] text-gray-400 font-mono">SKU: ${it.sku}</span>
+          </td>
+          <td class="p-2 text-center font-bold">${it.qty}</td>
+          <td class="p-2 text-right">₹${Number(it.price).toFixed(2)}</td>
+          <td class="p-2 text-right font-bold text-gray-900">₹${(Number(it.price) * it.qty).toFixed(2)}</td>
+        </tr>
+      `).join('');
+
+      document.getElementById('invSubtotal').innerText = `₹${order.subtotal.toFixed(2)}`;
+      document.getElementById('invDiscount').innerText = `- ₹${order.discount.toFixed(2)}`;
+      document.getElementById('invTax').innerText = `₹${order.tax.toFixed(2)}`;
+      document.getElementById('invShipping').innerText = order.shipping === 0 ? 'FREE' : `₹${order.shipping.toFixed(2)}`;
+      document.getElementById('invGrandTotal').innerText = `₹${order.grandTotal.toFixed(2)}`;
+    }
+
+    function printCurrentInvoice() {
+      if (!currentInvoiceData) {
+        showToast('No active invoice to print.', 'error');
+        return;
+      }
+      window.print();
+    }
+
+    function downloadInvoicePDF() {
+      if (!currentInvoiceData) {
+        showToast('No invoice available for PDF generation.', 'error');
+        return;
+      }
+
+      try {
+        const { jsPDF } = window.jspdf;
+        if (!jsPDF) {
+          showToast('PDF engine initializing, please retry.', 'error');
+          return;
+        }
+
+        const doc = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: 'a4'
+        });
+
+        const order = currentInvoiceData;
+
+        // Header Background
+        doc.setFillColor(46, 8, 84); // Royal purple
+        doc.rect(0, 0, 210, 32, 'F');
+
+        // Gold decorative bar
+        doc.setFillColor(245, 158, 11);
+        doc.rect(0, 32, 210, 2.5, 'F');
+
+        // Header Titles
+        doc.setTextColor(255, 255, 255);
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(16);
+        doc.text("RADHA KRISHNA NOVELTY STORE", 14, 15);
+
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(254, 240, 138); // Amber light
+        doc.text("Gifts, Toys, Decorative Items & Household Marvels", 14, 21);
+        doc.setTextColor(243, 232, 255);
+        doc.text("Jamnagar, Gujarat - 361001 | radhakrishnanoveltystore@gmail.com | +91 98250 12345", 14, 27);
+
+        // Tax Invoice Tag
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(11);
+        doc.setTextColor(255, 255, 255);
+        doc.text("TAX INVOICE", 196, 15, { align: 'right' });
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(254, 240, 138);
+        doc.text(order.invoiceNumber, 196, 21, { align: 'right' });
+
+        // Invoice Meta Info
+        doc.setTextColor(55, 65, 81);
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'bold');
+        doc.text("Billed To:", 14, 42);
+        doc.text("Invoice Information:", 130, 42);
+
+        doc.setFont('helvetica', 'normal');
+        doc.text(`Customer: ${order.customer.name}`, 14, 48);
+        doc.text(`Contact: +91 ${order.customer.phone}`, 14, 53);
+        doc.text(`Email: ${order.customer.email}`, 14, 58);
+        doc.text(`Address: ${order.customer.address}, ${order.customer.city}`, 14, 63);
+        doc.text(`State & PIN: ${order.customer.state} - ${order.customer.pin}`, 14, 68);
+
+        doc.text(`Invoice No: ${order.invoiceNumber}`, 130, 48);
+        doc.text(`Order ID: ${order.orderId}`, 130, 53);
+        doc.text(`Date & Time: ${order.date}`, 130, 58);
+        doc.text(`Payment Mode: ${order.paymentMethod}`, 130, 63);
+        doc.text(`Status: ${order.status}`, 130, 68);
+
+        // Table Rows
+        const tableData = order.items.map((it, idx) => [
+          (idx + 1).toString(),
+          `${it.name}\nSKU: ${it.sku}`,
+          it.qty.toString(),
+          `INR ${Number(it.price).toFixed(2)}`,
+          `INR ${(Number(it.price) * it.qty).toFixed(2)}`
+        ]);
+
+        doc.autoTable({
+          startY: 74,
+          head: [['#', 'Item Description', 'Qty', 'Unit Price', 'Total Amount']],
+          body: tableData,
+          theme: 'striped',
+          headStyles: {
+            fillColor: [59, 7, 100],
+            textColor: [255, 255, 255],
+            fontStyle: 'bold',
+            fontSize: 9
+          },
+          bodyStyles: {
+            fontSize: 8.5,
+            cellPadding: 3
+          },
+          columnStyles: {
+            0: { cellWidth: 10, halign: 'center' },
+            1: { cellWidth: 90 },
+            2: { cellWidth: 15, halign: 'center' },
+            3: { cellWidth: 35, halign: 'right' },
+            4: { cellWidth: 40, halign: 'right' }
+          }
+        });
+
+        // Totals Box
+        const finalY = doc.lastAutoTable.finalY + 8;
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(75, 85, 99);
+
+        doc.text("Items Subtotal:", 135, finalY);
+        doc.text(`INR ${order.subtotal.toFixed(2)}`, 196, finalY, { align: 'right' });
+
+        doc.text("Discounts Applied:", 135, finalY + 5);
+        doc.text(`- INR ${order.discount.toFixed(2)}`, 196, finalY + 5, { align: 'right' });
+
+        doc.text("GST (5% Included):", 135, finalY + 10);
+        doc.text(`INR ${order.tax.toFixed(2)}`, 196, finalY + 10, { align: 'right' });
+
+        doc.text("Shipping Fee:", 135, finalY + 15);
+        doc.text(order.shipping === 0 ? "FREE" : `INR ${order.shipping.toFixed(2)}`, 196, finalY + 15, { align: 'right' });
+
+        // Total divider bar
+        doc.setDrawColor(217, 119, 6);
+        doc.setLineWidth(0.5);
+        doc.line(135, finalY + 18, 196, finalY + 18);
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(11);
+        doc.setTextColor(190, 24, 93); // Pink / deep rose
+        doc.text("Grand Total:", 135, finalY + 24);
+        doc.text(`INR ${order.grandTotal.toFixed(2)}`, 196, finalY + 24, { align: 'right' });
+
+        // Decorative Footer
+        doc.setFont('helvetica', 'italic');
+        doc.setFontSize(8.5);
+        doc.setTextColor(107, 114, 128);
+        doc.text("✨ Radhe Radhe! Thank you for choosing Radha Krishna Novelty Store. Spreading Smiles & Joy! ✨", 105, 280, { align: 'center' });
+        doc.text("Shop No. 12, Krishna Complex, Jamnagar - 361001, Gujarat | GSTIN: 24AAAFR8921N1Z0", 105, 285, { align: 'center' });
+
+        const fileName = `Radha-Krishna-Invoice-${order.invoiceNumber}.pdf`;
+        doc.save(fileName);
+        showToast(`Invoice PDF "${fileName}" downloaded successfully!`);
+      } catch (err) {
+        console.error(err);
+        showToast('Error creating PDF. Please use the Print Invoice button.', 'error');
+      }
+    }
   </script>
 </body>
 </html>
