@@ -7,14 +7,14 @@
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Poppins, Cinzel Decorative and Great Vibes -->
+  <!-- Google Fonts: Poppins, Cinzel, and Cinzel Decorative -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@600;700;900&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- jsPDF and jsPDF-AutoTable for client-side invoice generation -->
+  <!-- jsPDF & AutoTable for client-side invoice generation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 
@@ -25,15 +25,16 @@
         extend: {
           colors: {
             brand: {
-              purple: '#3b0764',
-              royal: '#581c87',
-              plum: '#7e22ce',
+              purple: '#1c032a',
+              royal: '#3b0764',
+              plum: '#581c87',
               pink: '#db2777',
               rose: '#f43f5e',
               gold: '#d97706',
               lightgold: '#fef3c7',
               accentGold: '#f59e0b',
-              shimmer: '#fbbf24'
+              shimmer: '#fbbf24',
+              tealPeacock: '#0d9488'
             }
           },
           fontFamily: {
@@ -65,7 +66,7 @@
 
     /* Decorative Gold Gradient Text */
     .gold-gradient-text {
-      background: linear-gradient(135deg, #fef08a 0%, #f59e0b 35%, #fbbf24 60%, #b45309 100%);
+      background: linear-gradient(135deg, #fffbeb 0%, #f59e0b 35%, #fbbf24 60%, #d97706 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -73,32 +74,16 @@
     .divine-gradient {
       background: radial-gradient(circle at 10% 20%, rgba(219, 39, 119, 0.45) 0%, transparent 45%),
                   radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.35) 0%, transparent 45%),
-                  radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.25) 0%, transparent 60%),
-                  linear-gradient(135deg, #1f0238 0%, #3b0764 30%, #581c87 70%, #2e0854 100%);
-    }
-
-    .divine-border {
-      border-image: linear-gradient(to right, #f59e0b, #ec4899, #8b5cf6, #f59e0b) 1;
-    }
-
-    .shimmer-badge {
-      background: linear-gradient(90deg, #f59e0b, #fef08a, #f59e0b);
-      background-size: 200% auto;
-      animation: shine 3s linear infinite;
-    }
-
-    @keyframes shine {
-      to {
-        background-position: 200% center;
-      }
+                  radial-gradient(circle at 50% 50%, rgba(13, 148, 136, 0.25) 0%, transparent 60%),
+                  linear-gradient(135deg, #1b0230 0%, #350654 30%, #4a0e78 70%, #200438 100%);
     }
 
     .peacock-glow {
       box-shadow: 0 0 25px rgba(245, 158, 11, 0.5), 0 0 45px rgba(219, 39, 119, 0.25), inset 0 0 15px rgba(219, 39, 119, 0.3);
     }
 
-    .divine-card-glow {
-      box-shadow: 0 10px 30px -10px rgba(126, 34, 206, 0.25), 0 4px 12px -2px rgba(245, 158, 11, 0.15);
+    .ornate-border {
+      border-image: linear-gradient(to right, #f59e0b, #ec4899, #0d9488, #f59e0b) 1;
     }
 
     /* Print Specific Invoice Styling */
@@ -125,9 +110,8 @@
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-purple-50 via-pink-50 to-amber-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-pink-300 selection:text-purple-900">
+<body class="bg-gradient-to-br from-purple-50 via-pink-50/50 to-amber-50/60 text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-pink-300 selection:text-purple-900">
 
-  <!-- Auspicious Top Header Announcement -->
   <div class="bg-gradient-to-r from-purple-950 via-pink-950 to-purple-950 text-amber-200 text-xs py-2 px-4 shadow-inner border-b border-amber-500/30">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center text-center gap-2">
       <div class="flex items-center gap-2 mx-auto sm:mx-0">
@@ -137,7 +121,9 @@
       <div class="flex items-center gap-4 text-xs mx-auto sm:mx-0">
         <span><i class="fa-solid fa-phone mr-1 text-pink-400"></i> +91 98250 12345</span>
         <span class="hidden sm:inline text-purple-600">|</span>
-        <span class="text-amber-300 font-medium"><i class="fa-solid fa-tag mr-1 text-pink-400"></i> Use <b>FIRST10</b> for 10% Off &bull; <b>SPECIAL999</b> (₹150 off on ₹999+)</span>
+        <span class="text-purple-200"><i class="fa-solid fa-envelope mr-1 text-amber-400"></i> radhakrishnanoveltystore@gmail.com</span>
+        <span class="hidden sm:inline text-purple-600">|</span>
+        <span class="text-amber-300 font-medium"><i class="fa-solid fa-tag mr-1 text-pink-400"></i> Code: <b>FIRST10</b> (10% Off) &bull; <b>SPECIAL999</b> (₹150 off on ₹999+)</span>
         <span class="hidden sm:inline text-purple-600">|</span>
         <button onclick="openAdminModal()" class="text-xs bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 px-3 py-0.5 rounded-full border border-amber-400/50 transition">
           <i class="fa-solid fa-user-shield mr-1"></i>Owner Portal
@@ -146,7 +132,6 @@
     </div>
   </div>
 
-  <!-- Main Decorative Header with Radha Krishna Emblem -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-md border-b-2 border-amber-400/70 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20 gap-4">
@@ -272,7 +257,6 @@
 
   <main class="flex-grow">
     
-    <!-- Hero Banner with Divine Aura & Festive Palette -->
     <section id="home" class="relative overflow-hidden divine-gradient text-white py-16 lg:py-24 shadow-2xl">
       <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fbbf24_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
       <div class="absolute -top-24 -right-24 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -369,7 +353,6 @@
       </div>
     </section>
 
-    <!-- 15 Novelty Categories Showcase Grid -->
     <section id="categories" class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-10">
         <span class="text-xs font-bold uppercase tracking-widest text-pink-600 bg-pink-100 px-3 py-1 rounded-full">Explore By Category</span>
@@ -415,7 +398,6 @@
       </div>
     </section>
 
-    <!-- Complete Product Catalog Section -->
     <section id="catalog" class="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 border-b border-purple-200 pb-4">
@@ -464,7 +446,6 @@
       </div>
     </section>
 
-    <!-- Reviews and Ratings Showcase -->
     <section id="reviews" class="py-14 bg-gradient-to-b from-white to-purple-50/50 border-t border-b border-purple-100">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -521,7 +502,6 @@
       </div>
     </section>
 
-    <!-- About Radha Krishna Novelty Store -->
     <section id="about" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div class="relative">
@@ -557,7 +537,6 @@
       </div>
     </section>
 
-    <!-- Contact Us Section -->
     <section id="contact" class="py-16 bg-white border-t border-purple-100">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-12">
@@ -687,7 +666,6 @@
       </div>
     </section>
 
-    <!-- Newsletter Section -->
     <section class="py-12 bg-gradient-to-r from-purple-900 via-pink-900 to-purple-950 text-white text-center">
       <div class="max-w-2xl mx-auto px-4">
         <span class="text-amber-300 text-xs font-bold tracking-widest uppercase">Stay Updated</span>
@@ -704,7 +682,6 @@
 
   </main>
 
-  <!-- Footer -->
   <footer class="bg-purple-950 text-purple-200 text-xs pt-16 pb-8 border-t-4 border-amber-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
@@ -723,7 +700,7 @@
             Your trusted destination for novelty gifts, birthday accessories, soft toys, aesthetic decor, and household utilities. Delivering cheer and exceptional value with Indian warmth.
           </p>
           <div class="text-xs text-amber-300 pt-1">
-            <i class="fa-solid fa-location-pin mr-1"></i> Jamnagar, Gujarat, India
+            <i class="fa-solid fa-location-pin mr-1"></i> Jamnagar, Gujarat, India &bull; <i class="fa-solid fa-envelope mr-1 ml-2"></i> radhakrishnanoveltystore@gmail.com
           </div>
         </div>
 
@@ -779,7 +756,6 @@
     </div>
   </footer>
 
-  <!-- Product Details Modal with Zoom -->
   <div id="productDetailModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
     <div class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl relative animate-fade-in my-8 border border-purple-200">
       <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-9 h-9 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full flex items-center justify-center text-sm transition">
@@ -853,7 +829,6 @@
     </div>
   </div>
 
-  <!-- Cart Drawer / Modal -->
   <div id="cartModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex justify-end transition-opacity">
     <div class="w-full max-w-md bg-white h-full shadow-2xl flex flex-col justify-between animate-slide-left">
       
@@ -927,7 +902,6 @@
     </div>
   </div>
 
-  <!-- Checkout Modal -->
   <div id="checkoutModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
     <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8 border border-purple-200 max-h-[90vh] overflow-y-auto">
       <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center justify-center text-sm transition">
@@ -1064,7 +1038,6 @@
     </div>
   </div>
 
-  <!-- Simulated Razorpay Online Gateway Modal -->
   <div id="razorpayModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl relative border-2 border-indigo-600 text-center animate-fade-in">
       <div class="w-12 h-12 bg-indigo-100 text-indigo-700 rounded-2xl flex items-center justify-center mx-auto mb-3 text-xl font-bold">
@@ -1098,7 +1071,6 @@
     </div>
   </div>
 
-  <!-- Order Success & Working Official Invoice Modal -->
   <div id="orderSuccessModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
     <div class="bg-white rounded-3xl max-w-3xl w-full p-4 sm:p-8 shadow-2xl relative my-6 border-2 border-amber-300 max-h-[92vh] overflow-y-auto">
       
@@ -1137,7 +1109,7 @@
               <h2 class="font-serif font-bold text-lg text-purple-950 leading-tight">RADHA KRISHNA NOVELTY STORE</h2>
               <p class="text-[11px] text-gray-600">Gifts, Toys, Stationery & Home Decor</p>
               <p class="text-[10px] text-gray-500">Shop No. 12, Krishna Complex, Jamnagar - 361001, Gujarat</p>
-              <p class="text-[10px] text-gray-500">GSTIN: 24AAAFR8921N1Z0 | Phone: +91 98250 12345</p>
+              <p class="text-[10px] text-gray-500">GSTIN: 24AAAFR8921N1Z0 | Phone: +91 98250 12345 | Email: radhakrishnanoveltystore@gmail.com</p>
             </div>
           </div>
           
@@ -1225,7 +1197,6 @@
     </div>
   </div>
 
-  <!-- Order Tracking Modal -->
   <div id="orderTrackingModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border border-purple-200">
       <button onclick="closeTrackingModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center justify-center text-sm transition">
@@ -1258,7 +1229,6 @@
     </div>
   </div>
 
-  <!-- Write a Customer Review Modal -->
   <div id="writeReviewModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border border-purple-200">
       <button onclick="closeWriteReviewModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center justify-center text-sm transition">
@@ -1312,7 +1282,6 @@
     </div>
   </div>
 
-  <!-- Policy Information Modal -->
   <div id="policyModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative border border-purple-200">
       <button onclick="closePolicyModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center justify-center text-sm transition">
@@ -1323,7 +1292,6 @@
     </div>
   </div>
 
-  <!-- Admin Portal Modal (Strictly without hints) -->
   <div id="adminPortalModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
     <div class="bg-white rounded-3xl max-w-5xl w-full p-6 sm:p-8 shadow-2xl relative my-6 border-2 border-purple-900 max-h-[92vh] flex flex-col justify-between overflow-y-auto">
       
@@ -1331,13 +1299,13 @@
         <i class="fa-solid fa-xmark"></i>
       </button>
 
-      <!-- Admin Login View -->
+      <!-- Admin Login View without hint -->
       <div id="adminLoginView" class="max-w-md mx-auto py-10 text-center w-full">
         <div class="w-16 h-16 rounded-2xl bg-purple-900 text-amber-300 text-2xl flex items-center justify-center mx-auto shadow mb-4">
           <i class="fa-solid fa-user-shield"></i>
         </div>
         <h3 class="font-serif font-bold text-2xl text-purple-950">Store Owner Dashboard</h3>
-        <p class="text-xs text-gray-500 mt-1 mb-6">Enter the administrative password to manage live orders, profits, invoices, inventory, and reviews.</p>
+        <p class="text-xs text-gray-500 mt-1 mb-6">Enter administrative password to manage live orders, profits, invoices, inventory, and reviews.</p>
 
         <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
           <div>
@@ -1512,8 +1480,8 @@
           </form>
         </div>
 
-        <!-- Tab 5: Inventory & Stock Management -->
-        <div id="adminTab-productsInventory" class="hidden space-y-4">
+        <!-- Tab 5: Inventory & Stock Management with local image file upload -->
+        <div id="adminTab-productsInventory" class="space-y-4 hidden">
           <div class="flex justify-between items-center">
             <h4 class="font-bold text-sm text-purple-950">Add / Update Products in Catalog</h4>
             <button onclick="toggleAddProductForm()" class="px-3 py-1.5 bg-purple-900 text-amber-300 font-bold rounded-xl text-xs hover:bg-purple-950">
@@ -1622,7 +1590,6 @@
     </div>
   </div>
 
-  <!-- Floating Live Chat Support Widget -->
   <div id="liveChatWidget" class="fixed bottom-6 right-6 z-40">
     <button onclick="toggleLiveChat()" id="chatBubbleBtn" class="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-purple-900 via-pink-600 to-amber-500 text-white rounded-full shadow-2xl hover:scale-105 transition duration-300 border-2 border-amber-300 peacock-glow">
       <i class="fa-solid fa-comment-dots text-lg"></i>
@@ -1681,7 +1648,6 @@
     </div>
   </div>
 
-  <!-- Order Cancellation Email Modal Preview -->
   <div id="cancelEmailNoticeModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative border-2 border-amber-300 animate-fade-in text-xs">
       <button onclick="closeCancelEmailModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center text-sm transition">
@@ -1719,7 +1685,6 @@
     </div>
   </div>
 
-  <!-- Main JavaScript Logic -->
   <script>
     const CATEGORIES = [
       { name: "Toys and Games", icon: "fa-gamepad", img: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=500&q=80" },
@@ -2111,7 +2076,6 @@
     let currentInvoiceData = null; 
     let pendingOrderPayload = null; // Stored during Razorpay modal step
 
-    // Render Categories in the 15-Category Grid
     function renderCategories() {
       const container = document.getElementById('categoryGrid');
       container.innerHTML = CATEGORIES.map((cat, idx) => `
@@ -2748,7 +2712,7 @@
         const order = currentInvoiceData;
 
         // Top Brand Header Banner (Purple & Gold Palette)
-        doc.setFillColor(59, 7, 100);
+        doc.setFillColor(40, 3, 61);
         doc.rect(0, 0, 210, 36, 'F');
 
         doc.setTextColor(255, 255, 255);
@@ -2762,7 +2726,7 @@
 
         doc.setFontSize(8);
         doc.setTextColor(230, 230, 230);
-        doc.text("Shop No. 12, Krishna Complex, Jamnagar - 361001, Gujarat | Ph: +91 98250 12345", 14, 30);
+        doc.text("Shop No. 12, Krishna Complex, Jamnagar - 361001, Gujarat | Ph: +91 98250 12345 | radhakrishnanoveltystore@gmail.com", 14, 30);
 
         doc.setFontSize(14);
         doc.setTextColor(59, 7, 100);
@@ -3329,7 +3293,7 @@
         hasAutomatedReplyFired = true; // Mark as fired so it never triggers again
 
         setTimeout(() => {
-          let reply = "✨ Radhe Radhe! Thank you for contacting Radha Krishna Novelty Store. Our store owner in Jamnagar has received your query and will reply directly in this chat thread shortly!";
+          let reply = "✨ Radhe Radhe! Thank you for contacting Radha Krishna Novel Store. Our store owner in Jamnagar has received your query and will reply directly in this chat thread shortly!";
           const lower = text.toLowerCase();
           
           if (lower.includes('jamnagar') || lower.includes('deliver') || lower.includes('shipping')) {
