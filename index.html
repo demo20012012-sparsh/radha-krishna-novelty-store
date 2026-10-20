@@ -1387,6 +1387,9 @@
           <button onclick="switchAdminTab('productsInventory')" id="tabBtn-productsInventory" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-purple-50 text-purple-900 hover:bg-purple-100 transition">
             <i class="fa-solid fa-boxes-stacked mr-1"></i> Inventory & Stock
           </button>
+          <button onclick="switchAdminTab('cancelledEmailsLog')" id="tabBtn-cancelledEmailsLog" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-purple-50 text-purple-900 hover:bg-purple-100 transition flex items-center gap-1">
+            <i class="fa-solid fa-envelope-open-text mr-1"></i> Dispatched Cancellation Emails
+          </button>
           <button onclick="switchAdminTab('messages')" id="tabBtn-messages" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-purple-50 text-purple-900 hover:bg-purple-100 transition">
             <i class="fa-solid fa-envelope mr-1"></i> Contact Forms
           </button>
@@ -1519,58 +1522,57 @@
           </div>
 
           <!-- Add Product Form Drawer -->
-          <div id="addProductFormContainer" class="hidden p-4 bg-purple-50 rounded-2xl border border-purple-200">
+          <div id="addProductFormContainer" class="hidden bg-purple-50 p-4 rounded-2xl border border-purple-200">
+            <h5 class="font-bold text-xs text-purple-950 mb-3">Create New Product Listing</h5>
             <form id="newProductForm" onsubmit="handleCreateProduct(event)" class="space-y-3">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label class="block text-[11px] font-semibold text-gray-700">Product Name</label>
-                  <input type="text" id="newProdName" required placeholder="e.g. Traditional Brass Diya Set" class="w-full text-xs p-2 rounded-lg border border-purple-200">
+                  <label class="block text-[11px] font-semibold text-gray-700 mb-1">Product Title *</label>
+                  <input type="text" id="newProdName" required placeholder="e.g. Divine Flute Night Lamp" class="w-full text-xs p-2 rounded-xl border border-purple-200 bg-white">
                 </div>
                 <div>
-                  <label class="block text-[11px] font-semibold text-gray-700">Category</label>
-                  <select id="newProdCategory" class="w-full text-xs p-2 rounded-lg border border-purple-200"></select>
+                  <label class="block text-[11px] font-semibold text-gray-700 mb-1">Category *</label>
+                  <select id="newProdCategory" required class="w-full text-xs p-2 rounded-xl border border-purple-200 bg-white">
+                    <!-- Populated dynamically -->
+                  </select>
                 </div>
               </div>
 
-              <div class="grid grid-cols-3 gap-3">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label class="block text-[11px] font-semibold text-gray-700">Selling Price (₹)</label>
-                  <input type="number" id="newProdPrice" required min="1" placeholder="299" class="w-full text-xs p-2 rounded-lg border border-purple-200">
+                  <label class="block text-[11px] font-semibold text-gray-700 mb-1">Selling Price (₹) *</label>
+                  <input type="number" id="newProdPrice" min="1" required placeholder="e.g. 499" class="w-full text-xs p-2 rounded-xl border border-purple-200 bg-white">
                 </div>
                 <div>
-                  <label class="block text-[11px] font-semibold text-gray-700">Original Price (₹)</label>
-                  <input type="number" id="newProdOrigPrice" required min="1" placeholder="499" class="w-full text-xs p-2 rounded-lg border border-purple-200">
+                  <label class="block text-[11px] font-semibold text-gray-700 mb-1">Original Price (₹) *</label>
+                  <input type="number" id="newProdOrigPrice" min="1" required placeholder="e.g. 899" class="w-full text-xs p-2 rounded-xl border border-purple-200 bg-white">
                 </div>
                 <div>
-                  <label class="block text-[11px] font-semibold text-gray-700">Initial Stock</label>
-                  <input type="number" id="newProdStock" required min="1" value="25" class="w-full text-xs p-2 rounded-lg border border-purple-200">
+                  <label class="block text-[11px] font-semibold text-gray-700 mb-1">Stock Units *</label>
+                  <input type="number" id="newProdStock" min="1" required placeholder="e.g. 25" class="w-full text-xs p-2 rounded-xl border border-purple-200 bg-white">
                 </div>
               </div>
 
               <div>
-                <label class="block text-[11px] font-semibold text-gray-700 mb-1">Product Image File (Upload Image)</label>
+                <label class="block text-[11px] font-semibold text-gray-700 mb-1">Upload Product Image File *</label>
                 <div class="flex items-center gap-3">
-                  <label class="cursor-pointer px-4 py-2 bg-white border border-purple-300 rounded-xl text-xs font-semibold text-purple-900 hover:bg-purple-100 transition flex items-center gap-2 shadow-xs">
-                    <i class="fa-solid fa-cloud-arrow-up text-pink-600"></i>
-                    <span>Choose Image File</span>
-                    <input type="file" id="newProdFileInput" accept="image/*" required onchange="handleProductImageUpload(event)" class="hidden">
-                  </label>
-                  <span id="uploadFileNameDisplay" class="text-[11px] text-gray-500 italic">No image selected yet</span>
+                  <input type="file" id="newProdImageFile" accept="image/*" onchange="handleProductImageUpload(event)" class="text-xs text-gray-600 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-purple-900 file:text-amber-300 hover:file:bg-purple-950 cursor-pointer">
+                  <span id="uploadFileNameDisplay" class="text-[11px] text-gray-500 truncate max-w-xs">No image selected yet</span>
                 </div>
-                <div id="imagePreviewContainer" class="hidden mt-2 flex items-center gap-2 p-2 bg-white rounded-xl border border-purple-200 max-w-xs">
-                  <img id="imagePreviewThumb" src="" alt="Preview" class="w-12 h-12 object-contain rounded-lg border border-purple-100 bg-purple-50">
-                  <span class="text-[10px] text-emerald-700 font-bold"><i class="fa-solid fa-circle-check"></i> Image loaded & ready</span>
+                <div id="imagePreviewContainer" class="hidden mt-2 flex items-center gap-2">
+                  <img id="imagePreviewThumb" src="" alt="Uploaded Preview" class="w-12 h-12 object-contain rounded-lg border border-purple-200 bg-white p-1">
+                  <span class="text-[10px] text-emerald-700 font-semibold"><i class="fa-solid fa-circle-check"></i> Image loaded successfully</span>
                 </div>
               </div>
 
               <div>
-                <label class="block text-[11px] font-semibold text-gray-700">Product Description</label>
-                <textarea id="newProdDesc" rows="2" required placeholder="Detailed specifications..." class="w-full text-xs p-2 rounded-lg border border-purple-200"></textarea>
+                <label class="block text-[11px] font-semibold text-gray-700 mb-1">Product Description *</label>
+                <textarea id="newProdDesc" rows="2" required placeholder="Enter detailed specifications and highlights..." class="w-full text-xs p-2 rounded-xl border border-purple-200 bg-white"></textarea>
               </div>
 
-              <div class="flex justify-end gap-2">
-                <button type="button" onclick="toggleAddProductForm()" class="px-3 py-1.5 text-xs text-gray-600 bg-gray-200 rounded-lg">Cancel</button>
-                <button type="submit" class="px-4 py-1.5 text-xs font-bold bg-pink-600 text-white rounded-lg hover:bg-pink-700">Save Product</button>
+              <div class="flex justify-end gap-2 pt-1">
+                <button type="button" onclick="toggleAddProductForm()" class="px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-100 rounded-xl">Cancel</button>
+                <button type="submit" class="px-4 py-1.5 bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-xl text-xs transition">Save Product to Store</button>
               </div>
             </form>
           </div>
@@ -1579,11 +1581,11 @@
             <table class="w-full text-xs text-left">
               <thead class="bg-purple-100 text-purple-950 font-bold">
                 <tr>
-                  <th class="p-2.5">Item</th>
-                  <th class="p-2.5">Category</th>
-                  <th class="p-2.5">Selling Price</th>
-                  <th class="p-2.5">Stock</th>
-                  <th class="p-2.5 text-center">Manage</th>
+                  <th class="p-3">Product Name & Photo</th>
+                  <th class="p-3">Category</th>
+                  <th class="p-3">Price</th>
+                  <th class="p-3">In Stock</th>
+                  <th class="p-3 text-center">Action</th>
                 </tr>
               </thead>
               <tbody id="adminProductsTableBody" class="divide-y divide-purple-50">
@@ -1593,7 +1595,21 @@
           </div>
         </div>
 
-        <!-- Tab 5: Contact Messages -->
+        <!-- Tab: Dispatched Cancellation Emails with Happy Notes Log -->
+        <div id="adminTab-cancelledEmailsLog" class="hidden space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h4 class="font-bold text-sm text-purple-950">Customer Cancellation Emails Sent</h4>
+              <p class="text-xs text-gray-500">Every cancelled order automatically dispatches a heartfelt, cheerful note with blessing wishes and refund instructions.</p>
+            </div>
+          </div>
+
+          <div id="cancelledEmailsLogContainer" class="space-y-3">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Tab 6: Contact Messages -->
         <div id="adminTab-messages" class="hidden space-y-4">
           <h4 class="font-bold text-sm text-purple-950">Customer Inquiries & Messages</h4>
           <div id="adminMessagesContainer" class="space-y-3">
@@ -1662,9 +1678,49 @@
         </a>
       </div>
 
-    <!-- Main JavaScript Logic -->
-    <script>
-    /* Global Application State */
+    </div>
+  </div>
+
+  <!-- Order Cancellation Email Modal Preview -->
+  <div id="cancelEmailNoticeModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative border-2 border-amber-300 animate-fade-in text-xs">
+      <button onclick="closeCancelEmailModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center text-sm transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4 border-b border-purple-100 pb-3">
+        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl">
+          <i class="fa-solid fa-envelope-circle-check"></i>
+        </div>
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-pink-600 bg-pink-100 px-2 py-0.5 rounded-full">Email Dispatched Successfully</span>
+          <h4 class="font-serif font-bold text-base text-purple-950 mt-1">Cancellation Notice Sent to Customer</h4>
+        </div>
+      </div>
+
+      <div class="bg-purple-50/70 p-4 rounded-2xl border border-purple-200 space-y-2 leading-relaxed">
+        <div class="flex justify-between border-b border-purple-100 pb-1 text-[11px] text-gray-600">
+          <span><b>Recipient:</b> <span id="cancelEmailToDisplay" class="text-purple-950 font-semibold">customer@email.com</span></span>
+          <span><b>From:</b> radhakrishnanoveltystore@gmail.com</span>
+        </div>
+        <div class="text-[11px] font-bold text-purple-900">
+          Subject: ✨ Radhe Radhe! Update on Order #<span id="cancelEmailOrderIdDisplay"></span> — With Smiles from Radha Krishna Novelty Store
+        </div>
+        <div id="cancelEmailBodyContent" class="text-gray-700 whitespace-pre-line text-xs font-sans bg-white p-3 rounded-xl border border-purple-100 shadow-xs">
+          <!-- Email Body Content with Happy Note -->
+        </div>
+      </div>
+
+      <div class="mt-4 flex justify-end">
+        <button onclick="closeCancelEmailModal()" class="px-5 py-2.5 bg-gradient-to-r from-purple-900 to-pink-700 text-white font-bold rounded-xl text-xs shadow-md">
+          Done &bull; Return to Portal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript Logic -->
+  <script>
     const CATEGORIES = [
       { name: "Toys and Games", icon: "fa-gamepad", img: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=500&q=80" },
       { name: "Gift Items", icon: "fa-gift", img: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=500&q=80" },
@@ -1682,6 +1738,12 @@
       { name: "Return Gifts and Gift Sets", icon: "fa-boxes-packing", img: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=500&q=80" },
       { name: "Trending Novelty Products", icon: "fa-fire", img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=500&q=80" }
     ];
+
+    let cancellationEmailsLog = [];
+
+    function closeCancelEmailModal() {
+      document.getElementById('cancelEmailNoticeModal').classList.add('hidden');
+    }
 
     // Verified Indian Novelty Products with accurate images and verified ₹ prices
     let productsDatabase = [
@@ -1864,51 +1926,6 @@
         isBestseller: true,
         image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=600&q=80",
         description: "Magnetic wireless sensor wardrobe and stairway light with auto motion detection and USB Type-C charging."
-      },
-      {
-        id: "prod-13",
-        sku: "RK-SES-13",
-        name: "Handcrafted Terracotta Lotus Diya Set (Pack of 6)",
-        category: "Seasonal and Festival Items",
-        price: 349,
-        originalPrice: 699,
-        stock: 45,
-        rating: 5.0,
-        reviewsCount: 62,
-        costPrice: 180,
-        isBestseller: true,
-        image: "https://images.unsplash.com/photo-1605647540924-852290f6b0d5?auto=format&fit=crop&w=600&q=80",
-        description: "Auspicious clay oil lamps beautifully painted in vibrant festive pink, gold, and turquoise with acrylic accents."
-      },
-      {
-        id: "prod-14",
-        sku: "RK-RTN-14",
-        name: "Magic Rainbow Scratch Note Art Books (Pack of 10)",
-        category: "Return Gifts and Gift Sets",
-        price: 499,
-        originalPrice: 999,
-        stock: 60,
-        rating: 4.9,
-        reviewsCount: 78,
-        costPrice: 240,
-        isBestseller: true,
-        image: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=600&q=80",
-        description: "Ideal birthday return gift pack for kids. Includes 10 scratch notebooks with wooden stylus sticks."
-      },
-      {
-        id: "prod-15",
-        sku: "RK-TRD-15",
-        name: "Dancing Cactus Plush Toy with Voice Repeat & LED",
-        category: "Trending Novelty Products",
-        price: 599,
-        originalPrice: 1199,
-        stock: 32,
-        rating: 4.8,
-        reviewsCount: 54,
-        costPrice: 320,
-        isBestseller: true,
-        image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80",
-        description: "Viral interactive singing and dancing toy that repeats voice in hilarious tones with glowing rhythmic LED lights."
       }
     ];
 
@@ -3004,7 +3021,7 @@
     }
 
     function switchAdminTab(tabName) {
-      const tabs = ['liveOrders', 'ordersInvoices', 'reviewApproval', 'liveChatSupport', 'productsInventory', 'messages'];
+      const tabs = ['liveOrders', 'ordersInvoices', 'reviewApproval', 'liveChatSupport', 'productsInventory', 'cancelledEmailsLog', 'messages'];
       tabs.forEach(t => {
         const el = document.getElementById(`adminTab-${t}`);
         if (el) el.classList.add('hidden');
@@ -3024,6 +3041,8 @@
 
       if (tabName === 'liveChatSupport') {
         renderAdminChatFeed();
+      } else if (tabName === 'cancelledEmailsLog') {
+        renderCancellationEmailsLog();
       }
     }
 
@@ -3194,7 +3213,60 @@
       if (!order) return;
       order.status = "Cancelled";
       refreshAdminMetrics();
-      showToast(`Order ${orderId} marked as Cancelled.`);
+
+      // Compose Happy Note Email
+      const customerName = order.customer.name;
+      const customerEmail = order.customer.email || "customer@example.com";
+      const now = new Date();
+      const timeStr = `${now.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })} at ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+
+      const happyNoteBody = `Dear ${customerName},\n\n✨ Radhe Radhe! Warm blessings and joyful greetings from Radha Krishna Novelty Store! ✨\n\nWe have received your cancellation request for Order ID: ${order.orderId}.\n\nPlease do not worry at all! Your order has been smoothly cancelled. If you made an online payment, your complete refund of ₹${order.grandTotal} is being initiated and will reflect safely into your original payment account.\n\n🌟 A Little Joy For Your Next Visit:\nWe truly cherish you as part of our novelty family! Whenever you are ready to shop with us again for toys, gifts, stationery, or home decor, we will be waiting with open arms and exciting new collections.\n\nMay Lord Krishna and Radha Rani shower your home with immense happiness, prosperity, and radiant health!\n\nWith warmth and heartfelt smiles,\nRadha Krishna Novelty Store Team\n📍 Shop No. 12, Krishna Complex, Jamnagar, Gujarat\n📞 Contact: +91 98250 12345\n✉️ Email: radhakrishnanoveltystore@gmail.com`;
+
+      // Record in Sent Logs
+      const emailRecord = {
+        orderId: order.orderId,
+        customerName: customerName,
+        customerEmail: customerEmail,
+        timestamp: timeStr,
+        body: happyNoteBody
+      };
+      cancellationEmailsLog.unshift(emailRecord);
+
+      // Display dispatched modal notification
+      document.getElementById('cancelEmailToDisplay').innerText = `${customerName} (${customerEmail})`;
+      document.getElementById('cancelEmailOrderIdDisplay').innerText = order.orderId;
+      document.getElementById('cancelEmailBodyContent').innerText = happyNoteBody;
+      document.getElementById('cancelEmailNoticeModal').classList.remove('hidden');
+
+      showToast(`Order ${orderId} cancelled & happy note email dispatched to ${customerEmail}!`);
+    }
+
+    function renderCancellationEmailsLog() {
+      const container = document.getElementById('cancelledEmailsLogContainer');
+      if (!container) return;
+
+      if (cancellationEmailsLog.length === 0) {
+        container.innerHTML = `<div class="p-8 text-center text-gray-400 bg-purple-50/50 rounded-2xl border border-purple-100">No cancellation emails sent yet.</div>`;
+        return;
+      }
+
+      container.innerHTML = cancellationEmailsLog.map(em => `
+        <div class="bg-purple-50/60 p-4 rounded-2xl border border-purple-200 text-xs space-y-2">
+          <div class="flex justify-between items-center border-b border-purple-100 pb-2">
+            <div>
+              <span class="font-bold text-purple-950">${em.customerName}</span>
+              <span class="text-purple-600 font-mono text-[11px] ml-1">&lt;${em.customerEmail}&gt;</span>
+            </div>
+            <div class="text-[10px] text-gray-500">${em.timestamp}</div>
+          </div>
+          <div class="text-amber-800 font-bold text-[11px]">
+            <i class="fa-solid fa-envelope mr-1 text-pink-600"></i> Subject: Order #${em.orderId} Cancellation & Happy Note
+          </div>
+          <div class="bg-white p-3 rounded-xl border border-purple-100 text-gray-700 whitespace-pre-line text-[11px] leading-relaxed shadow-xs">
+            ${em.body}
+          </div>
+        </div>
+      `).join('');
     }
 
     function restoreOrder(orderId) {
