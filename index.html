@@ -345,7 +345,7 @@
           <div class="font-bold flex items-center space-x-1.5 text-amber-900">
             <span>🛡️ Authorized Access Protection</span>
           </div>
-          <p>Restricted to authorized accounts. Sign in using your registered credentials or verified Google account.</p>
+          <p>Restricted to authorized accounts. Sign in using your registered administrator credentials or verified Google Workspace account.</p>
         </div>
 
         <!-- Direct Email & Password Sign-in Form -->
@@ -356,7 +356,7 @@
               type="email" 
               id="admin-login-email" 
               required 
-              value="radhakrishnanoveltystore@gmail.com"
+              placeholder="Enter admin email address"
               class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-xs outline-none focus:border-brand-magenta"
             >
           </div>
@@ -366,7 +366,6 @@
               type="password" 
               id="admin-login-password" 
               required 
-              value="1122"
               placeholder="Enter password"
               class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-xs outline-none focus:border-brand-magenta"
             >
@@ -378,21 +377,41 @@
 
         <div class="relative py-2">
           <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200"></div></div>
-          <div class="relative flex justify-center text-[11px] uppercase tracking-wider text-gray-400 bg-white px-2">Or Google Single Sign-On</div>
+          <div class="relative flex justify-center text-[11px] uppercase tracking-wider text-gray-400 bg-white px-2">Or Google Workspace Sign-In</div>
         </div>
 
-        <!-- Google Sign-In Trigger -->
-        <div class="space-y-3">
-          <button onclick="handleGoogleSignIn(document.getElementById('admin-login-email').value)" class="w-full flex items-center justify-center space-x-3 py-3 px-4 rounded-xl border border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 text-gray-700 font-semibold text-xs shadow-sm transition">
+        <!-- Google Workspace Sign-In Form with Password -->
+        <form id="google-workspace-form" onsubmit="handleGoogleWorkspaceSignIn(event)" class="space-y-3 text-left">
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-600 mb-1">Google Workspace Account</label>
+            <input 
+              type="email" 
+              id="gw-login-email" 
+              required 
+              placeholder="name@company.com or gmail.com"
+              class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-xs outline-none focus:border-brand-magenta"
+            >
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-gray-600 mb-1">Workspace Security Password</label>
+            <input 
+              type="password" 
+              id="gw-login-password" 
+              required 
+              placeholder="Enter Workspace password"
+              class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-xs outline-none focus:border-brand-magenta"
+            >
+          </div>
+          <button type="submit" class="w-full flex items-center justify-center space-x-2.5 py-3 px-4 rounded-xl border border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 text-gray-700 font-semibold text-xs shadow-sm transition">
             <svg class="w-4 h-4" viewBox="0 0 24 24">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
               <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
               <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
             </svg>
-            <span>Sign in with Google Workspace</span>
+            <span>Authorize via Google Workspace</span>
           </button>
-        </div>
+        </form>
 
         <div id="auth-error-msg" class="hidden p-3 rounded-lg bg-red-50 text-red-700 text-xs font-medium border border-red-200"></div>
       </div>
@@ -1039,6 +1058,7 @@ ALTER PUBLICATION supabase_realtime ADD TABLE orders, products, inquiries;</pre>
     /* =========================================================================
      * 1. AUTHORIZED ADMINISTRATOR ALLOWLIST & CORE DATA MODELS
      * Configured for radhakrishnanoveltystore@gmail.com with passcode 1122
+     * and Google Workspace authorization with passcode 1234
      * ========================================================================= */
     const ADMIN_ALLOWLIST = [
       'radhakrishnanoveltystore@gmail.com',
@@ -1050,6 +1070,10 @@ ALTER PUBLICATION supabase_realtime ADD TABLE orders, products, inquiries;</pre>
     const ADMIN_CREDENTIALS = {
       email: 'radhakrishnanoveltystore@gmail.com',
       passcode: '1122'
+    };
+
+    const GOOGLE_WORKSPACE_CREDENTIALS = {
+      passcode: '1234'
     };
 
     const STORE_CATEGORIES = [
@@ -2042,37 +2066,50 @@ ALTER PUBLICATION supabase_realtime ADD TABLE orders, products, inquiries;</pre>
         adminSession.isAuthenticated = true;
         adminSession.email = email;
         checkAdminAuthView();
-        showToast(`Welcome back, Radha Krishna Store Admin! Cloud Sync Active.`, 'success');
+        showToast(`Welcome back, Store Admin! Cloud Sync Active.`, 'success');
         return;
       }
 
-      errBox.innerText = "Invalid credentials. Verify your email or password.";
+      errBox.innerText = "Invalid credentials. Verify your email and password.";
       errBox.classList.remove('hidden');
     }
 
-    function handleGoogleSignIn(inputEmail) {
+    function handleGoogleWorkspaceSignIn(event) {
+      event.preventDefault();
       const errBox = document.getElementById('auth-error-msg');
       errBox.classList.add('hidden');
 
-      const cleanEmail = (inputEmail || '').trim().toLowerCase();
+      const email = document.getElementById('gw-login-email').value.trim().toLowerCase();
+      const password = document.getElementById('gw-login-password').value.trim();
 
       // Enforce strict administrator email allowlist verification
-      if (!ADMIN_ALLOWLIST.includes(cleanEmail)) {
-        errBox.innerText = `Access Denied: The Google account "${cleanEmail}" is not an authorized administrator. Contact store owner to add your email to the database allowlist.`;
+      if (!ADMIN_ALLOWLIST.includes(email)) {
+        errBox.innerText = `Access Denied: The account "${email}" is not on the authorized administrator allowlist.`;
+        errBox.classList.remove('hidden');
+        return;
+      }
+
+      // Verify Google Workspace specific security password
+      if (password !== GOOGLE_WORKSPACE_CREDENTIALS.passcode) {
+        errBox.innerText = "Invalid Google Workspace security password.";
         errBox.classList.remove('hidden');
         return;
       }
 
       // Successful Auth Session
       adminSession.isAuthenticated = true;
-      adminSession.email = cleanEmail;
+      adminSession.email = email;
       checkAdminAuthView();
-      showToast(`Welcome back, ${cleanEmail}! Connected to live orders stream.`, 'success');
+      showToast(`Welcome back, ${email}! Connected to Google Workspace live stream.`, 'success');
     }
 
     function handleAdminSignOut() {
       adminSession.isAuthenticated = false;
       adminSession.email = null;
+      document.getElementById('admin-login-email').value = '';
+      document.getElementById('admin-login-password').value = '';
+      document.getElementById('gw-login-email').value = '';
+      document.getElementById('gw-login-password').value = '';
       checkAdminAuthView();
       showToast('You have been securely signed out of the Admin Console.', 'info');
     }
