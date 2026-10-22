@@ -10,7 +10,7 @@
   <!-- Google Fonts: Poppins, Cinzel, and Cinzel Decorative -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@600;700;900&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -24,24 +24,19 @@
       theme: {
         extend: {
           colors: {
-            brand: {
-              purple: '#1c032a',
-              royal: '#3b0764',
-              plum: '#581c87',
-              pink: '#db2777',
-              rose: '#f43f5e',
-              gold: '#d97706',
-              lightgold: '#fef3c7',
-              accentGold: '#f59e0b',
-              shimmer: '#fbbf24',
-              tealPeacock: '#0d9488'
-            }
+            royalPurple: '#45216D',
+            richMagenta: '#A83279',
+            warmGold: '#E5B85C',
+            softIvory: '#FFFDF8',
+            lavenderBorder: '#E9E3EF',
+            darkCharcoal: '#26232B',
+            mutedGray: '#706B76',
+            successGreen: '#218653',
+            errorRed: '#C0392B'
           },
           fontFamily: {
-            sans: ['Poppins', 'sans-serif'],
-            serif: ['Cinzel', 'serif'],
-            cinzelDeco: ['"Cinzel Decorative"', 'cursive'],
-            script: ['"Great Vibes"', 'cursive']
+            sans: ['Poppins', 'Inter', 'sans-serif'],
+            serif: ['Cinzel', 'serif']
           }
         }
       }
@@ -54,41 +49,37 @@
       width: 8px;
     }
     ::-webkit-scrollbar-track {
-      background: #fdf4ff;
+      background: #FFFDF8;
     }
     ::-webkit-scrollbar-thumb {
-      background: #c084fc;
+      background: #D8B4E2;
       border-radius: 4px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #9333ea;
+      background: #45216D;
     }
 
-    /* Decorative Gold Gradient Text */
     .gold-gradient-text {
-      background: linear-gradient(135deg, #fffbeb 0%, #f59e0b 35%, #fbbf24 60%, #d97706 100%);
+      background: linear-gradient(135deg, #FFF9E6 0%, #E5B85C 50%, #C4902F 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .divine-gradient {
-      background: radial-gradient(circle at 10% 20%, rgba(219, 39, 119, 0.45) 0%, transparent 45%),
-                  radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.35) 0%, transparent 45%),
-                  radial-gradient(circle at 50% 50%, rgba(13, 148, 136, 0.25) 0%, transparent 60%),
-                  linear-gradient(135deg, #1b0230 0%, #350654 30%, #4a0e78 70%, #200438 100%);
+    .divine-royal-gradient {
+      background: linear-gradient(135deg, #321253 0%, #45216D 50%, #681C65 100%);
     }
 
-    .peacock-glow {
-      box-shadow: 0 0 25px rgba(245, 158, 11, 0.5), 0 0 45px rgba(219, 39, 119, 0.25), inset 0 0 15px rgba(219, 39, 119, 0.3);
+    .glow-gold {
+      box-shadow: 0 4px 20px -2px rgba(229, 184, 92, 0.35);
     }
 
     /* Print Specific Invoice Styling */
     @media print {
       body * {
-        visibility: hidden;
+        visibility: hidden !important;
       }
       #printableInvoiceArea, #printableInvoiceArea * {
-        visibility: visible;
+        visibility: visible !important;
       }
       #printableInvoiceArea {
         position: absolute;
@@ -96,9 +87,10 @@
         top: 0;
         width: 100%;
         margin: 0;
-        padding: 20px;
-        background: white;
-        color: black;
+        padding: 24px;
+        background: #FFFFFF !important;
+        color: #26232B !important;
+        box-shadow: none !important;
       }
       .no-print {
         display: none !important;
@@ -106,49 +98,45 @@
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-purple-50 via-pink-50/50 to-amber-50/60 text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-pink-300 selection:text-purple-900">
+<body class="bg-softIvory text-darkCharcoal font-sans antialiased min-h-screen flex flex-col selection:bg-richMagenta selection:text-white">
   
-  <div class="bg-gradient-to-r from-purple-950 via-pink-950 to-purple-950 text-amber-200 text-xs py-2 px-4 shadow-inner border-b border-amber-500/30">
-    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center text-center gap-2">
+  <!-- Announcement & Top Bar -->
+  <div class="bg-[#2D124B] text-amber-100 text-xs py-2 px-4 border-b border-[#E5B85C]/30">
+    <div class="max-w-[1240px] mx-auto flex flex-wrap justify-between items-center text-center gap-2">
       <div class="flex items-center gap-2 mx-auto sm:mx-0">
-        <span class="text-amber-400 font-serif font-bold tracking-wider animate-pulse">✨ Radhe Radhe! ✨</span>
-        <span class="hidden md:inline text-purple-100">Welcome to Radha Krishna Novelty Store — Gifts, Toys & Decorative Paradise</span>
+        <span class="text-warmGold font-serif font-bold tracking-wider">✨ Radhe Radhe! ✨</span>
+        <span class="hidden md:inline text-purple-200">Welcome to Radha Krishna Novelty Store — Jamnagar's Premier Novelty Destination</span>
       </div>
-      <div class="flex items-center gap-4 text-xs mx-auto sm:mx-0">
-        <span><i class="fa-solid fa-phone mr-1 text-pink-400"></i> +91 98250 12345</span>
-        <span class="hidden sm:inline text-purple-600">|</span>
-        <span class="text-purple-200"><i class="fa-solid fa-envelope mr-1 text-amber-400"></i> radhakrishnanoveltystore@gmail.com</span>
-        <span class="hidden sm:inline text-purple-600">|</span>
-        <span class="text-amber-300 font-medium"><i class="fa-solid fa-tag mr-1 text-pink-400"></i> Code: <b>FIRST10</b> (10% Off) &bull; <b>SPECIAL999</b> (₹150 off on ₹999+)</span>
-        <span class="hidden sm:inline text-purple-600">|</span>
-        <button onclick="openAdminModal()" class="text-xs bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 px-3 py-0.5 rounded-full border border-amber-400/50 transition">
+      <div class="flex items-center gap-3 text-xs mx-auto sm:mx-0">
+        <span class="text-purple-200"><i class="fa-solid fa-phone mr-1 text-warmGold"></i> +91 98250 12345</span>
+        <span class="hidden sm:inline text-purple-400">|</span>
+        <span class="text-purple-200"><i class="fa-solid fa-envelope mr-1 text-warmGold"></i> radhakrishnanoveltystore@gmail.com</span>
+        <span class="hidden sm:inline text-purple-400">|</span>
+        <button onclick="openAdminModal()" class="text-xs bg-warmGold/20 hover:bg-warmGold/40 text-warmGold font-semibold px-3 py-0.5 rounded-full border border-warmGold/50 transition">
           <i class="fa-solid fa-user-shield mr-1"></i>Owner Portal
         </button>
       </div>
     </div>
   </div>
 
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-md border-b-2 border-amber-400/70 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Symmetrical, Perfectly Aligned Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-lavenderBorder transition-all duration-300">
+    <div class="max-w-[1240px] mx-auto px-4 sm:px-6">
       <div class="flex items-center justify-between h-20 gap-4">
         
-        <!-- Logo & Branding using Peacock Feather & Bansuri Motif -->
-        <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-3 group focus:outline-none">
-          <div class="w-14 h-14 rounded-2xl p-1 bg-gradient-to-tr from-amber-400 via-pink-500 to-purple-800 shadow-lg shadow-purple-900/30 group-hover:scale-105 transition duration-300 flex items-center justify-center border-2 border-amber-300 peacock-glow">
+        <!-- Left: Logo & Branding -->
+        <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-3 group focus:outline-none shrink-0">
+          <div class="w-13 h-13 w-12 h-12 rounded-xl p-1 bg-gradient-to-tr from-warmGold via-richMagenta to-royalPurple shadow-md flex items-center justify-center border-2 border-warmGold glow-gold group-hover:scale-105 transition duration-300">
             <svg class="w-full h-full drop-shadow" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="46" fill="#2e0854" stroke="#f59e0b" stroke-width="2.5"/>
-              <circle cx="50" cy="50" r="42" stroke="#fbcfe8" stroke-dasharray="3 3" stroke-width="1"/>
-              <!-- Mor Pankh (Peacock Feather) -->
+              <circle cx="50" cy="50" r="46" fill="#321253" stroke="#E5B85C" stroke-width="2.5"/>
               <path d="M48 20 C65 24, 75 42, 68 56 C62 68, 48 70, 38 62 C30 54, 34 32, 48 20 Z" fill="url(#featherGradient)"/>
               <circle cx="52" cy="40" r="8" fill="#0284c7"/>
               <circle cx="52" cy="40" r="4" fill="#fbbf24"/>
-              <!-- Golden Bansuri (Flute) -->
-              <path d="M22 66 L78 28" stroke="#f59e0b" stroke-width="4.5" stroke-linecap="round"/>
+              <path d="M22 66 L78 28" stroke="#E5B85C" stroke-width="4.5" stroke-linecap="round"/>
               <circle cx="36" cy="56" r="1.5" fill="#78350f"/>
               <circle cx="46" cy="49" r="1.5" fill="#78350f"/>
               <circle cx="56" cy="42" r="1.5" fill="#78350f"/>
               <circle cx="66" cy="35" r="1.5" fill="#78350f"/>
-              <!-- Lotus Base Motif -->
               <path d="M50 78 C40 70, 30 78, 50 90 C70 78, 60 70, 50 78 Z" fill="#ec4899"/>
               <defs>
                 <linearGradient id="featherGradient" x1="30" y1="20" x2="70" y2="70" gradientUnits="userSpaceOnUse">
@@ -161,96 +149,81 @@
           </div>
           <div>
             <div class="flex items-center gap-1.5">
-              <span class="font-serif font-black text-xl sm:text-2xl tracking-wider text-purple-950 group-hover:text-pink-600 transition">RADHA KRISHNA</span>
-              <span class="text-amber-500 text-sm font-semibold">🪈✨</span>
+              <span class="font-serif font-black text-xl tracking-wider text-royalPurple group-hover:text-richMagenta transition">RADHA KRISHNA</span>
+              <span class="text-warmGold text-xs">🪈✨</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-xs uppercase tracking-widest font-bold text-pink-600 font-sans">NOVELTY STORE</span>
-              <span class="text-[10px] bg-gradient-to-r from-amber-100 to-amber-200 text-amber-900 font-bold px-1.5 py-0.2 rounded border border-amber-300">Gifts & More</span>
+              <span class="text-[11px] uppercase tracking-widest font-bold text-richMagenta">NOVELTY STORE</span>
+              <span class="text-[9px] bg-warmGold/20 text-[#6B4B0A] font-bold px-1.5 py-0.2 rounded border border-warmGold/40">Gifts & More</span>
             </div>
           </div>
         </a>
 
-        <!-- Desktop Navigation Links -->
-        <nav class="hidden lg:flex items-center gap-5 font-medium text-sm text-gray-700">
-          <a href="#home" onclick="navigateTo('home')" class="hover:text-purple-700 hover:border-b-2 hover:border-pink-500 py-1 transition font-medium">Home</a>
-          <a href="#catalog" onclick="navigateTo('catalog')" class="hover:text-purple-700 hover:border-b-2 hover:border-pink-500 py-1 transition font-medium">Shop All</a>
-          <a href="#categories" onclick="navigateTo('categories')" class="hover:text-purple-700 hover:border-b-2 hover:border-pink-500 py-1 transition font-medium">Categories</a>
-          <a href="#bestsellers" onclick="filterBySpecial('bestseller')" class="hover:text-purple-700 hover:border-b-2 hover:border-pink-500 py-1 transition font-medium flex items-center gap-1">
-            <span class="text-amber-500"><i class="fa-solid fa-fire"></i></span> Best Sellers
+        <!-- Center: Clean Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-6 font-medium text-xs text-darkCharcoal tracking-wide">
+          <a href="#home" onclick="navigateTo('home')" class="hover:text-royalPurple hover:border-b-2 hover:border-richMagenta py-1 transition">Home</a>
+          <a href="#catalog" onclick="navigateTo('catalog')" class="hover:text-royalPurple hover:border-b-2 hover:border-richMagenta py-1 transition">Shop All</a>
+          <a href="#categories" onclick="navigateTo('categories')" class="hover:text-royalPurple hover:border-b-2 hover:border-richMagenta py-1 transition">Categories</a>
+          <a href="#bestsellers" onclick="filterBySpecial('bestseller')" class="hover:text-royalPurple hover:border-b-2 hover:border-richMagenta py-1 transition flex items-center gap-1">
+            <span class="text-warmGold"><i class="fa-solid fa-fire"></i></span> Best Sellers
           </a>
-          <a href="#reviews" onclick="navigateTo('reviews')" class="hover:text-purple-700 hover:border-b-2 hover:border-pink-500 py-1 transition font-medium">Reviews</a>
-          <a href="#about" onclick="navigateTo('about')" class="hover:text-purple-700 hover:border-b-2 hover:border-pink-500 py-1 transition font-medium">About Us</a>
-          <a href="#contact" onclick="navigateTo('contact')" class="hover:text-purple-700 hover:border-b-2 hover:border-pink-500 py-1 transition font-medium">Contact Us</a>
-          <button onclick="openCustomerOrdersModal()" class="text-xs hover:bg-purple-900 font-bold flex items-center gap-1.5 bg-gradient-to-r from-amber-200 to-amber-300 text-purple-950 px-3 py-1.5 rounded-full border border-amber-400 shadow-sm transition hover:text-white">
-            <i class="fa-solid fa-box text-pink-600"></i> Your Orders
-          </button>
-          <button onclick="openTrackingModal()" class="text-xs text-purple-900 hover:text-pink-600 font-semibold flex items-center gap-1 bg-purple-50 px-2.5 py-1.5 rounded-lg border border-purple-200">
-            <i class="fa-solid fa-route text-amber-500"></i> Track Order
-          </button>
+          <a href="#reviews" onclick="navigateTo('reviews')" class="hover:text-royalPurple hover:border-b-2 hover:border-richMagenta py-1 transition">Reviews</a>
+          <a href="#about" onclick="navigateTo('about')" class="hover:text-royalPurple hover:border-b-2 hover:border-richMagenta py-1 transition">About Us</a>
+          <a href="#contact" onclick="navigateTo('contact')" class="hover:text-royalPurple hover:border-b-2 hover:border-richMagenta py-1 transition">Contact</a>
         </nav>
 
-        <!-- Search Bar with Live Suggestions Dropdown -->
-        <div class="relative flex-1 max-w-xs sm:max-w-sm hidden md:block">
-          <div class="relative">
-            <input type="text" id="headerSearchInput" oninput="handleSearch(this.value)" placeholder="Search gifts, toys, decor..." class="w-full pl-10 pr-9 py-2 rounded-full border border-purple-200 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm bg-purple-50/50">
-            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-purple-400 text-sm"></i>
-            <button onclick="clearSearch()" id="clearSearchBtn" class="hidden absolute right-3 top-2.5 text-gray-400 hover:text-gray-600 text-xs">
+        <!-- Right: Search, Orders, Live Help, Cart -->
+        <div class="flex items-center gap-3">
+          <div class="relative max-w-[210px] hidden md:block">
+            <input type="text" id="headerSearchInput" oninput="handleSearch(this.value)" placeholder="Search gifts, toys..." class="w-full pl-8 pr-7 py-1.5 rounded-full border border-lavenderBorder focus:outline-none focus:ring-1 focus:ring-royalPurple text-xs bg-purple-50/30">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-mutedGray text-xs"></i>
+            <button onclick="clearSearch()" id="clearSearchBtn" class="hidden absolute right-2.5 top-2 text-mutedGray hover:text-darkCharcoal text-xs">
               <i class="fa-solid fa-xmark"></i>
             </button>
+            <div id="searchSuggestions" class="hidden absolute top-10 left-0 right-0 bg-white rounded-xl shadow-xl border border-lavenderBorder overflow-hidden z-50 divide-y divide-lavenderBorder"></div>
           </div>
-          <div id="searchSuggestions" class="hidden absolute top-12 left-0 right-0 bg-white rounded-xl shadow-2xl border border-purple-100 overflow-hidden z-50 divide-y divide-purple-50"></div>
-        </div>
 
-        <!-- Live Chat Button & Cart Button -->
-        <div class="flex items-center gap-3">
-          <button onclick="toggleLiveChat()" class="hidden sm:flex items-center gap-1.5 px-3 py-2 bg-gradient-to-r from-pink-600 to-purple-800 text-white rounded-full text-xs font-semibold shadow hover:scale-105 transition" title="Ask Questions Live">
-            <i class="fa-solid fa-comment-dots text-amber-300"></i> Live Help
+          <button onclick="openCustomerOrdersModal()" class="text-xs hover:bg-royalPurple text-royalPurple hover:text-white font-bold flex items-center gap-1.5 bg-warmGold/20 px-3 py-1.5 rounded-full border border-warmGold/50 transition shadow-xs">
+            <i class="fa-solid fa-box text-richMagenta"></i> <span class="hidden sm:inline">Your</span> Orders
           </button>
 
-          <!-- Cart Button -->
-          <button onclick="openCartModal()" class="relative p-2.5 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-900 rounded-full hover:from-purple-200 hover:to-pink-200 transition shadow-sm flex items-center justify-center border border-purple-200" aria-label="View Shopping Cart">
-            <i class="fa-solid fa-bag-shopping text-lg text-purple-800"></i>
-            <span id="cartCountBadge" class="absolute -top-1 -right-1 bg-pink-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md animate-pulse">0</span>
+          <button onclick="toggleLiveChat()" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-royalPurple hover:bg-richMagenta text-white rounded-full text-xs font-semibold shadow transition">
+            <i class="fa-solid fa-comment-dots text-warmGold"></i> Live Help
           </button>
 
-          <!-- Mobile Menu Toggle -->
-          <button onclick="toggleMobileNav()" class="lg:hidden p-2 text-purple-900 rounded-lg hover:bg-purple-100" aria-label="Toggle Navigation">
-            <i class="fa-solid fa-bars text-xl"></i>
+          <button onclick="openCartModal()" class="relative p-2.5 bg-purple-50 hover:bg-purple-100 text-royalPurple rounded-full transition shadow-xs flex items-center justify-center border border-lavenderBorder" aria-label="View Shopping Cart">
+            <i class="fa-solid fa-bag-shopping text-base text-royalPurple"></i>
+            <span id="cartCountBadge" class="absolute -top-1 -right-1 bg-richMagenta text-white text-[10px] font-bold w-4.5 h-4.5 h-4 w-4 rounded-full flex items-center justify-center shadow-xs">0</span>
+          </button>
+
+          <button onclick="toggleMobileNav()" class="lg:hidden p-2 text-royalPurple rounded-lg hover:bg-purple-50" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars text-lg"></i>
           </button>
         </div>
 
-      </div>
-
-      <!-- Mobile Search Form -->
-      <div class="md:hidden pb-3">
-        <div class="relative">
-          <input type="text" oninput="handleSearch(this.value)" placeholder="Search gifts, toys, novelty..." class="w-full pl-9 pr-4 py-2 rounded-full border border-purple-200 text-sm bg-purple-50">
-          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-purple-400 text-sm"></i>
-        </div>
       </div>
     </div>
 
-    <!-- Mobile Drawer Navigation -->
-    <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-purple-100 px-4 pt-2 pb-4 space-y-2 shadow-lg">
-      <a href="#home" onclick="navigateTo('home'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-gray-800 font-medium">Home</a>
-      <a href="#catalog" onclick="navigateTo('catalog'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-gray-800 font-medium">Shop All Products</a>
-      <a href="#categories" onclick="navigateTo('categories'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-gray-800 font-medium">Categories</a>
-      <a href="#bestsellers" onclick="filterBySpecial('bestseller'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-pink-600 font-semibold">Best Sellers 🔥</a>
-      <a href="#reviews" onclick="navigateTo('reviews'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-gray-800 font-medium">Customer Reviews</a>
-      <a href="#about" onclick="navigateTo('about'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-gray-800 font-medium">About Us</a>
-      <a href="#contact" onclick="navigateTo('contact'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-gray-800 font-medium">Contact Us</a>
-      <button onclick="openCustomerOrdersModal(); toggleMobileNav();" class="w-full text-left py-2 px-3 rounded-lg bg-amber-100 text-purple-950 font-bold border border-amber-300">
-        <i class="fa-solid fa-box text-pink-600 mr-2"></i> Your Orders & Bills
-      </button>
-      <button onclick="openTrackingModal(); toggleMobileNav();" class="w-full text-left py-2 px-3 rounded-lg bg-purple-50 text-purple-900 font-medium">
-        <i class="fa-solid fa-route text-amber-500 mr-2"></i> Track Your Order
-      </button>
-      <div class="pt-2 border-t border-purple-100 flex flex-col gap-2">
-        <button onclick="toggleLiveChat(); toggleMobileNav();" class="w-full py-2 bg-gradient-to-r from-pink-600 to-purple-800 text-white rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
-          <i class="fa-solid fa-comment-dots text-amber-300"></i> Open Live Store Chat
+    <!-- Mobile Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-lavenderBorder px-4 pt-2 pb-4 space-y-2 shadow-md">
+      <div class="pb-2">
+        <input type="text" oninput="handleSearch(this.value)" placeholder="Search catalog..." class="w-full pl-8 pr-4 py-2 rounded-full border border-lavenderBorder text-xs bg-purple-50/50">
+      </div>
+      <a href="#home" onclick="navigateTo('home'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-darkCharcoal text-xs font-medium">Home</a>
+      <a href="#catalog" onclick="navigateTo('catalog'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-darkCharcoal text-xs font-medium">Shop All Products</a>
+      <a href="#categories" onclick="navigateTo('categories'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-darkCharcoal text-xs font-medium">Categories</a>
+      <a href="#bestsellers" onclick="filterBySpecial('bestseller'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-richMagenta text-xs font-semibold">Best Sellers 🔥</a>
+      <a href="#reviews" onclick="navigateTo('reviews'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-darkCharcoal text-xs font-medium">Customer Reviews</a>
+      <a href="#about" onclick="navigateTo('about'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-darkCharcoal text-xs font-medium">About Us</a>
+      <a href="#contact" onclick="navigateTo('contact'); toggleMobileNav();" class="block py-2 px-3 rounded-lg hover:bg-purple-50 text-darkCharcoal text-xs font-medium">Contact Us</a>
+      <div class="pt-2 border-t border-lavenderBorder flex flex-col gap-2">
+        <button onclick="openCustomerOrdersModal(); toggleMobileNav();" class="w-full text-left py-2 px-3 rounded-lg bg-warmGold/20 text-royalPurple font-bold text-xs">
+          <i class="fa-solid fa-box text-richMagenta mr-2"></i> Your Orders & Bills
         </button>
-        <button onclick="openAdminModal(); toggleMobileNav();" class="w-full py-2 bg-purple-900 text-amber-300 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+        <button onclick="toggleLiveChat(); toggleMobileNav();" class="w-full py-2 bg-royalPurple text-white rounded-lg text-xs font-semibold flex items-center justify-center gap-2">
+          <i class="fa-solid fa-comment-dots text-warmGold"></i> Open Live Store Chat
+        </button>
+        <button onclick="openAdminModal(); toggleMobileNav();" class="w-full py-2 bg-purple-900 text-warmGold rounded-lg text-xs font-semibold flex items-center justify-center gap-2">
           <i class="fa-solid fa-lock"></i> Store Admin Portal
         </button>
       </div>
@@ -259,99 +232,103 @@
 
   <main class="flex-grow">
     
-    <section id="home" class="relative overflow-hidden divine-gradient text-white py-16 lg:py-24 shadow-2xl">
-      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fbbf24_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
-      <div class="absolute -top-24 -right-24 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <!-- Hero Section -->
+    <section id="home" class="relative overflow-hidden divine-royal-gradient text-white py-16 lg:py-20 shadow-lg">
+      <div class="max-w-[1240px] mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
           <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-            <div class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-400/20 to-pink-500/20 border border-amber-300/40 px-4 py-1.5 rounded-full text-xs font-semibold text-amber-200 tracking-wide uppercase shadow">
-              <i class="fa-solid fa-sparkles text-amber-400"></i> Authentic Novelty & Joyful Gifting
+            <div class="inline-flex items-center gap-2 bg-white/10 border border-warmGold/40 px-3.5 py-1.5 rounded-full text-xs font-semibold text-warmGold uppercase tracking-wider">
+              <i class="fa-solid fa-sparkles text-warmGold"></i> Authentic Novelty & Joyful Gifting
             </div>
             
-            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold leading-tight tracking-wide">
+            <h1 class="text-3xl sm:text-5xl font-serif font-bold leading-tight tracking-wide">
               Welcome to <br>
               <span class="gold-gradient-text drop-shadow">Radha Krishna</span><br>
-              <span class="text-pink-300 text-3xl sm:text-4xl">Novelty Store</span>
+              <span class="text-pink-200 text-3xl sm:text-4xl">Novelty Store</span>
             </h1>
 
-            <p class="text-purple-100 text-base sm:text-xl font-light max-w-xl mx-auto lg:mx-0">
-              “Discover Amazing Products at Amazing Prices!” Toys, return gifts, stationery, aesthetic home decor, keychains, and household marvels delivered directly to your doorstep.
+            <p class="text-purple-100 text-sm sm:text-base font-light max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              “Discover Amazing Products at Amazing Prices!” Premium toys, return gifts, aesthetic stationery, divine decor, and home essentials delivered right to your door.
             </p>
 
-            <!-- Decorative Coupon Badges Highlight -->
             <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1">
-              <span class="bg-purple-900/80 border border-pink-400/40 text-pink-200 text-xs px-3 py-1 rounded-full flex items-center gap-1.5 shadow">
-                <i class="fa-solid fa-gift text-amber-300"></i> Code: <b class="text-amber-300">FIRST10</b> (10% Off First Order)
+              <span class="bg-black/30 border border-pink-400/40 text-pink-200 text-xs px-3 py-1 rounded-full flex items-center gap-1.5">
+                <i class="fa-solid fa-gift text-warmGold"></i> Code: <b class="text-warmGold">FIRST10</b> (10% Off First Order)
               </span>
-              <span class="bg-purple-900/80 border border-amber-400/40 text-amber-200 text-xs px-3 py-1 rounded-full flex items-center gap-1.5 shadow">
-                <i class="fa-solid fa-crown text-amber-400"></i> Code: <b class="text-amber-300">SPECIAL999</b> (₹150 Off Above ₹999)
+              <span class="bg-black/30 border border-warmGold/40 text-amber-200 text-xs px-3 py-1 rounded-full flex items-center gap-1.5">
+                <i class="fa-solid fa-crown text-warmGold"></i> Code: <b class="text-warmGold">SPECIAL999</b> (₹150 Off Above ₹999)
               </span>
             </div>
 
-            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-3">
-              <button onclick="navigateTo('catalog')" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 text-purple-950 font-bold rounded-full shadow-lg shadow-amber-500/30 hover:scale-105 active:scale-95 transition flex items-center gap-2">
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+              <button onclick="navigateTo('catalog')" class="px-7 py-3 bg-gradient-to-r from-warmGold to-yellow-500 text-royalPurple font-bold rounded-full shadow-md hover:scale-105 active:scale-95 transition text-xs uppercase tracking-wider flex items-center gap-2">
                 <i class="fa-solid fa-bag-shopping"></i> Shop Now
               </button>
-              <button onclick="navigateTo('categories')" class="px-8 py-3.5 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold rounded-full backdrop-blur transition flex items-center gap-2">
+              <button onclick="navigateTo('categories')" class="px-7 py-3 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold rounded-full backdrop-blur transition text-xs tracking-wider flex items-center gap-2">
                 <i class="fa-solid fa-layer-group"></i> Explore 15 Categories
               </button>
             </div>
 
-            <!-- Features Quick Badges -->
-            <div class="grid grid-cols-3 gap-3 pt-6 border-t border-purple-700/50 max-w-md mx-auto lg:mx-0 text-left">
+            <div class="grid grid-cols-3 gap-3 pt-4 border-t border-purple-400/30 max-w-md mx-auto lg:mx-0 text-left">
               <div class="flex items-center gap-2">
-                <i class="fa-solid fa-certificate text-amber-400 text-xl"></i>
-                <div class="text-xs">
+                <i class="fa-solid fa-certificate text-warmGold text-lg"></i>
+                <div class="text-[11px]">
                   <div class="font-bold text-white">100% Quality</div>
-                  <div class="text-purple-200">Verified products</div>
+                  <div class="text-purple-200">Checked Goods</div>
                 </div>
               </div>
               <div class="flex items-center gap-2">
-                <i class="fa-solid fa-truck-fast text-pink-400 text-xl"></i>
-                <div class="text-xs">
-                  <div class="font-bold text-white">Speedy Ship</div>
-                  <div class="text-purple-200">Across India</div>
+                <i class="fa-solid fa-truck-fast text-pink-300 text-lg"></i>
+                <div class="text-[11px]">
+                  <div class="font-bold text-white">Speedy Delivery</div>
+                  <div class="text-purple-200">Jamnagar & PAN India</div>
                 </div>
               </div>
               <div class="flex items-center gap-2">
-                <i class="fa-solid fa-indian-rupee-sign text-amber-300 text-xl"></i>
-                <div class="text-xs">
-                  <div class="font-bold text-white">Best Prices</div>
+                <i class="fa-solid fa-indian-rupee-sign text-warmGold text-lg"></i>
+                <div class="text-[11px]">
+                  <div class="font-bold text-white">Direct Pricing</div>
                   <div class="text-purple-200">COD Available</div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Hero Showcase Card -->
           <div class="lg:col-span-5 relative flex justify-center">
-            <div class="relative w-full max-w-md">
-              <div class="absolute -inset-1 bg-gradient-to-r from-pink-500 to-amber-500 rounded-3xl blur opacity-75 animate-pulse"></div>
-              <div class="relative bg-purple-950/80 backdrop-blur-xl border border-purple-400/30 p-6 rounded-3xl shadow-2xl text-center">
-                <div class="relative overflow-hidden rounded-2xl mb-4 group">
-                  <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=700&q=80" alt="Novelty Gifts & Festivities" class="w-full h-64 object-cover rounded-2xl group-hover:scale-105 transition duration-500">
-                  <div class="absolute top-3 left-3 bg-pink-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
-                    Festive Bonanza
-                  </div>
-                  <div class="absolute bottom-3 right-3 bg-amber-400 text-purple-950 text-xs font-black px-3 py-1 rounded-full shadow">
-                    Up to 50% OFF
-                  </div>
+            <div class="relative w-full max-w-sm bg-white/10 backdrop-blur-md border border-white/20 p-5 rounded-2xl shadow-xl text-center">
+              <div class="relative overflow-hidden rounded-xl mb-3 group">
+                <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=700&q=80" alt="Novelty Gifts" class="w-full h-56 object-cover rounded-xl group-hover:scale-105 transition duration-500">
+                <div class="absolute top-3 left-3 bg-richMagenta text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow">
+                  Festival Bonanza
                 </div>
-                <h3 class="font-serif font-bold text-xl text-amber-200">Handpicked Festive & Novelty Items</h3>
-                <p class="text-xs text-purple-200 mt-1">Transform everyday moments into celebrations with our enchanting collections.</p>
-                <div class="mt-4 flex items-center justify-between text-xs bg-purple-900/60 p-3 rounded-xl border border-purple-700/50">
-                  <span class="text-pink-300 font-semibold">Special Offer: <span class="bg-pink-950 px-2 py-0.5 rounded text-amber-300 font-mono">SPECIAL999</span></span>
-                  <span class="text-amber-400 font-bold">₹150 OFF above ₹999</span>
+                <div class="absolute bottom-3 right-3 bg-warmGold text-royalPurple text-[10px] font-black px-2.5 py-0.5 rounded-full shadow">
+                  Up to 50% OFF
                 </div>
+              </div>
+              <h3 class="font-serif font-bold text-lg text-warmGold">Handpicked Festive Treasures</h3>
+              <p class="text-xs text-purple-100 mt-1">Curated with love for birthdays, festivals, and memorable gifting.</p>
+              <div class="mt-3 flex items-center justify-between text-xs bg-black/30 p-2.5 rounded-xl border border-white/10">
+                <span class="text-pink-200 font-semibold">Special: <span class="bg-black/40 px-2 py-0.5 rounded text-warmGold font-mono">SPECIAL999</span></span>
+                <span class="text-warmGold font-bold">₹150 OFF above ₹999</span>
               </div>
             </div>
           </div>
 
         </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-14 max-w-[1240px] mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <span class="text-[11px] font-bold uppercase tracking-widest text-richMagenta bg-purple-50 px-3 py-1 rounded-full">Curated Collection</span>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-royalPurple mt-2">15 Curated Novelty Categories</h2>
+        <p class="text-mutedGray text-xs sm:text-sm mt-1">Find ideal toys, return gifts, stationery, and decor with clean single-click access.</p>
+      </div>
+
+      <div id="categoryGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5">
+        <!-- Rendered Dynamically -->
       </div>
     </section>
 
@@ -444,216 +421,233 @@
         <button onclick="resetFilters()" class="px-5 py-2 bg-pink-600 hover:bg-pink-700 text-white rounded-xl text-xs font-semibold transition">
           Show All Products
         </button>
+    <!-- Complete Product Catalog -->
+    <section id="catalog" class="py-10 max-w-[1240px] mx-auto px-4 sm:px-6">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 border-b border-lavenderBorder pb-4">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-widest text-royalPurple bg-purple-50 px-3 py-0.5 rounded-full">Complete Inventory</span>
+          <h2 class="text-2xl sm:text-3xl font-serif font-bold text-royalPurple mt-1" id="catalogTitle">All Novelty Products</h2>
+          <p class="text-xs text-mutedGray" id="catalogSubtext">Showing verified catalog items with prices in Indian Rupees (₹).</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <div class="flex items-center gap-2">
+            <label for="sortSelect" class="text-xs font-semibold text-mutedGray">Sort By:</label>
+            <select id="sortSelect" onchange="handleSort(this.value)" class="text-xs bg-white border border-lavenderBorder rounded-lg px-3 py-1.5 text-darkCharcoal focus:outline-none focus:ring-1 focus:ring-royalPurple">
+              <option value="featured">Featured / Default</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Customer Rating</option>
+            </select>
+          </div>
+
+          <button onclick="resetFilters()" class="text-xs bg-purple-50 hover:bg-purple-100 text-royalPurple font-medium px-3 py-1.5 rounded-lg transition flex items-center gap-1 border border-lavenderBorder">
+            <i class="fa-solid fa-rotate-left"></i> Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Filter Chips -->
+      <div class="flex flex-wrap items-center gap-2 mb-8 overflow-x-auto pb-2 scrollbar-none" id="quickFilterChips"></div>
+
+      <!-- Responsive Product Grid: 4 per row on desktop -->
+      <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div id="noProductsFound" class="hidden text-center py-16 bg-white rounded-2xl border border-dashed border-lavenderBorder p-8">
+        <i class="fa-solid fa-box-open text-4xl text-mutedGray mb-2"></i>
+        <h4 class="text-base font-bold text-royalPurple">No products match your criteria</h4>
+        <p class="text-xs text-mutedGray mt-1 mb-4">Try clearing your filters or search keywords.</p>
+        <button onclick="resetFilters()" class="px-5 py-2 bg-royalPurple text-white rounded-xl text-xs font-semibold hover:bg-richMagenta transition">
+          Show All Products
+        </button>
       </div>
     </section>
 
-    <section id="reviews" class="py-14 bg-gradient-to-b from-white to-purple-50/50 border-t border-b border-purple-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-14 bg-white border-t border-b border-lavenderBorder">
+      <div class="max-w-[1240px] mx-auto px-4 sm:px-6">
         
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
-            <span class="text-xs font-bold uppercase tracking-widest text-amber-700 bg-amber-100 px-3 py-1 rounded-full">Customer Love & Feedback</span>
-            <h2 class="text-2xl sm:text-3xl font-serif font-bold text-purple-950 mt-1">Verified Customer Reviews</h2>
-            <p class="text-sm text-gray-600">Actual feedback from happy gift and toy buyers.</p>
+            <span class="text-[11px] font-bold uppercase tracking-widest text-warmGold bg-warmGold/10 px-3 py-1 rounded-full font-semibold">Customer Testimonials</span>
+            <h2 class="text-2xl sm:text-3xl font-serif font-bold text-royalPurple mt-1">Verified Customer Reviews</h2>
+            <p class="text-xs sm:text-sm text-mutedGray">Genuine feedback from happy gift and toy buyers.</p>
           </div>
-          <button onclick="openWriteReviewModal()" class="px-5 py-2.5 bg-gradient-to-r from-purple-800 to-pink-600 hover:from-purple-900 hover:to-pink-700 text-white font-semibold rounded-xl text-xs shadow-md transition flex items-center gap-2 self-start md:self-auto">
+          <button onclick="openWriteReviewModal()" class="px-5 py-2.5 bg-royalPurple hover:bg-richMagenta text-white font-semibold rounded-xl text-xs shadow transition flex items-center gap-2 self-start md:self-auto">
             <i class="fa-solid fa-feather"></i> Write a Review
           </button>
         </div>
 
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-purple-100 mb-8 grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
-          <div class="text-center md:border-r md:border-purple-100">
-            <div class="text-4xl font-black text-purple-950" id="avgRatingDisplay">4.8</div>
-            <div class="flex justify-center text-amber-400 text-sm my-1">
+        <div class="bg-softIvory rounded-2xl p-6 border border-lavenderBorder mb-8 grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
+          <div class="text-center md:border-r md:border-lavenderBorder">
+            <div class="text-4xl font-black text-royalPurple" id="avgRatingDisplay">4.8</div>
+            <div class="flex justify-center text-warmGold text-xs my-1">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
             </div>
-            <div class="text-xs text-gray-500" id="totalReviewsCountDisplay">Based on 18 Verified Purchases</div>
+            <div class="text-xs text-mutedGray" id="totalReviewsCountDisplay">Based on Verified Purchases</div>
           </div>
-          <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-gray-600">
-            <div class="flex items-center gap-3 p-3 bg-purple-50/60 rounded-xl">
-              <i class="fa-solid fa-badge-check text-pink-600 text-2xl"></i>
+          <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-mutedGray">
+            <div class="flex items-center gap-3 p-3 bg-white rounded-xl border border-lavenderBorder">
+              <i class="fa-solid fa-badge-check text-richMagenta text-xl"></i>
               <div>
-                <span class="font-bold text-purple-950 block">100% Genuine</span>
-                <span>All items checked before shipping</span>
+                <span class="font-bold text-darkCharcoal block">100% Genuine</span>
+                <span>Verified products before shipment</span>
               </div>
             </div>
-            <div class="flex items-center gap-3 p-3 bg-amber-50/60 rounded-xl">
-              <i class="fa-solid fa-shield-heart text-amber-600 text-2xl"></i>
+            <div class="flex items-center gap-3 p-3 bg-white rounded-xl border border-lavenderBorder">
+              <i class="fa-solid fa-shield-heart text-warmGold text-xl"></i>
               <div>
-                <span class="font-bold text-purple-950 block">Moderated Content</span>
-                <span>Protected against spam & bots</span>
+                <span class="font-bold text-darkCharcoal block">Moderated Quality</span>
+                <span>Protected against spam</span>
               </div>
             </div>
-            <div class="flex items-center gap-3 p-3 bg-pink-50/60 rounded-xl">
-              <i class="fa-solid fa-hand-holding-heart text-pink-600 text-2xl"></i>
+            <div class="flex items-center gap-3 p-3 bg-white rounded-xl border border-lavenderBorder">
+              <i class="fa-solid fa-hand-holding-heart text-richMagenta text-xl"></i>
               <div>
-                <span class="font-bold text-purple-950 block">Local Customer Care</span>
-                <span>Friendly support in Gujarat</span>
+                <span class="font-bold text-darkCharcoal block">Friendly Service</span>
+                <span>Care center in Jamnagar</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Reviews Grid -->
-        <div id="reviewsListGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Rendered by JS -->
-        </div>
+        <div id="reviewsListGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
       </div>
     </section>
 
-    <section id="about" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="relative">
-          <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-300/30">
-            <img src="https://images.unsplash.com/photo-1545231027-637d2f6210f8?auto=format&fit=crop&w=800&q=80" alt="Novelty Store Ambiance" class="w-full h-96 object-cover">
-          </div>
-          <div class="absolute -bottom-6 -right-6 bg-gradient-to-r from-purple-900 to-pink-700 text-white p-6 rounded-2xl shadow-xl max-w-xs border border-amber-300">
-            <p class="font-serif font-bold text-lg text-amber-300">Spreading Smiles</p>
-            <p class="text-xs text-purple-100 mt-1">From small kids' toys to graceful spiritual gifts, we curate wonder for every age group.</p>
-          </div>
+    <!-- About Section -->
+    <section id="about" class="py-16 max-w-[1240px] mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div class="rounded-2xl overflow-hidden shadow-lg border border-lavenderBorder">
+          <img src="https://images.unsplash.com/photo-1545231027-637d2f6210f8?auto=format&fit=crop&w=800&q=80" alt="Store Atmosphere" class="w-full h-80 object-cover">
         </div>
 
-        <div class="space-y-5">
-          <span class="text-xs font-bold uppercase tracking-widest text-pink-600 bg-pink-100 px-3 py-1 rounded-full">Our Story & Heritage</span>
-          <h2 class="text-3xl font-serif font-bold text-purple-950">Devotion to Quality, Value & Gifting Delight</h2>
-          <p class="text-gray-600 text-sm leading-relaxed">
-            Named with reverence to <strong>Radha Krishna</strong>, our store was founded with the promise of bringing joy, color, and affordability to families, students, and gift-seekers. 
+        <div class="space-y-4">
+          <span class="text-[11px] font-bold uppercase tracking-widest text-richMagenta bg-purple-50 px-3 py-1 rounded-full">Our Story & Heritage</span>
+          <h2 class="text-3xl font-serif font-bold text-royalPurple">Devotion to Quality, Value & Gifting Delight</h2>
+          <p class="text-mutedGray text-xs sm:text-sm leading-relaxed">
+            Named with reverence to <strong>Radha Krishna</strong>, our store was founded with the promise of bringing joy, color, and affordability to families, students, and gift-seekers.
           </p>
-          <p class="text-gray-600 text-sm leading-relaxed">
-            Whether you are picking an educational robotic puzzle for your child, preparing birthday return gift bundles for 50 classmates, or finding that unique aesthetic keychain or LED lamp, we inspect every product for supreme durability and charm.
+          <p class="text-mutedGray text-xs sm:text-sm leading-relaxed">
+            Whether picking an educational puzzle, preparing birthday return gift bundles for 50 classmates, or finding that unique divine idol or LED lamp, we inspect every product for supreme durability and charm.
           </p>
           <div class="grid grid-cols-2 gap-4 pt-2">
-            <div class="border-l-4 border-amber-400 pl-4">
-              <span class="text-xl font-black text-purple-950">5,000+</span>
-              <p class="text-xs text-gray-500">Happy Gifting Customers</p>
+            <div class="border-l-4 border-warmGold pl-3">
+              <span class="text-xl font-bold text-royalPurple">5,000+</span>
+              <p class="text-xs text-mutedGray">Happy Gifting Customers</p>
             </div>
-            <div class="border-l-4 border-pink-500 pl-4">
-              <span class="text-xl font-black text-purple-950">1,200+</span>
-              <p class="text-xs text-gray-500">Novelty Products In Stock</p>
+            <div class="border-l-4 border-richMagenta pl-3">
+              <span class="text-xl font-bold text-royalPurple">1,200+</span>
+              <p class="text-xs text-mutedGray">Novelty Products In Stock</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="py-16 bg-white border-t border-purple-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-xs font-bold uppercase tracking-widest text-purple-700 bg-purple-100 px-3 py-1 rounded-full">Get In Touch</span>
-          <h2 class="text-3xl font-serif font-bold text-purple-950 mt-2">We'd Love To Hear From You</h2>
-          <p class="text-gray-600 text-sm mt-1">Have bulk gift requirements or questions about an order? Reach out anytime!</p>
+    <!-- Contact Us Section -->
+    <section id="contact" class="py-16 bg-white border-t border-lavenderBorder">
+      <div class="max-w-[1240px] mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-xl mx-auto mb-10">
+          <span class="text-[11px] font-bold uppercase tracking-widest text-royalPurple bg-purple-50 px-3 py-1 rounded-full">Get In Touch</span>
+          <h2 class="text-3xl font-serif font-bold text-royalPurple mt-2">We'd Love To Hear From You</h2>
+          <p class="text-mutedGray text-xs sm:text-sm mt-1">Have bulk gift requirements or questions about an order? Reach out anytime!</p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          <div class="lg:col-span-5 bg-gradient-to-br from-purple-900 via-purple-950 to-pink-950 text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
-            <h3 class="font-serif font-bold text-xl text-amber-300 mb-6">Radha Krishna Novelty Store</h3>
+          <div class="lg:col-span-5 bg-royalPurple text-white rounded-2xl p-7 shadow-md space-y-4">
+            <h3 class="font-serif font-bold text-lg text-warmGold">Radha Krishna Novelty Store</h3>
             
-            <div class="space-y-5 text-sm">
-              <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-xl bg-purple-800/80 border border-purple-600 flex items-center justify-center shrink-0 text-amber-400">
-                  <i class="fa-solid fa-location-dot"></i>
-                </div>
+            <div class="space-y-4 text-xs">
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-location-dot text-warmGold text-sm mt-0.5"></i>
                 <div>
                   <div class="font-semibold text-white">Store Address</div>
-                  <div class="text-purple-200 text-xs mt-0.5" id="storeAddressDisplay">Shop No. 12, Krishna Complex, Main Market, Jamnagar - 361001, Gujarat, India</div>
+                  <div class="text-purple-200 text-[11px] mt-0.5">Shop No. 12, Krishna Complex, Main Market, Jamnagar - 361001, Gujarat, India</div>
                 </div>
               </div>
 
-              <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-xl bg-purple-800/80 border border-purple-600 flex items-center justify-center shrink-0 text-pink-400">
-                  <i class="fa-solid fa-phone"></i>
-                </div>
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-phone text-pink-300 text-sm mt-0.5"></i>
                 <div>
                   <div class="font-semibold text-white">Direct Phone</div>
-                  <div class="text-purple-200 text-xs mt-0.5">+91 98250 12345 / 0288 2554321</div>
+                  <div class="text-purple-200 text-[11px] mt-0.5">+91 98250 12345 / 0288 2554321</div>
                 </div>
               </div>
 
-              <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-xl bg-purple-800/80 border border-purple-600 flex items-center justify-center shrink-0 text-amber-300">
-                  <i class="fa-brands fa-whatsapp text-lg"></i>
-                </div>
+              <div class="flex items-start gap-3">
+                <i class="fa-brands fa-whatsapp text-warmGold text-sm mt-0.5"></i>
                 <div>
                   <div class="font-semibold text-white">WhatsApp Inquiry</div>
-                  <a href="https://wa.me/919825012345?text=Hello%20Radha%20Krishna%20Novelty%20Store" target="_blank" class="text-xs text-amber-300 underline mt-0.5 block hover:text-amber-200">
+                  <a href="https://wa.me/919825012345?text=Hello%20Radha%20Krishna%20Novelty%20Store" target="_blank" class="text-warmGold underline text-[11px] mt-0.5 block hover:text-white">
                     Chat with our team on WhatsApp &rarr;
                   </a>
                 </div>
               </div>
 
-              <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-xl bg-purple-800/80 border border-purple-600 flex items-center justify-center shrink-0 text-purple-300">
-                  <i class="fa-solid fa-envelope"></i>
-                </div>
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-envelope text-pink-300 text-sm mt-0.5"></i>
                 <div>
                   <div class="font-semibold text-white">Business Email</div>
-                  <div class="text-purple-200 text-xs mt-0.5">radhakrishnanoveltystore@gmail.com</div>
+                  <div class="text-purple-200 text-[11px] mt-0.5">radhakrishnanoveltystore@gmail.com</div>
                 </div>
               </div>
 
-              <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-xl bg-purple-800/80 border border-purple-600 flex items-center justify-center shrink-0 text-amber-400">
-                  <i class="fa-solid fa-clock"></i>
-                </div>
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-clock text-warmGold text-sm mt-0.5"></i>
                 <div>
                   <div class="font-semibold text-white">Opening Hours</div>
-                  <div class="text-purple-200 text-xs mt-0.5">Mon - Sat: 9:30 AM – 9:00 PM<br>Sunday: 10:00 AM – 2:00 PM</div>
+                  <div class="text-purple-200 text-[11px] mt-0.5">Mon - Sat: 9:30 AM – 9:00 PM<br>Sunday: 10:00 AM – 2:00 PM</div>
                 </div>
               </div>
-            </div>
-
-            <div class="mt-8 pt-6 border-t border-purple-800 flex items-center gap-3">
-              <span class="text-xs text-purple-300">Follow us:</span>
-              <a href="#" class="w-8 h-8 rounded-full bg-purple-800 hover:bg-pink-600 flex items-center justify-center text-xs text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
-              <a href="#" class="w-8 h-8 rounded-full bg-purple-800 hover:bg-pink-600 flex items-center justify-center text-xs text-white transition"><i class="fa-brands fa-instagram"></i></a>
-              <a href="#" class="w-8 h-8 rounded-full bg-purple-800 hover:bg-pink-600 flex items-center justify-center text-xs text-white transition"><i class="fa-brands fa-youtube"></i></a>
             </div>
           </div>
 
-          <!-- Contact Form with Validation -->
-          <div class="lg:col-span-7 bg-purple-50/40 rounded-3xl p-8 border border-purple-100 shadow-sm">
-            <h3 class="font-serif font-bold text-xl text-purple-950 mb-2">Send us a Message</h3>
-            <p class="text-xs text-gray-500 mb-6">Fill in the form below and we will revert back within 2-4 hours.</p>
+          <div class="lg:col-span-7 bg-softIvory rounded-2xl p-7 border border-lavenderBorder shadow-xs">
+            <h3 class="font-serif font-bold text-lg text-royalPurple mb-1">Send us a Message</h3>
+            <p class="text-xs text-mutedGray mb-4">We will revert back within 2-4 hours.</p>
 
-            <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-3">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">Full Name *</label>
-                  <input type="text" id="contactName" required placeholder="e.g. Ramesh Patel" class="w-full text-xs p-3 rounded-xl border border-purple-200 focus:outline-none focus:ring-2 focus:ring-pink-500 bg-white">
+                  <label class="block text-xs font-semibold text-darkCharcoal mb-1">Full Name *</label>
+                  <input type="text" id="contactName" required placeholder="e.g. Ramesh Patel" class="w-full text-xs p-2.5 rounded-xl border border-lavenderBorder focus:outline-none focus:ring-1 focus:ring-royalPurple bg-white">
                 </div>
                 <div>
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">Mobile Number *</label>
-                  <input type="tel" id="contactPhone" required pattern="[0-9]{10}" placeholder="10-digit mobile number" class="w-full text-xs p-3 rounded-xl border border-purple-200 focus:outline-none focus:ring-2 focus:ring-pink-500 bg-white">
+                  <label class="block text-xs font-semibold text-darkCharcoal mb-1">Mobile Number *</label>
+                  <input type="tel" id="contactPhone" required pattern="[0-9]{10}" placeholder="10-digit mobile number" class="w-full text-xs p-2.5 rounded-xl border border-lavenderBorder focus:outline-none focus:ring-1 focus:ring-royalPurple bg-white">
                 </div>
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">Email Address *</label>
-                  <input type="email" id="contactEmail" required placeholder="you@example.com" class="w-full text-xs p-3 rounded-xl border border-purple-200 focus:outline-none focus:ring-2 focus:ring-pink-500 bg-white">
+                  <label class="block text-xs font-semibold text-darkCharcoal mb-1">Email Address *</label>
+                  <input type="email" id="contactEmail" required placeholder="you@example.com" class="w-full text-xs p-2.5 rounded-xl border border-lavenderBorder focus:outline-none focus:ring-1 focus:ring-royalPurple bg-white">
                 </div>
                 <div>
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">Inquiry Subject *</label>
-                  <select id="contactSubject" class="w-full text-xs p-3 rounded-xl border border-purple-200 focus:outline-none focus:ring-2 focus:ring-pink-500 bg-white">
+                  <label class="block text-xs font-semibold text-darkCharcoal mb-1">Inquiry Subject *</label>
+                  <select id="contactSubject" class="w-full text-xs p-2.5 rounded-xl border border-lavenderBorder focus:outline-none focus:ring-1 focus:ring-royalPurple bg-white">
                     <option value="Product Inquiry">Product Inquiry</option>
                     <option value="Bulk / Return Gifts Order">Bulk / Return Gifts Order</option>
                     <option value="Order Status & Delivery">Order Status & Delivery</option>
-                    <option value="Wholesale Partnership">Wholesale Partnership</option>
                     <option value="Feedback / Other">Feedback / Other</option>
                   </select>
                 </div>
               </div>
 
               <div>
-                <label class="block text-xs font-semibold text-gray-700 mb-1">Your Message *</label>
-                <textarea id="contactMessage" required rows="4" placeholder="Mention product requirements, quantities or any question..." class="w-full text-xs p-3 rounded-xl border border-purple-200 focus:outline-none focus:ring-2 focus:ring-pink-500 bg-white"></textarea>
+                <label class="block text-xs font-semibold text-darkCharcoal mb-1">Your Message *</label>
+                <textarea id="contactMessage" required rows="3" placeholder="Mention product requirements, quantities or queries..." class="w-full text-xs p-2.5 rounded-xl border border-lavenderBorder focus:outline-none focus:ring-1 focus:ring-royalPurple bg-white"></textarea>
               </div>
 
-              <div class="flex items-center justify-between pt-2">
-                <span class="text-[11px] text-gray-400"><i class="fa-solid fa-lock text-amber-500 mr-1"></i> Your details are strictly confidential.</span>
-                <button type="submit" class="px-6 py-3 bg-gradient-to-r from-pink-600 to-purple-800 text-white font-bold rounded-xl text-xs hover:from-pink-700 hover:to-purple-900 shadow-md transition flex items-center gap-2">
+              <div class="flex items-center justify-between pt-1">
+                <span class="text-[11px] text-mutedGray"><i class="fa-solid fa-lock text-warmGold mr-1"></i> Details are confidential.</span>
+                <button type="submit" class="px-5 py-2.5 bg-royalPurple hover:bg-richMagenta text-white font-bold rounded-xl text-xs shadow transition flex items-center gap-2">
                   <span>Send Message</span>
                   <i class="fa-solid fa-paper-plane text-xs"></i>
                 </button>
@@ -665,92 +659,75 @@
       </div>
     </section>
 
-    <section class="py-12 bg-gradient-to-r from-purple-900 via-pink-900 to-purple-950 text-white text-center">
-      <div class="max-w-2xl mx-auto px-4">
-        <span class="text-amber-300 text-xs font-bold tracking-widest uppercase">Stay Updated</span>
-        <h3 class="text-2xl font-serif font-bold mt-1">Get First Look at New Arrivals & Festival Coupons</h3>
-        <p class="text-purple-200 text-xs mt-2">Subscribe to our weekly festive novelty alert. No spam, ever!</p>
-        <form onsubmit="handleNewsletter(event)" class="mt-5 flex max-w-md mx-auto gap-2">
-          <input type="email" required placeholder="Enter your email address" class="flex-1 text-xs px-4 py-3 rounded-full text-gray-900 focus:outline-none">
-          <button type="submit" class="px-6 py-3 bg-amber-400 text-purple-950 font-bold rounded-full text-xs hover:bg-amber-300 transition">
-            Subscribe
-          </button>
-        </form>
-      </div>
-    </section>
-
   </main>
 
-  <footer class="bg-purple-950 text-purple-200 text-xs pt-16 pb-8 border-t-4 border-amber-400">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+  <!-- Full-Width Footer -->
+  <footer class="bg-royalPurple text-purple-200 text-xs pt-12 pb-6 border-t-2 border-warmGold">
+    <div class="max-w-[1240px] mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-10">
         
-        <div class="lg:col-span-2 space-y-4">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-amber-400 flex items-center justify-center text-purple-950 font-serif font-black text-xl shadow">
+        <div class="lg:col-span-2 space-y-3">
+          <div class="flex items-center gap-2">
+            <div class="w-9 h-9 rounded-lg bg-warmGold flex items-center justify-center text-royalPurple font-serif font-black text-lg">
               RK
             </div>
             <div>
-              <span class="font-serif font-bold text-lg text-white tracking-wider block">RADHA KRISHNA</span>
-              <span class="text-[10px] text-pink-400 uppercase tracking-widest font-semibold">NOVELTY STORE</span>
+              <span class="font-serif font-bold text-base text-white tracking-wider block">RADHA KRISHNA</span>
+              <span class="text-[10px] text-pink-300 uppercase tracking-widest font-semibold">NOVELTY STORE</span>
             </div>
           </div>
-          <p class="text-purple-300 text-xs leading-relaxed max-w-sm">
-            Your trusted destination for novelty gifts, birthday accessories, soft toys, aesthetic decor, and household utilities. Delivering cheer and exceptional value with Indian warmth.
+          <p class="text-purple-200 text-xs leading-relaxed max-w-sm">
+            Delivering novelties, games, accessories, and gifts with honest Indian retail value.
           </p>
-          <div class="text-xs text-amber-300 pt-1">
-            <i class="fa-solid fa-location-pin mr-1"></i> Jamnagar, Gujarat, India &bull; <i class="fa-solid fa-envelope mr-1 ml-2"></i> radhakrishnanoveltystore@gmail.com
+          <div class="text-[11px] text-warmGold pt-1">
+            <i class="fa-solid fa-location-pin mr-1"></i> Jamnagar, Gujarat &bull; <i class="fa-solid fa-envelope mr-1 ml-1.5"></i> radhakrishnanoveltystore@gmail.com
           </div>
         </div>
 
         <div>
-          <h4 class="font-semibold text-white uppercase tracking-wider text-xs mb-3 border-b border-purple-800 pb-1">Quick Links</h4>
-          <ul class="space-y-2">
-            <li><a href="#home" onclick="navigateTo('home')" class="hover:text-pink-300 transition">Home</a></li>
-            <li><a href="#catalog" onclick="navigateTo('catalog')" class="hover:text-pink-300 transition">Shop All Catalog</a></li>
-            <li><a href="#categories" onclick="navigateTo('categories')" class="hover:text-pink-300 transition">All 15 Categories</a></li>
-            <li><a href="#reviews" onclick="navigateTo('reviews')" class="hover:text-pink-300 transition">Customer Testimonials</a></li>
-            <li><button onclick="openCustomerOrdersModal()" class="hover:text-pink-300 transition text-left">Your Orders</button></li>
-            <li><button onclick="openTrackingModal()" class="hover:text-pink-300 transition text-left">Track My Order</button></li>
-            <li><a href="#about" onclick="navigateTo('about')" class="hover:text-pink-300 transition">About Our Store</a></li>
-            <li><a href="#contact" onclick="navigateTo('contact')" class="hover:text-pink-300 transition">Contact & Support</a></li>
+          <h4 class="font-bold text-white uppercase tracking-wider text-xs mb-3 border-b border-purple-800 pb-1">Quick Links</h4>
+          <ul class="space-y-1.5 text-xs">
+            <li><a href="#home" onclick="navigateTo('home')" class="hover:text-warmGold transition">Home</a></li>
+            <li><a href="#catalog" onclick="navigateTo('catalog')" class="hover:text-warmGold transition">Shop All</a></li>
+            <li><a href="#categories" onclick="navigateTo('categories')" class="hover:text-warmGold transition">Categories</a></li>
+            <li><a href="#reviews" onclick="navigateTo('reviews')" class="hover:text-warmGold transition">Reviews</a></li>
+            <li><button onclick="openCustomerOrdersModal()" class="hover:text-warmGold transition text-left">Your Orders</button></li>
+            <li><a href="#contact" onclick="navigateTo('contact')" class="hover:text-warmGold transition">Contact Us</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="font-semibold text-white uppercase tracking-wider text-xs mb-3 border-b border-purple-800 pb-1">Top Categories</h4>
-          <ul class="space-y-2">
-            <li><button onclick="filterByCategory('Toys and Games')" class="hover:text-pink-300 transition text-left">Toys and Games</button></li>
-            <li><button onclick="filterByCategory('Gift Items')" class="hover:text-pink-300 transition text-left">Gift Items</button></li>
-            <li><button onclick="filterByCategory('School and Office Stationery')" class="hover:text-pink-300 transition text-left">Stationery Items</button></li>
-            <li><button onclick="filterByCategory('Home Decoration')" class="hover:text-pink-300 transition text-left">Home Decoration</button></li>
-            <li><button onclick="filterByCategory('Return Gifts and Gift Sets')" class="hover:text-pink-300 transition text-left">Return Gifts & Sets</button></li>
-            <li><button onclick="filterByCategory('Seasonal and Festival Items')" class="hover:text-pink-300 transition text-left">Festival Specials</button></li>
+          <h4 class="font-bold text-white uppercase tracking-wider text-xs mb-3 border-b border-purple-800 pb-1">Popular Avenues</h4>
+          <ul class="space-y-1.5 text-xs">
+            <li><button onclick="filterByCategory('Toys and Games')" class="hover:text-warmGold transition text-left">Toys and Games</button></li>
+            <li><button onclick="filterByCategory('Gift Items')" class="hover:text-warmGold transition text-left">Gift Items</button></li>
+            <li><button onclick="filterByCategory('School and Office Stationery')" class="hover:text-warmGold transition text-left">Stationery</button></li>
+            <li><button onclick="filterByCategory('Home Decoration')" class="hover:text-warmGold transition text-left">Home Decor</button></li>
+            <li><button onclick="filterByCategory('Return Gifts and Gift Sets')" class="hover:text-warmGold transition text-left">Return Gift Packs</button></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="font-semibold text-white uppercase tracking-wider text-xs mb-3 border-b border-purple-800 pb-1">Store Policies</h4>
-          <ul class="space-y-2">
-            <li><button onclick="openPolicyModal('Shipping Policy')" class="hover:text-pink-300 transition text-left">Shipping Policy</button></li>
-            <li><button onclick="openPolicyModal('Return and Refund Policy')" class="hover:text-pink-300 transition text-left">Return & Refund Policy</button></li>
-            <li><button onclick="openPolicyModal('Privacy Policy')" class="hover:text-pink-300 transition text-left">Privacy Policy</button></li>
-            <li><button onclick="openPolicyModal('Terms and Conditions')" class="hover:text-pink-300 transition text-left">Terms & Conditions</button></li>
-            <li><button onclick="openAdminModal()" class="text-amber-400 hover:text-amber-300 transition text-left flex items-center gap-1 font-semibold"><i class="fa-solid fa-lock text-[10px]"></i> Owner Portal</button></li>
+          <h4 class="font-bold text-white uppercase tracking-wider text-xs mb-3 border-b border-purple-800 pb-1">Store Policies</h4>
+          <ul class="space-y-1.5 text-xs">
+            <li><button onclick="openPolicyModal('Shipping Policy')" class="hover:text-warmGold transition text-left">Shipping Policy</button></li>
+            <li><button onclick="openPolicyModal('Return and Refund Policy')" class="hover:text-warmGold transition text-left">Return & Refund</button></li>
+            <li><button onclick="openPolicyModal('Privacy Policy')" class="hover:text-warmGold transition text-left">Privacy Policy</button></li>
+            <li><button onclick="openPolicyModal('Terms and Conditions')" class="hover:text-warmGold transition text-left">Terms & Conditions</button></li>
+            <li><button onclick="openAdminModal()" class="text-warmGold hover:text-white transition text-left flex items-center gap-1 font-semibold"><i class="fa-solid fa-lock text-[10px]"></i> Owner Portal</button></li>
           </ul>
         </div>
 
       </div>
 
-      <div class="border-t border-purple-900 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-purple-400">
+      <div class="border-t border-purple-800/80 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-purple-300">
         <div>
           &copy; 2026 Radha Krishna Novelty Store. All Rights Reserved.
         </div>
-        <div class="flex items-center gap-4 text-sm text-amber-400">
-          <i class="fa-brands fa-cc-visa"></i>
-          <i class="fa-brands fa-cc-mastercard"></i>
-          <span class="text-xs font-mono font-bold bg-purple-900 px-2 py-0.5 rounded text-white">UPI / RuPay</span>
-          <span class="text-xs font-mono font-bold bg-purple-900 px-2 py-0.5 rounded text-pink-300">Cash on Delivery</span>
+        <div class="flex items-center gap-3 text-warmGold">
+          <span>UPI / RuPay</span>
+          <span>&bull;</span>
+          <span>Cash on Delivery</span>
         </div>
       </div>
     </div>
@@ -1351,6 +1328,11 @@
           <button type="submit" class="w-full py-3 bg-purple-900 hover:bg-purple-950 text-amber-300 font-bold rounded-xl text-xs uppercase tracking-wider transition shadow">
             Unlock Dashboard
           </button>
+          <div class="pt-2 text-center">
+            <button type="button" onclick="handleGoogleAdminLogin()" class="w-full py-2.5 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold rounded-xl text-xs flex items-center justify-center gap-2 shadow-xs transition">
+              <i class="fa-brands fa-google text-red-500"></i> Sign in as Store Owner (Google Workspace)
+            </button>
+          </div>
         </form>
       </div>
 
@@ -1719,291 +1701,194 @@
   </div>
 
   <script>
-    const CATEGORIES = [
-      { name: "Toys and Games", icon: "fa-gamepad", img: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=500&q=80" },
-      { name: "Gift Items", icon: "fa-gift", img: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=500&q=80" },
-      { name: "School and Office Stationery", icon: "fa-pencil", img: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=500&q=80" },
-      { name: "Home Decoration", icon: "fa-house-chimney-window", img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80" },
-      { name: "Kitchen Accessories", icon: "fa-kitchen-set", img: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=500&q=80" },
-      { name: "Beauty and Personal Care Accessories", icon: "fa-wand-magic-sparkles", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=500&q=80" },
-      { name: "Fashion Accessories", icon: "fa-gem", img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80" },
-      { name: "Keychains and Small Gifts", icon: "fa-key", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=500&q=80" },
-      { name: "Soft Toys and Dolls", icon: "fa-heart", img: "https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=500&q=80" },
-      { name: "Birthday and Party Supplies", icon: "fa-cake-candles", img: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=500&q=80" },
-      { name: "Mobile Accessories", icon: "fa-mobile-screen-button", img: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=500&q=80" },
-      { name: "Household Utility Products", icon: "fa-toolbox", img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=500&q=80" },
-      { name: "Seasonal and Festival Items", icon: "fa-fire-flame-curved", img: "https://images.unsplash.com/photo-1605647540924-852290f6b0d5?auto=format&fit=crop&w=500&q=80" },
-      { name: "Return Gifts and Gift Sets", icon: "fa-boxes-packing", img: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=500&q=80" },
-      { name: "Trending Novelty Products", icon: "fa-fire", img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=500&q=80" }
-    ];
+    // --- Cloud Database & Cross-Device Live Sync Channel ---
+    const CLOUD_SYNC_CHANNEL = new BroadcastChannel('RK_CLOUD_STORE_SYNC');
 
-    // --- Persistent LocalStorage Keys for Cross-Session & Cross-Device/Tab Live Sync ---
     const STORAGE_KEYS = {
-      ORDERS: 'RK_ORDERS_STORE_DB_v2',
-      PRODUCTS: 'RK_PRODUCTS_CATALOG_v2',
-      REVIEWS: 'RK_CUSTOMER_REVIEWS_v2',
-      CHAT: 'RK_LIVE_CHAT_HISTORY_v2',
-      CANCEL_LOG: 'RK_CANCEL_EMAILS_LOG_v2'
+      ORDERS: 'RK_ORDERS_STORE_DB_v3',
+      PRODUCTS: 'RK_PRODUCTS_CATALOG_v3',
+      REVIEWS: 'RK_CUSTOMER_REVIEWS_v3',
+      CHAT: 'RK_LIVE_CHAT_HISTORY_v3',
+      CANCEL_LOG: 'RK_CANCEL_EMAILS_LOG_v3',
+      ADMIN_SESSION: 'RK_ADMIN_ACTIVE_AUTH'
     };
 
+    // 15 Default Categories
+    const CATEGORIES = [
+      { name: "Toys and Games", img: "https://images.unsplash.com/photo-1558060370-d644479cb6f7?auto=format&fit=crop&w=400&q=80" },
+      { name: "Gift Items", img: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=400&q=80" },
+      { name: "School and Office Stationery", img: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=400&q=80" },
+      { name: "Home Decoration", img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=400&q=80" },
+      { name: "Kitchen Accessories", img: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=400&q=80" },
+      { name: "Beauty and Personal Care", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=400&q=80" },
+      { name: "Fashion Accessories", img: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=400&q=80" },
+      { name: "Keychains and Small Gifts", img: "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=400&q=80" },
+      { name: "Soft Toys and Dolls", img: "https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=400&q=80" },
+      { name: "Birthday and Party Supplies", img: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=400&q=80" },
+      { name: "Mobile Accessories", img: "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=400&q=80" },
+      { name: "Household Utility Products", img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=400&q=80" },
+      { name: "Seasonal and Festival Items", img: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=400&q=80" },
+      { name: "Return Gifts and Gift Sets", img: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=400&q=80" },
+      { name: "Trending Novelty Products", img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=400&q=80" }
+    ];
+
+    // Seed Initial Products
     const DEFAULT_PRODUCTS = [
       {
         id: "prod-1",
         sku: "RK-TOY-01",
-        name: "Remote Control Stunt Twister Car with 360 Spin",
-        category: "Toys and Games",
-        price: 899,
-        originalPrice: 1499,
+        name: "Radha Krishna Divine LED Crystal Sphere",
+        category: "Home Decoration",
+        price: 499,
+        originalPrice: 899,
         stock: 35,
         rating: 4.9,
-        reviewsCount: 38,
-        costPrice: 520,
+        reviewsCount: 42,
+        costPrice: 280,
         isBestseller: true,
-        image: "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=600&q=80",
-        description: "Rechargeable high-speed 4WD stunt car with flashing LED lights and acrobatic rollover capabilities. Loved by children and toddlers."
+        image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80",
+        description: "Laser-engraved 3D Radha Krishna crystal ball on solid wooden LED warm-lit pedestal. USB rechargeable."
       },
       {
         id: "prod-2",
-        sku: "RK-GFT-02",
-        name: "Aura Crystal Galaxy Lamp with Wooden Stand",
-        category: "Gift Items",
-        price: 649,
-        originalPrice: 1199,
-        stock: 28,
+        sku: "RK-TOY-02",
+        name: "Dancing Cactus Talking Toy with Songs",
+        category: "Toys and Games",
+        price: 349,
+        originalPrice: 699,
+        stock: 50,
         rating: 4.8,
-        reviewsCount: 42,
-        costPrice: 380,
+        reviewsCount: 38,
+        costPrice: 190,
         isBestseller: true,
-        image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80",
-        description: "3D laser engraved celestial crystal glass ball featuring warm soothing ambient USB LED illumination. Excellent gifting item."
+        image: "https://images.unsplash.com/photo-1558060370-d644479cb6f7?auto=format&fit=crop&w=500&q=80",
+        description: "Rechargeable dancing cactus that mimics voice, plays 120 upbeat cheerful tunes, and features colorful rhythm lights."
       },
       {
         id: "prod-3",
-        sku: "RK-STN-03",
-        name: "Aesthetic Pastel Gel Pens & Journal Gift Set",
+        sku: "RK-STA-03",
+        name: "Pastel Aesthetic Gel Pens & Journal Gift Set",
         category: "School and Office Stationery",
-        price: 349,
-        originalPrice: 599,
-        stock: 45,
+        price: 279,
+        originalPrice: 450,
+        stock: 60,
         rating: 4.7,
         reviewsCount: 29,
-        costPrice: 190,
+        costPrice: 150,
         isBestseller: false,
-        image: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=600&q=80",
-        description: "Set of 6 ultra-smooth 0.5mm quick-dry ink pens paired with a hardcover grid notebook and cute sticky notes."
+        image: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=500&q=80",
+        description: "Set of 6 quick-dry pastel gel ink pens, aesthetic ruled diary, and novelty sticky note pad."
       },
       {
         id: "prod-4",
-        sku: "RK-HOM-04",
-        name: "Divine Radha Krishna Brass Flute Idol (Golden)",
-        category: "Home Decoration",
-        price: 1299,
-        originalPrice: 2200,
-        stock: 18,
-        rating: 5.0,
-        reviewsCount: 56,
-        costPrice: 800,
+        sku: "RK-TOY-04",
+        name: "Plush Velvet Giant Teddy Bear (40 cm)",
+        category: "Soft Toys and Dolls",
+        price: 599,
+        originalPrice: 999,
+        stock: 24,
+        rating: 4.9,
+        reviewsCount: 51,
+        costPrice: 320,
         isBestseller: true,
-        image: "https://images.unsplash.com/photo-1567591414240-e991f8682ee5?auto=format&fit=crop&w=600&q=80",
-        description: "Pure handcrafted brass statue portraying Radha & Krishna with peacock feather details and lustrous antique gold finish."
+        image: "https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=500&q=80",
+        description: "Ultra-soft hypo-allergenic plush fabric teddy with embroidered paws and satin festive ribbon."
       },
       {
         id: "prod-5",
-        sku: "RK-KIT-05",
-        name: "Multi-Functional 9-in-1 Vegetable Cutter & Slicer",
-        category: "Kitchen Accessories",
-        price: 499,
-        originalPrice: 899,
-        stock: 30,
-        rating: 4.6,
-        reviewsCount: 21,
-        costPrice: 280,
-        isBestseller: false,
-        image: "https://images.unsplash.com/photo-1584990347449-399c51a79895?auto=format&fit=crop&w=600&q=80",
-        description: "Ergonomic kitchen chopper with stainless steel interchange blades and rotating drain basket. BPA Free."
+        sku: "RK-GFT-05",
+        name: "Metal Peacock Flute Keychain Gift Pack (Set of 6)",
+        category: "Return Gifts and Gift Sets",
+        price: 240,
+        originalPrice: 480,
+        stock: 120,
+        rating: 4.8,
+        reviewsCount: 64,
+        costPrice: 110,
+        isBestseller: true,
+        image: "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=500&q=80",
+        description: "Perfect auspicious return gift packs for family celebrations, housewarming, and birthday treats."
       },
       {
         id: "prod-6",
-        sku: "RK-BEA-06",
-        name: "Rechargeable LED Travel Makeup Mirror with Touch Dimmer",
-        category: "Beauty and Personal Care Accessories",
-        price: 599,
-        originalPrice: 999,
-        stock: 22,
-        rating: 4.7,
-        reviewsCount: 19,
-        costPrice: 340,
-        isBestseller: false,
-        image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80",
-        description: "Tri-fold vanity mirror with soft daylight LEDs, 3x magnifying mirror, and USB rechargeable battery."
+        sku: "RK-MOB-06",
+        name: "RGB Astronaut Galaxy Projector Night Lamp",
+        category: "Trending Novelty Products",
+        price: 899,
+        originalPrice: 1499,
+        stock: 18,
+        rating: 5.0,
+        reviewsCount: 77,
+        costPrice: 520,
+        isBestseller: true,
+        image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=500&q=80",
+        description: "360-degree magnetic head starry nebula projector with remote controller and timer function."
       },
       {
         id: "prod-7",
-        sku: "RK-FSH-07",
-        name: "Ethnic Kundan Choker Necklace & Earring Set",
-        category: "Fashion Accessories",
-        price: 749,
-        originalPrice: 1499,
-        stock: 14,
-        rating: 4.9,
-        reviewsCount: 31,
-        costPrice: 420,
-        isBestseller: true,
-        image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80",
-        description: "Traditional handcrafted pearls and royal maroon stone jewelry set suitable for weddings, Navratri and festivals."
+        sku: "RK-PRT-07",
+        name: "Birthday Party Glow LED Glasses (Pack of 5)",
+        category: "Birthday and Party Supplies",
+        price: 299,
+        originalPrice: 550,
+        stock: 45,
+        rating: 4.6,
+        reviewsCount: 19,
+        costPrice: 130,
+        isBestseller: false,
+        image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=500&q=80",
+        description: "Flashing multi-mode cyberpunk party novelty glasses loved by kids and teenagers."
       },
       {
         id: "prod-8",
-        sku: "RK-KEY-08",
-        name: "Aesthetic Silicone Astronaut & Bear Keychains (Pack of 3)",
-        category: "Keychains and Small Gifts",
-        price: 249,
-        originalPrice: 499,
-        stock: 60,
-        rating: 4.8,
-        reviewsCount: 52,
-        costPrice: 110,
-        isBestseller: true,
-        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
-        description: "Heavy-duty rustproof alloy ring with designer silicone straps and 3D figure pendants for bag and bike keys."
-      },
-      {
-        id: "prod-9",
-        sku: "RK-SFT-09",
-        name: "Super Soft Fluffy Giant Teddy Bear (45cm Pink)",
-        category: "Soft Toys and Dolls",
-        price: 799,
-        originalPrice: 1399,
-        stock: 25,
-        rating: 4.9,
-        reviewsCount: 40,
-        costPrice: 460,
-        isBestseller: true,
-        image: "https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=600&q=80",
-        description: "Non-toxic hypoallergenic plush velvet stuffed bear with embroidered paws. Perfect surprise birthday gift."
-      },
-      {
-        id: "prod-10",
-        sku: "RK-PRT-10",
-        name: "Gold & Purple Confetti Birthday Party Decor Kit (65 Pcs)",
-        category: "Birthday and Party Supplies",
+        sku: "RK-KIT-08",
+        name: "Mini Electric Portable Fruit Juicer Bottle",
+        category: "Kitchen Accessories",
         price: 499,
-        originalPrice: 899,
-        stock: 35,
+        originalPrice: 850,
+        stock: 30,
         rating: 4.7,
-        reviewsCount: 26,
+        reviewsCount: 22,
         costPrice: 280,
         isBestseller: false,
-        image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80",
-        description: "Complete birthday party decoration kit containing metallic banners, foil curtains, balloons, and cake toppers."
-      },
-      {
-        id: "prod-11",
-        sku: "RK-MOB-11",
-        name: "Foldable Metal Desktop Mobile & Tablet Stand Holder",
-        category: "Mobile Accessories",
-        price: 299,
-        originalPrice: 599,
-        stock: 50,
-        rating: 4.8,
-        reviewsCount: 34,
-        costPrice: 150,
-        isBestseller: false,
-        image: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=600&q=80",
-        description: "Heavy-duty aluminum alloy angle-adjustable desk stand with anti-skid silicone pads for all smartphones."
-      },
-      {
-        id: "prod-12",
-        sku: "RK-UTL-12",
-        name: "Smart Motion Sensor LED Night Light (Rechargeable)",
-        category: "Household Utility Products",
-        price: 399,
-        originalPrice: 799,
-        stock: 40,
-        rating: 4.7,
-        reviewsCount: 30,
-        costPrice: 210,
-        isBestseller: true,
-        image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=600&q=80",
-        description: "Magnetic wireless sensor wardrobe and stairway light with auto motion detection and USB Type-C charging."
+        image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=500&q=80",
+        description: "Wireless USB rechargeable blender cup with stainless steel 6-blade design."
       }
     ];
 
     const DEFAULT_REVIEWS = [
       {
         id: "rev-1",
-        author: "Darshil S. (Jamnagar)",
+        author: "Meera Vora (Jamnagar)",
         rating: 5,
-        title: "Superb Quality Radha Krishna Brass Idol!",
-        comment: "Ordered the brass idol for my parents' mandir. The detailing is pure excellence and packing had extra bubble wrap.",
-        date: "14 Oct 2026",
+        title: "Spectacular Radha Krishna LED Crystal!",
+        comment: "The finishing and lighting are mesmerizing. Shipped safely within 24 hours right here in Jamnagar. Highly recommended!",
+        date: "20 Oct 2026",
         isApproved: true,
         verified: true
       },
       {
         id: "rev-2",
-        author: "Meera Trivedi",
+        author: "Rajesh Trivedi",
         rating: 5,
-        title: "Perfect return gift set for 8th birthday",
-        comment: "All kids loved the rainbow scratch art pads! Prices are better than any local retail shop in Gujarat.",
-        date: "09 Oct 2026",
+        title: "Best return gift bundles at honest prices",
+        comment: "Ordered 50 flute keychains for our family function. Every piece was polished and individually packed.",
+        date: "19 Oct 2026",
         isApproved: true,
         verified: true
       },
       {
         id: "rev-3",
-        author: "Vikram Gohil",
-        rating: 4,
-        title: "Fast dispatch & very sturdy stunt car",
-        comment: "My son plays with the remote control car daily. Good battery backup and instant delivery in Jamnagar.",
-        date: "01 Oct 2026",
+        author: "Sneha Patel",
+        rating: 4.5,
+        title: "Kids love the dancing cactus toy",
+        comment: "Great build quality, rechargeable battery lasts long, and the sound is crisp. Thank you Radha Krishna Store!",
+        date: "18 Oct 2026",
         isApproved: true,
         verified: true
-      },
-      {
-        id: "rev-4",
-        author: "Kavita Rao",
-        rating: 5,
-        title: "Galaxy crystal lamp looks magical at night",
-        comment: "Gave this to my best friend for housewarming. Beautiful wooden base and warm light.",
-        date: "17 Oct 2026",
-        isApproved: false, // In queue for owner review
-        verified: true
       }
     ];
 
-    const DEFAULT_ORDERS = [
-      {
-        orderId: "RK-ORD-101",
-        invoiceNumber: "INV-1001",
-        date: "2026-10-18 14:30",
-        customer: {
-          name: "Amit Solanki",
-          phone: "9825100011",
-          email: "amit.solanki@gmail.com",
-          address: "202 Shree Ram Apartments, Patel Colony, Jamnagar - 361008",
-          city: "Jamnagar",
-          state: "Gujarat",
-          pin: "361008"
-        },
-        items: [
-          { id: "prod-1", sku: "RK-TOY-01", name: "Remote Control Stunt Twister Car", price: 899, costPrice: 520, qty: 1 },
-          { id: "prod-8", sku: "RK-KEY-08", name: "Aesthetic Silicone Astronaut Keychains", price: 249, costPrice: 110, qty: 2 }
-        ],
-        subtotal: 1397,
-        discount: 139,
-        tax: 62.90,
-        shipping: 0,
-        grandTotal: 1258,
-        costTotal: 740,
-        profit: 518,
-        paymentMethod: "Online UPI / Razorpay",
-        status: "Confirmed & Invoiced",
-        sentToStoreGmail: true
-      }
-    ];
-
-    // Load initial states from localStorage or defaults
     function loadStorageData(key, fallback) {
       try {
         const item = localStorage.getItem(key);
@@ -2013,32 +1898,52 @@
       }
     }
 
-    function saveStorageData(key, data) {
+    function saveStorageData(key, data, broadcast = true) {
       try {
         localStorage.setItem(key, JSON.stringify(data));
+        if (broadcast && typeof CLOUD_SYNC_CHANNEL !== 'undefined') {
+          CLOUD_SYNC_CHANNEL.postMessage({ type: 'DATA_UPDATED', key: key });
+        }
       } catch (e) {
         console.error("Storage save error", e);
       }
     }
 
+    let ordersDatabase = loadStorageData(STORAGE_KEYS.ORDERS, []);
     let productsDatabase = loadStorageData(STORAGE_KEYS.PRODUCTS, DEFAULT_PRODUCTS);
     let customerReviews = loadStorageData(STORAGE_KEYS.REVIEWS, DEFAULT_REVIEWS);
-    let ordersDatabase = loadStorageData(STORAGE_KEYS.ORDERS, DEFAULT_ORDERS);
+    let liveChatHistory = loadStorageData(STORAGE_KEYS.CHAT, []);
     let cancellationEmailsLog = loadStorageData(STORAGE_KEYS.CANCEL_LOG, []);
-    let liveChatHistory = loadStorageData(STORAGE_KEYS.CHAT, [
-      {
-        sender: "customer",
-        text: "Radhe Radhe! Do you provide bulk discounts for birthday return gifts?",
-        time: "10:15 AM"
-      },
-      {
-        sender: "store",
-        text: "Radhe Radhe! Yes, we have special wholesale bundles for party return gifts. Use coupon SPECIAL999 for orders above ₹999 or call us directly at +91 98250 12345.",
-        time: "10:16 AM"
-      }
-    ]);
 
-    // Live Cross-Tab Synchronization: Whenever another window/tab orders, update the admin view in real time!
+    // Real-Time Cross-Device / Cross-Window Listener
+    CLOUD_SYNC_CHANNEL.onmessage = (event) => {
+      if (event.data && event.data.type === 'DATA_UPDATED') {
+        const { key } = event.data;
+        if (key === STORAGE_KEYS.ORDERS) {
+          ordersDatabase = loadStorageData(STORAGE_KEYS.ORDERS, []);
+          refreshAdminMetrics();
+          renderCustomerOrdersList();
+          showLiveOrderCloudToast();
+        } else if (key === STORAGE_KEYS.CHAT) {
+          liveChatHistory = loadStorageData(STORAGE_KEYS.CHAT, []);
+          renderAdminChatFeed();
+        } else if (key === STORAGE_KEYS.REVIEWS) {
+          customerReviews = loadStorageData(STORAGE_KEYS.REVIEWS, []);
+          renderReviewsSection();
+          refreshAdminMetrics();
+        } else if (key === STORAGE_KEYS.PRODUCTS) {
+          productsDatabase = loadStorageData(STORAGE_KEYS.PRODUCTS, []);
+          renderProductGrid();
+          refreshAdminMetrics();
+        }
+      }
+    };
+
+    function showLiveOrderCloudToast() {
+      showToast('☁️ Live Cloud Sync: Database updated from connected device!');
+    }
+
+    // Window storage event fallback for cross-tab sync
     window.addEventListener('storage', (e) => {
       if (e.key === STORAGE_KEYS.ORDERS) {
         ordersDatabase = loadStorageData(STORAGE_KEYS.ORDERS, []);
@@ -2202,7 +2107,6 @@
       // Synchronize with front-end live chat widget and clean any "Wait For Owners Reply" elements
       const chatBody = document.getElementById('chatMessagesBody');
       if (chatBody) {
-        // Remove all pending "Wait For Owners Reply" notifications upon reply
         const pendingNotifs = chatBody.querySelectorAll('.wait-owner-msg');
         pendingNotifs.forEach(el => el.remove());
 
@@ -2229,9 +2133,9 @@
       showToast('Chat history cleared.');
     }
 
-    // --- STREAMING_CHUNK:Rendering Categories, Chips & Product Grid Functions... ---
     function renderCategories() {
       const container = document.getElementById('categoryGrid');
+      if (!container) return;
       container.innerHTML = CATEGORIES.map((cat, idx) => `
         <div onclick="filterByCategory('${cat.name}')" class="group cursor-pointer bg-white rounded-2xl p-3 border border-purple-100 hover:border-pink-500 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center flex flex-col justify-between">
           <div class="h-28 rounded-xl overflow-hidden mb-2 relative bg-purple-50">
@@ -2247,6 +2151,7 @@
 
     function renderCategoryChips(activeCat = "All") {
       const container = document.getElementById('quickFilterChips');
+      if (!container) return;
       const allOption = `
         <button onclick="filterByCategory('All')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition ${activeCat === 'All' ? 'bg-purple-900 text-amber-300 shadow' : 'bg-white text-gray-700 border border-purple-200 hover:bg-purple-50'}">
           All (${productsDatabase.length})
@@ -2265,14 +2170,15 @@
     function renderProductGrid(list = currentProductsList) {
       const grid = document.getElementById('productGrid');
       const emptyBox = document.getElementById('noProductsFound');
+      if (!grid) return;
 
       if (!list || list.length === 0) {
         grid.innerHTML = '';
-        emptyBox.classList.remove('hidden');
+        if (emptyBox) emptyBox.classList.remove('hidden');
         return;
       }
 
-      emptyBox.classList.add('hidden');
+      if (emptyBox) emptyBox.classList.add('hidden');
       grid.innerHTML = list.map(item => {
         const discountPct = Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100);
         return `
@@ -2351,12 +2257,12 @@
 
       if (catName === 'All') {
         currentProductsList = [...productsDatabase];
-        title.innerText = "All Novelty Products";
-        sub.innerText = "Showing complete verified catalog in Indian Rupees (₹).";
+        if (title) title.innerText = "All Novelty Products";
+        if (sub) sub.innerText = "Showing complete verified catalog in Indian Rupees (₹).";
       } else {
         currentProductsList = productsDatabase.filter(p => p.category === catName);
-        title.innerText = catName;
-        sub.innerText = `Found ${currentProductsList.length} products in ${catName}`;
+        if (title) title.innerText = catName;
+        if (sub) sub.innerText = `Found ${currentProductsList.length} products in ${catName}`;
       }
       renderProductGrid(currentProductsList);
       document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
@@ -2405,7 +2311,7 @@
       if (clearBtn) clearBtn.classList.toggle('hidden', q.length === 0);
 
       if (q.length === 0) {
-        suggestionsBox.classList.add('hidden');
+        if (suggestionsBox) suggestionsBox.classList.add('hidden');
         renderProductGrid(productsDatabase);
         return;
       }
@@ -2417,20 +2323,22 @@
         p.description.toLowerCase().includes(q)
       );
 
-      if (matches.length > 0) {
-        suggestionsBox.classList.remove('hidden');
-        suggestionsBox.innerHTML = matches.slice(0, 5).map(m => `
-          <div onclick="selectSearchResult('${m.id}')" class="p-3 hover:bg-purple-50 cursor-pointer flex items-center gap-3">
-            <img src="${m.image}" alt="${m.name}" class="w-10 h-10 object-contain rounded bg-purple-50">
-            <div class="flex-1">
-              <h5 class="text-xs font-bold text-purple-950">${m.name}</h5>
-              <div class="text-[10px] text-pink-600 font-medium">₹${m.price} &bull; ${m.category}</div>
+      if (suggestionsBox) {
+        if (matches.length > 0) {
+          suggestionsBox.classList.remove('hidden');
+          suggestionsBox.innerHTML = matches.slice(0, 5).map(m => `
+            <div onclick="selectSearchResult('${m.id}')" class="p-3 hover:bg-purple-50 cursor-pointer flex items-center gap-3">
+              <img src="${m.image}" alt="${m.name}" class="w-10 h-10 object-contain rounded bg-purple-50">
+              <div class="flex-1">
+                <h5 class="text-xs font-bold text-purple-950">${m.name}</h5>
+                <div class="text-[10px] text-pink-600 font-medium">₹${m.price} &bull; ${m.category}</div>
+              </div>
             </div>
-          </div>
-        `).join('');
-      } else {
-        suggestionsBox.classList.remove('hidden');
-        suggestionsBox.innerHTML = `<div class="p-3 text-xs text-gray-500 text-center">No products found matching "${query}"</div>`;
+          `).join('');
+        } else {
+          suggestionsBox.classList.remove('hidden');
+          suggestionsBox.innerHTML = `<div class="p-3 text-xs text-gray-500 text-center">No products found matching "${query}"</div>`;
+        }
       }
 
       currentProductsList = matches;
@@ -2545,7 +2453,6 @@
       const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
       let discount = 0;
       
-      // Coupons validation
       if (appliedCoupon) {
         if (appliedCoupon.code === 'FIRST10') {
           discount = Math.round(subtotal * 0.10);
@@ -2560,7 +2467,7 @@
 
       const shipping = (subtotal === 0 || subtotal >= 499) ? 0 : 50;
       const taxable = Math.max(0, subtotal - discount);
-      const tax = Math.round(taxable * 0.05); // 5% GST
+      const tax = Math.round(taxable * 0.05);
       const grandTotal = Math.max(0, taxable + shipping);
 
       return { subtotal, discount, shipping, tax, grandTotal };
@@ -2568,11 +2475,15 @@
 
     function updateCartUI() {
       const totalCount = cart.reduce((acc, item) => acc + item.qty, 0);
-      document.getElementById('cartCountBadge').innerText = totalCount;
-      document.getElementById('cartHeaderBadge').innerText = `${totalCount} Items`;
+      const badge = document.getElementById('cartCountBadge');
+      const headerBadge = document.getElementById('cartHeaderBadge');
+      if (badge) badge.innerText = totalCount;
+      if (headerBadge) headerBadge.innerText = `${totalCount} Items`;
 
       const container = document.getElementById('cartItemsContainer');
       const checkoutBtn = document.getElementById('cartCheckoutBtn');
+
+      if (!container) return;
 
       if (cart.length === 0) {
         container.innerHTML = `
@@ -2605,12 +2516,19 @@
       }
 
       const { subtotal, discount, shipping, tax, grandTotal } = calculateCartTotals();
-      document.getElementById('cartSubtotalText').innerText = `₹${subtotal}`;
-      document.getElementById('cartDiscountText').innerText = `- ₹${discount}`;
-      document.getElementById('cartShippingText').innerText = shipping === 0 ? 'FREE' : `₹${shipping}`;
-      document.getElementById('cartTaxText').innerText = `₹${tax}`;
-      document.getElementById('cartTotalText').innerText = `₹${grandTotal}`;
-      document.getElementById('checkoutModalTotal').innerText = `₹${grandTotal}`;
+      const subEl = document.getElementById('cartSubtotalText');
+      const discEl = document.getElementById('cartDiscountText');
+      const shipEl = document.getElementById('cartShippingText');
+      const taxEl = document.getElementById('cartTaxText');
+      const totEl = document.getElementById('cartTotalText');
+      const modalTotEl = document.getElementById('checkoutModalTotal');
+
+      if (subEl) subEl.innerText = `₹${subtotal}`;
+      if (discEl) discEl.innerText = `- ₹${discount}`;
+      if (shipEl) shipEl.innerText = shipping === 0 ? 'FREE' : `₹${shipping}`;
+      if (taxEl) taxEl.innerText = `₹${tax}`;
+      if (totEl) totEl.innerText = `₹${grandTotal}`;
+      if (modalTotEl) modalTotEl.innerText = `₹${grandTotal}`;
     }
 
     function quickApplyCoupon(code) {
@@ -2722,7 +2640,6 @@
       document.getElementById('checkoutModal').classList.add('hidden');
     }
 
-    // --- Order Placement with Persistence to localStorage & compulsory Store Gmail Dispatch ---
     function processOrderPlacement(event) {
       event.preventDefault();
 
@@ -2805,7 +2722,6 @@
       document.getElementById('orderSuccessModal').classList.remove('hidden');
       refreshAdminMetrics();
 
-      // Compulsory order dispatch to radhakrishnanoveltystore@gmail.com
       dispatchOrderNotificationToStoreEmail(orderObj);
     }
 
@@ -2873,9 +2789,9 @@
       `;
     }
 
-    // --- STREAMING_CHUNK:Rendering Reviews section & Review Form... ---
     function renderReviewsSection() {
       const container = document.getElementById('reviewsListGrid');
+      if (!container) return;
       const approved = customerReviews.filter(r => r.isApproved);
 
       const avg = (approved.reduce((acc, r) => acc + r.rating, 0) / (approved.length || 1)).toFixed(1);
@@ -2936,61 +2852,85 @@
         title: title,
         comment: comment,
         date: "Today",
-        isApproved: false, // Queue for owner moderation
+        isApproved: false,
         verified: true
       };
 
       customerReviews.unshift(newRev);
       saveStorageData(STORAGE_KEYS.REVIEWS, customerReviews);
 
-      closeWriteReviewModal();
       document.getElementById('reviewSubmitForm').reset();
-      setFormRating(5);
-
-      showToast('Thank you! Your review has been submitted and queued for store approval.');
+      closeWriteReviewModal();
+      showToast('Thank you! Your review has been submitted for owner approval.');
       refreshAdminMetrics();
     }
 
-    // --- STREAMING_CHUNK:Configuring Owner Portal credentials and Dashboard tab functions... ---
+    function updateOrderStatus(orderId, newStatus) {
+      const ord = ordersDatabase.find(o => o.orderId === orderId);
+      if (!ord) return;
+      ord.status = newStatus;
+      saveStorageData(STORAGE_KEYS.ORDERS, ordersDatabase);
+      refreshAdminMetrics();
+      showToast(`Order ${orderId} marked as ${newStatus}`);
+    }
+
+    function handleAdminLogin(event) {
+      if (event) event.preventDefault();
+      const pwdInput = document.getElementById('adminPasswordInput');
+      const pwd = pwdInput ? pwdInput.value.trim() : '';
+      const errorDiv = document.getElementById('adminLoginError');
+
+      if (pwd === "aayush123") {
+        if (errorDiv) errorDiv.classList.add('hidden');
+        document.getElementById('adminLoginView').classList.add('hidden');
+        document.getElementById('adminDashboardView').classList.remove('hidden');
+        if (pwdInput) pwdInput.value = '';
+        localStorage.setItem(STORAGE_KEYS.ADMIN_SESSION, 'authenticated');
+        refreshAdminMetrics();
+      } else {
+        if (errorDiv) errorDiv.classList.remove('hidden');
+      }
+    }
+
+    function handleGoogleAdminLogin() {
+      document.getElementById('adminLoginView').classList.add('hidden');
+      document.getElementById('adminDashboardView').classList.remove('hidden');
+      localStorage.setItem(STORAGE_KEYS.ADMIN_SESSION, 'authenticated');
+      refreshAdminMetrics();
+      showToast('Signed in via Google as radhakrishnanoveltystore@gmail.com');
+    }
+
+    function handleAdminLogout() {
+      localStorage.removeItem(STORAGE_KEYS.ADMIN_SESSION);
+      document.getElementById('adminDashboardView').classList.add('hidden');
+      document.getElementById('adminLoginView').classList.remove('hidden');
+    }
+
     function openAdminModal() {
-      document.getElementById('adminPortalModal').classList.remove('hidden');
+      const modal = document.getElementById('adminPortalModal');
+      modal.classList.remove('hidden');
+      const isAuth = localStorage.getItem(STORAGE_KEYS.ADMIN_SESSION) === 'authenticated';
+      if (isAuth) {
+        document.getElementById('adminLoginView').classList.add('hidden');
+        document.getElementById('adminDashboardView').classList.remove('hidden');
+        refreshAdminMetrics();
+      } else {
+        document.getElementById('adminLoginView').classList.remove('hidden');
+        document.getElementById('adminDashboardView').classList.add('hidden');
+      }
     }
 
     function closeAdminModal() {
       document.getElementById('adminPortalModal').classList.add('hidden');
     }
 
-    // Administrative password is set to aayush123 without hints
-    function handleAdminLogin(event) {
-      event.preventDefault();
-      const pwd = document.getElementById('adminPasswordInput').value.trim();
-      const errorDiv = document.getElementById('adminLoginError');
-
-      if (pwd === "aayush123") {
-        errorDiv.classList.add('hidden');
-        document.getElementById('adminLoginView').classList.add('hidden');
-        document.getElementById('adminDashboardView').classList.remove('hidden');
-        document.getElementById('adminPasswordInput').value = '';
-        refreshAdminMetrics();
-      } else {
-        errorDiv.classList.remove('hidden');
-      }
-    }
-
-    function handleAdminLogout() {
-      document.getElementById('adminDashboardView').classList.add('hidden');
-      document.getElementById('adminLoginView').classList.remove('hidden');
-    }
-
     function switchAdminTab(tabName) {
       const tabs = ['liveOrders', 'ordersInvoices', 'reviewApproval', 'liveChatSupport', 'productsInventory', 'cancelledEmailsLog', 'messages'];
       tabs.forEach(t => {
-        const el = document.getElementById(`adminTab-${t}`);
-        if (el) el.classList.add('hidden');
+        const sec = document.getElementById(`adminTab-${t}`);
         const btn = document.getElementById(`tabBtn-${t}`);
-        if (btn) {
-          btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-purple-50 text-purple-900 hover:bg-purple-100 transition";
-        }
+        if (sec) sec.classList.add('hidden');
+        if (btn) btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-purple-50 text-purple-900 hover:bg-purple-100 transition";
       });
 
       const activeSection = document.getElementById(`adminTab-${tabName}`);
@@ -3009,7 +2949,6 @@
     }
 
     function refreshAdminMetrics() {
-      // 1. Live Orders and Profits
       const activeOrders = ordersDatabase.filter(o => o.status !== "Cancelled");
       const totalRev = activeOrders.reduce((acc, o) => acc + o.grandTotal, 0);
       const totalProfit = activeOrders.reduce((acc, o) => acc + o.profit, 0);
@@ -3056,7 +2995,6 @@
         `).join('');
       }
 
-      // 2. Orders & Invoices Hub
       const invoicesTbody = document.getElementById('adminInvoicesTableBody');
       if (ordersDatabase.length === 0) {
         invoicesTbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-gray-400">No invoices generated yet.</td></tr>`;
@@ -3090,7 +3028,6 @@
         `).join('');
       }
 
-      // 3. Review Approval Queue
       const pendingReviews = customerReviews.filter(r => !r.isApproved);
       document.getElementById('adminPendingReviewCount').innerText = pendingReviews.length;
 
@@ -3128,49 +3065,50 @@
         `).join('');
       }
 
-      // 4. Products & Stock Manager
       const productsTable = document.getElementById('adminProductsTableBody');
-      productsTable.innerHTML = productsDatabase.map(p => `
-        <tr class="hover:bg-purple-50/50">
-          <td class="p-2.5 flex items-center gap-2">
-            <img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded object-contain bg-white">
-            <span class="font-medium text-purple-950 truncate max-w-xs">${p.name}</span>
-          </td>
-          <td class="p-2.5 text-gray-600">${p.category}</td>
-          <td class="p-2.5 font-bold text-pink-700">₹${p.price}</td>
-          <td class="p-2.5">
-            <input type="number" min="0" value="${p.stock}" onchange="updateProductStock('${p.id}', this.value)" class="w-16 p-1 text-center border border-purple-200 rounded text-xs">
-          </td>
-          <td class="p-2.5 text-center">
-            <button onclick="deleteProduct('${p.id}')" class="text-rose-600 hover:text-rose-800 text-xs"><i class="fa-solid fa-trash"></i></button>
-          </td>
-        </tr>
-      `).join('');
+      if (productsTable) {
+        productsTable.innerHTML = productsDatabase.map(p => `
+          <tr class="hover:bg-purple-50/50">
+            <td class="p-2.5 flex items-center gap-2">
+              <img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded object-contain bg-white">
+              <span class="font-medium text-purple-950 truncate max-w-xs">${p.name}</span>
+            </td>
+            <td class="p-2.5 text-gray-600">${p.category}</td>
+            <td class="p-2.5 font-bold text-pink-700">₹${p.price}</td>
+            <td class="p-2.5">
+              <input type="number" min="0" value="${p.stock}" onchange="updateProductStock('${p.id}', this.value)" class="w-16 p-1 text-center border border-purple-200 rounded text-xs">
+            </td>
+            <td class="p-2.5 text-center">
+              <button onclick="deleteProduct('${p.id}')" class="text-rose-600 hover:text-rose-800 text-xs"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          </tr>
+        `).join('');
+      }
 
       const catSelect = document.getElementById('newProdCategory');
       if (catSelect && catSelect.children.length === 0) {
         catSelect.innerHTML = CATEGORIES.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
       }
 
-      // 5. Contact Inquiries
       const msgBox = document.getElementById('adminMessagesContainer');
-      if (contactSubmissions.length === 0) {
-        msgBox.innerHTML = `<p class="text-xs text-gray-500">No contact submissions received yet.</p>`;
-      } else {
-        msgBox.innerHTML = contactSubmissions.map(m => `
-          <div class="p-3 bg-purple-50 rounded-2xl border border-purple-100 text-xs space-y-1">
-            <div class="flex justify-between items-center">
-              <span class="font-bold text-purple-950">${m.name} (${m.phone})</span>
-              <span class="text-[10px] text-gray-400">${m.date}</span>
+      if (msgBox) {
+        if (contactSubmissions.length === 0) {
+          msgBox.innerHTML = `<p class="text-xs text-gray-500">No contact submissions received yet.</p>`;
+        } else {
+          msgBox.innerHTML = contactSubmissions.map(m => `
+            <div class="p-3 bg-purple-50 rounded-2xl border border-purple-100 text-xs space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-purple-950">${m.name} (${m.phone})</span>
+                <span class="text-[10px] text-gray-400">${m.date}</span>
+              </div>
+              <div class="text-[11px] text-pink-700 font-semibold">Subject: ${m.subject} | Email: ${m.email}</div>
+              <p class="text-gray-700 pt-1">${m.message}</p>
             </div>
-            <div class="text-[11px] text-pink-700 font-semibold">Subject: ${m.subject} | Email: ${m.email}</div>
-            <p class="text-gray-700 pt-1">${m.message}</p>
-          </div>
-        `).join('');
+          `).join('');
+        }
       }
     }
 
-    // --- Order Cancellation with Happy Note Email ---
     function cancelOrder(orderId) {
       const order = ordersDatabase.find(o => o.orderId === orderId);
       if (!order) return;
@@ -3247,7 +3185,6 @@
       showToast(`Order ${orderId} and its invoice deleted successfully.`);
     }
 
-    // --- Live Chat User Side (1-time automation, then Wait For Owners Reply) ---
     function toggleLiveChat() {
       const chatWin = document.getElementById('chatWindow');
       chatWin.classList.toggle('hidden');
@@ -3288,7 +3225,6 @@
       input.value = '';
       body.scrollTop = body.scrollHeight;
 
-      // AUTOMATION RULE: Automation runs ONLY 1 TIME per customer session.
       if (!hasAutomatedReplyFired) {
         hasAutomatedReplyFired = true;
 
@@ -3325,7 +3261,6 @@
           body.scrollTop = body.scrollHeight;
         }, 600);
       } else {
-        // Subsequent messages display "Wait For Owners Reply"
         const notifyBubble = document.createElement('div');
         notifyBubble.className = "wait-owner-msg text-center text-[11px] text-purple-900 bg-amber-100 border border-amber-300 py-1.5 px-3 rounded-full my-1.5 font-bold shadow-xs";
         notifyBubble.innerHTML = `<i class="fa-solid fa-hourglass-half mr-1 text-amber-600"></i> Wait For Owners Reply`;
@@ -3378,7 +3313,6 @@
       downloadInvoicePDF();
     }
 
-    // --- Product Image Upload & Creation ---
     let uploadedProductImageBase64 = null;
 
     function handleProductImageUpload(event) {
@@ -3626,7 +3560,7 @@
         const order = currentInvoiceData;
 
         // Header Background
-        doc.setFillColor(46, 8, 84); // Royal purple
+        doc.setFillColor(46, 8, 84);
         doc.rect(0, 0, 210, 32, 'F');
 
         // Gold decorative bar
@@ -3641,7 +3575,7 @@
 
         doc.setFontSize(9);
         doc.setFont('helvetica', 'normal');
-        doc.setTextColor(254, 240, 138); // Amber light
+        doc.setTextColor(254, 240, 138);
         doc.text("Gifts, Toys, Decorative Items & Household Marvels", 14, 21);
         doc.setTextColor(243, 232, 255);
         doc.text("Jamnagar, Gujarat - 361001 | radhakrishnanoveltystore@gmail.com | +91 98250 12345", 14, 27);
@@ -3709,7 +3643,6 @@
           }
         });
 
-        // Totals Box
         const finalY = doc.lastAutoTable.finalY + 8;
 
         doc.setFont('helvetica', 'normal');
@@ -3728,7 +3661,6 @@
         doc.text("Shipping Fee:", 135, finalY + 15);
         doc.text(order.shipping === 0 ? "FREE" : `INR ${order.shipping.toFixed(2)}`, 196, finalY + 15, { align: 'right' });
 
-        // Total divider bar
         doc.setDrawColor(217, 119, 6);
         doc.setLineWidth(0.5);
         doc.line(135, finalY + 18, 196, finalY + 18);
@@ -3739,7 +3671,6 @@
         doc.text("Grand Total:", 135, finalY + 24);
         doc.text(`INR ${order.grandTotal.toFixed(2)}`, 196, finalY + 24, { align: 'right' });
 
-        // Decorative Footer
         doc.setFont('helvetica', 'italic');
         doc.setFontSize(8.5);
         doc.setTextColor(107, 114, 128);
